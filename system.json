@@ -1,0 +1,55 @@
+{
+  "id": "awanturnik20",
+  "title": "Awanturnik K20",
+  "description": "The Awanturnik K20 system dla FoundryVTT!",
+  "authors": [
+    {
+      "name": "bartekB"
+    }
+  ],
+
+
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": 14,
+    "verified": "14.360"
+  },
+  "esmodules": ["module/awanturnik20.mjs"],
+  "styles": ["css/awanturnik20.css"],
+  "languages": [
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/pl.json"
+    }
+  ],
+  "packs": [],
+  "packFolders": [],
+  "socket": true,
+
+  "grid" : {
+    "distance": 1.5,
+    "units": "m"
+  },
+    "documentTypes": {
+    "Actor": {
+      "awanturnik": {
+        "htmlFields": ["description", "notes"]
+      }
+    },
+    "ActiveEffect": {
+      "condition": {}
+    },
+    "Item": {
+      "gatunek": {},
+      "profesja": {},
+      "rutyny": { "htmlFields": ["opis"] },
+      "bron": {},
+      "pancerz": {},
+      "czar": {}
+    }
+  },
+    "initiative": "1d20 + @atrybuty.zrecznosc.value + @inicjatywa",
+  "primaryTokenAttribute": "hitPoints",
+  "secondaryTokenAttribute": "manah"
+}

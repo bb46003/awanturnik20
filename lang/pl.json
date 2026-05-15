@@ -1,0 +1,19 @@
+{
+ 
+  "TYPES": {   
+    "Actor": {
+        "awanturnik":  "Awanturnik"
+    },
+    "Items": {
+        "gatunek":  "Gatunek",
+        "profesja":  "Profesja",
+        "rutyny":  "Rutyny",
+        "bron":  "Broń",
+        "pancerz":  "Pancerz",
+        "czar":  "Czar"
+    }
+ },
+ "ak20":{
+    
+ }
+}
