@@ -1,5 +1,8 @@
+<section>
+
+
 <div class="flexcol">
-    {{#each atrybuty as |atrybut|}}
+    {{#each systemFields.atrybuty as |atrybut|}}
         <div class="attribute-group">
             <div class="attribute-main">
                 <a data-action="rzut_atrybut" data-atrybut="{{atrybut.name}}">{{localize atrybut.fields.value.label}}</a>
@@ -9,8 +12,13 @@
                         value=(lookup (lookup @root.system.atrybuty atrybut.name) "value")
                         type="number"
                     }}
+                    <div>
+                        <p>{{lookup (lookup @root.system.atrybuty atrybut.name) "mod"}}</p>
+                        <p>{{atrybut.fields.mod.label}}</p>
+                    </div>
                 </div>
             </div>
         </div>
     {{/each}}
 </div>
+</section>

@@ -1,19 +1,87 @@
 {
- 
-  "TYPES": {   
+  "TYPES": {
     "Actor": {
-        "awanturnik":  "Awanturnik"
+      "awanturnik": "Awanturnik"
     },
     "Items": {
-        "gatunek":  "Gatunek",
-        "profesja":  "Profesja",
-        "rutyny":  "Rutyny",
-        "bron":  "Broń",
-        "pancerz":  "Pancerz",
-        "czar":  "Czar"
+      "gatunek": "Gatunek",
+      "profesja": "Profesja",
+      "rutyny": "Rutyny",
+      "bron": "Broń",
+      "pancerz": "Pancerz",
+      "czar": "Czar"
     }
- },
- "ak20":{
-    
- }
+  },
+  "ak20": {},
+  "awanturnik20": {
+    "actor": {
+      "name": "Imię Awanturnika",
+      "sciezka": "Ścieżka",
+      "poziom": "Poziom",
+      "gatunek": "Gatunek",
+      "plec": "Płeć",
+      "atrybuty": {
+        "sila": "Siła",
+        "zrecznosc": "Zręczność",
+        "postura": "Postura",
+        "wiedza": "Wiedza",
+        "moc": "Moc",
+        "osobowosc": "Osobowość",
+        "mod": "Mod",
+        "kompetencje": {
+          "kunszt_w_broni_białej": "Kunszt w broni białej",
+          "mieszane_sztuki_walki": "Mieszane sztuki walki",
+          "sprawnisc_fizyczna": "Sprawność fizyczna",
+          "celnosc": "Celność",
+          "cichociemny": "Cichociemny",
+          "spryt": "Spryt",
+          "przyswajanie_subtancji": "Przyswajanie substancji",
+          "skupienie": "Skupienie",
+          "wytrzymalosc": "Wytrzymałość",
+          "inzynieria": "Inżynieria",
+          "laczenie_kropek": "Łączenie Kropek",
+          "medycyna": "Medycyna",
+          "nauki_przyrodnicze": "Nauki Przyrodnicze",
+          "nauki_spoleczne": "Nauki Społeczne",
+          "percepcja": "Percepcja",
+          "rzemioslo": "Rzemiosło",
+          "szkola_przetrwania": "Szkoła Przetrwania",
+          "szwindel": "Szwindel",
+          "tortury": "Tortury",
+          "wlam": "Włam",
+          "intuicja": "Intuicja",
+          "jezyki_tajemne": "Języki Tajemne",
+          "mistycyzm": "Mistycyzm",
+          "okultyzm": "Okultyzm",
+          "przelamanie_mo": "Przełamanie Magicznej Obrony",
+          "talenty": "Talent",
+          "trans": "Trans",
+          "blerf": "Blerf",
+          "etykieta": "Etykieta",
+          "grypsera": "Grypsera",
+          "przesluchiwanie": "Przesłuchiwanie",
+          "podescie_do_zwierzat": "Podejście do zwierząt",
+          "retoryka": "Retoryka",
+          "uwodzenie": "Uwodzenie",
+          "zastraszanie": "Zastraszanie"
+        }
+      },
+      "bieglosci":{
+        "niewyszkolony": "Niewyszkolony",
+        "nowicjusz": "Nowicjusz",
+        "adept": "Adept",
+        "ekspert": "Ekspert",
+        "mistrz": "Mistrz"
+      },
+      "atrybuty_label": "Atrybuty",
+      "inicjatywa": "Inicjatywa",
+      "ruch": "Ruch",
+      "pd": "PD",
+      "kp": "Klasa Pancerza",
+      "kmo": "Klasa Magicznej Obrony",
+      "pt": "Punkty Trafienia",
+      "pm": "Punkty Manah"
+
+    }
+  }
 }
