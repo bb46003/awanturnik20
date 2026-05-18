@@ -18,26 +18,34 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     },
   };
   static PARTS = {
-    header:{
-        id: "header",
-        template: "systems/awanturnik20/module/templates/actor/postac-header.hbs",
+    header: {
+      id: "header",
+      template: "systems/awanturnik20/module/templates/actor/postac-header.hbs",
     },
-    atrybuty:{
-        id: "atrybuty",
-        template: "systems/awanturnik20/module/templates/actor/postac-atrybuty.hbs",
+
+    atrybuty: {
+      id: "atrybuty",
+      template:
+        "systems/awanturnik20/module/templates/actor/postac-atrybuty.hbs",
     },
-    nav:{
-        id: "nav",
-        template: "systems/awanturnik20/module/templates/actor/postac-nav.hbs",
-    }
-    };
-      static TABS = {
-      tabs: [
-        { id: "atrybuty", group: "main", label: "" },
-      ],
-      initial: "atrybuty",
-    }
-      /** @override */
+        nav: {
+      id: "nav",
+      template: "systems/awanturnik20/module/templates/actor/postac-nav.hbs",
+    },
+    kompetencje: {
+      id: "kompetencje",
+      template:
+        "systems/awanturnik20/module/templates/actor/postac-kompetencje.hbs",
+    },
+  };
+  static TABS = {
+    tabs: [
+      { id: "atrybuty", group: "main", label: "" },
+      { id: "kompetencje", group: "main", label: "" },
+    ],
+    initial: "atrybuty",
+  };
+  /** @override */
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
     Object.assign(context, {
@@ -48,5 +56,5 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       systemFields: this.actor.system.schema.fields,
     });
     return context;
-    }
-};
+  }
+}

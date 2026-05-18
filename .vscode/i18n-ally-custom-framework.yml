@@ -13,10 +13,10 @@ usageMatchRegex:
   - "[^\\w\\d]ui\\.notifications\\.error\\(['\"`]({key})['\"`],\\s{\\s*.*\\slocalize: true\\s*.*}"
   - "\\{\\{\\s*localize\\s+[\"']({key})['\"]\\s*\\}\\}"
   - "\\{\\{[\\w\\.\\s\\=]*\\(localize\\s+[\"']({key})['\"]\\)[\\w\\.\\s\\=]*\\}\\}"
-  - "\\(localize\\s+[\"']({key})['\"]\\)"         # (localize "key")
-  - "localize\\s+[\"']({key})['\"]"               # <--- NEW: catches bare localize inside eq()
+  - "\\(localize\\s+[\"']({key})['\"]\\)" # (localize "key")
+  - "localize\\s+[\"']({key})['\"]" # <--- NEW: catches bare localize inside eq()
   - "data-tooltip\\=[\"']({key})['\"]"
-  - "game\\.i18n\\.localize\\(['\"`]({key})['\"`]\\)"  
+  - "game\\.i18n\\.localize\\(['\"`]({key})['\"`]\\)"
 
 # If set to true, only enables this custom framework (will disable all built-in frameworks)
 monopoly: true

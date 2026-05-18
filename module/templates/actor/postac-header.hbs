@@ -1,24 +1,34 @@
-<section>
-<div>
+<section class="header">
+    <div class="glowna">
+    <div class="image-container">
+    <img
+      class="profile-img"
+      src="{{actor.img}}"
+      data-edit="img"
+      data-action="editImage"
+      data-edit="img"
+    />
+  </div>
+
     <div class="actor-header">
-        <label>{{localize "awanturnik20.actor.sciezka"}}</label>
-        {{formInput systemFields.sciezka}}
+      <label>{{localize "awanturnik20.actor.sciezka"}}</label>
+      <div>miejsce na przedmiot ścieżka</div>
     </div>
     <div class="actor-header">
-        <label>{{localize "awanturnik20.actor.poziom"}}</label>
-        {{formInput systemFields.poziom}}
+      <label>{{localize "awanturnik20.actor.poziom"}}</label>
+      {{formInput systemFields.poziom}}
     </div>
     <div class="actor-header">
-        <label>{{localize "awanturnik20.actor.name"}}</label>
-        {{formInput systemFields.name}}          
+      <label>{{localize "awanturnik20.actor.name"}}</label>
+      <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "awanturnik20.actor.name_placeholder"}}" />
     </div>
     <div class="actor-header">
-        <label>{{localize "awanturnik20.actor.gatunek"}}</label>
-        {{formInput systemFields.gatunek}}
+      <label>{{localize "awanturnik20.actor.gatunek"}}</label>
+      <div>miejsce na przedmiot gatunek</div>
     </div>
     <div class="actor-header">
-        <label>{{localize "awanturnik20.actor.plec"}}</label>
-        {{formInput systemFields.plec}}
+      <label>{{localize "awanturnik20.actor.plec"}}</label>
+      {{formInput systemFields.plec}}
     </div>
-</div>
+  </div>
 </section>

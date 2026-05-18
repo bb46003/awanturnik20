@@ -12,7 +12,6 @@
       "czar": "Czar"
     }
   },
-  "ak20": {},
   "awanturnik20": {
     "actor": {
       "name": "Imię Awanturnika",
@@ -29,13 +28,13 @@
         "osobowosc": "Osobowość",
         "mod": "Mod",
         "kompetencje": {
-          "kunszt_w_broni_białej": "Kunszt w broni białej",
+          "kunszt_w_broni_bialej": "Kunszt w broni białej",
           "mieszane_sztuki_walki": "Mieszane sztuki walki",
-          "sprawnisc_fizyczna": "Sprawność fizyczna",
+          "sprawnosc_fizyczna": "Sprawność fizyczna",
           "celnosc": "Celność",
           "cichociemny": "Cichociemny",
           "spryt": "Spryt",
-          "przyswajanie_subtancji": "Przyswajanie substancji",
+          "przyswajanie_substancji": "Przyswajanie substancji",
           "skupienie": "Skupienie",
           "wytrzymalosc": "Wytrzymałość",
           "inzynieria": "Inżynieria",
@@ -54,34 +53,41 @@
           "mistycyzm": "Mistycyzm",
           "okultyzm": "Okultyzm",
           "przelamanie_mo": "Przełamanie Magicznej Obrony",
-          "talenty": "Talent",
+          "talent": "Talent",
           "trans": "Trans",
-          "blerf": "Blerf",
+          "blef": "Blerf",
           "etykieta": "Etykieta",
           "grypsera": "Grypsera",
           "przesluchiwanie": "Przesłuchiwanie",
-          "podescie_do_zwierzat": "Podejście do zwierząt",
+          "podejscie_do_zwierzat": "Podejście do zwierząt",
           "retoryka": "Retoryka",
           "uwodzenie": "Uwodzenie",
           "zastraszanie": "Zastraszanie"
         }
       },
-      "bieglosci":{
+      "bieglosci": {
         "niewyszkolony": "Niewyszkolony",
         "nowicjusz": "Nowicjusz",
         "adept": "Adept",
         "ekspert": "Ekspert",
         "mistrz": "Mistrz"
       },
-      "atrybuty_label": "Atrybuty",
-      "inicjatywa": "Inicjatywa",
-      "ruch": "Ruch",
-      "pd": "PD",
-      "kp": "Klasa Pancerza",
-      "kmo": "Klasa Magicznej Obrony",
-      "pt": "Punkty Trafienia",
-      "pm": "Punkty Manah"
-
-    }
+      "kompetencje": {
+        "typ": "Typ",
+        "kompetencje": "Kompetencje",
+        "mod_cz": "Modyfikator Atrybutu",
+        "kosci_bieg": "Biegłość",
+        "inne_mod": "Inne"
+      },
+      "name_placeholder": "Imię Postaci"
+    },
+    "atrybuty_label": "Atrybuty",
+    "inicjatywa": "Inicjatywa",
+    "ruch": "Ruch",
+    "pd": "PD",
+    "kp": "Klasa Pancerza",
+    "kmo": "Klasa Magicznej Obrony",
+    "pt": "Punkty Trafienia",
+    "pm": "Punkty Manah"
   }
 }

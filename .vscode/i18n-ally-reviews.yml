@@ -1714,6 +1714,14 @@ reviews:
             suggestion: ''
             type: approve
             time: '2026-05-15T07:45:22.117Z'
+          - user:
+              name: Unknown
+              email: ''
+            id: uMS2Elo-zMiCEd0hgjYdV
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:33:55.870Z'
   awanturnik20.actor.poziom:
     locales:
       pl:
@@ -1750,3 +1758,115 @@ reviews:
             suggestion: ''
             type: approve
             time: '2026-05-15T07:45:52.092Z'
+  awantnurik20.actor.kompetencje.typ:
+    locales:
+      pl:
+        comments:
+          - user:
+              name: Unknown
+              email: ''
+            id: RT0B_3q6KGFbFTQJaPGdc
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:04:40.466Z'
+          - user:
+              name: Unknown
+              email: ''
+            id: 9Mel2I_6P4O4SLAXWhyCU
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:29:05.035Z'
+  awantnurik20.actor.kompetencje.kompetencje:
+    locales:
+      pl:
+        comments:
+          - user:
+              name: Unknown
+              email: ''
+            id: xcqT_1Y-kvbvm4-UQbz7f
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:04:53.382Z'
+          - user:
+              name: Unknown
+              email: ''
+            id: yPBTFES4L_cURflHkKqOt
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:29:44.742Z'
+  awantnurik20.actor.kompetencje.mod_cz:
+    locales:
+      pl:
+        comments:
+          - user:
+              name: Unknown
+              email: ''
+            id: PKGoAFToN3cWaIqkqumvB
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:05:13.070Z'
+          - user:
+              name: Unknown
+              email: ''
+            id: y7gFDVFo7_b1vyXHfoc2e
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:29:59.566Z'
+  awantnurik20.actor.kompetencje.kosci_bieg:
+    locales:
+      pl:
+        comments:
+          - user:
+              name: Unknown
+              email: ''
+            id: 8e5Ir-1n8rqLjqhZlDF_D
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:05:23.167Z'
+          - user:
+              name: Unknown
+              email: ''
+            id: huqjeMhmOXkflcnmGDeST
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:30:11.450Z'
+  awantnurik20.actor.kompetencje.inne_mod:
+    locales:
+      pl:
+        comments:
+          - user:
+              name: Unknown
+              email: ''
+            id: 88S9t0Ox5rPVJIqStls8j
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:05:32.369Z'
+          - user:
+              name: Unknown
+              email: ''
+            id: 68Pm3vCoVUifVmUhbYh-E
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T12:30:23.339Z'
+  awanturnik20.actor.name_placeholder:
+    locales:
+      pl:
+        comments:
+          - user:
+              name: Unknown
+              email: ''
+            id: wsXaCDqw4F69S-Elw-ms_
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2026-05-18T13:30:55.802Z'

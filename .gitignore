@@ -2,3 +2,5 @@
 package.json
 
 scr/
+
+node_modules/

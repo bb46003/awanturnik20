@@ -1,0 +1,59 @@
+<section class="kompetencje">
+  <table class="skills-table">
+    <thead>
+      <tr>
+        <th>{{localize "awanturnik20.actor.kompetencje.typ"}}</th>
+        <th>{{localize "awanturnik20.actor.kompetencje.kompetencje"}}</th>
+        <th>{{localize "awanturnik20.actor.kompetencje.mod_cz"}}</th>
+        <th>{{localize "awanturnik20.actor.kompetencje.kosci_bieg"}}</th>
+        <th>{{localize "awanturnik20.actor.kompetencje.inne_mod"}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each systemFields.atrybuty as |atrybut|}}
+
+        {{#each atrybut.fields.kompetencje.fields as |skill index|}}
+          <tr class="{{#if (isFirst index atrybut.fields.kompetencje.fields)}}group-start{{/if}} {{#if (isLast index atrybut.fields.kompetencje.fields)}}group-end{{/if}}">
+
+            {{#if (isFirst index atrybut.fields.kompetencje.fields)}}
+              <td class="atr-type" rowspan="{{arrayLength atrybut.fields.kompetencje.fields}}">
+                {{localize atrybut.fields.value.label}}
+              </td>
+            {{/if}}
+            {{! SKILL NAME }}
+            <td>
+             <a> {{localize skill.label}}</a>
+            </td>
+
+            {{! ATTRIBUTE MOD }}
+            <td class="mod">
+              {{lookup (lookup @root.system.atrybuty atrybut.name) "mod"}}
+            </td>
+
+            {{! SKILL VALUE }}
+            <td>
+              {{formInput
+                skill
+                value=(lookup
+                  (lookup
+                    (lookup @root.system.atrybuty atrybut.name) "kompetencje"
+                  )
+                  skill.name
+                )
+                localize=true
+              }}
+            </td>
+
+            {{! EXTRA MOD }}
+            <td>
+              <input type="number" />
+            </td>
+
+          </tr>
+        {{/each}}
+
+      {{/each}}
+    </tbody>
+  </table>
+</section>

@@ -30,7 +30,7 @@ export function registerHandlebarsHelpers() {
   Handlebars.registerHelper("isUserGM", function () {
     const isGM = game.user.isGM;
     return isGM;
-  }); 
+  });
 
   Handlebars.registerHelper("range", function (start, end) {
     start = Number(start);
@@ -45,7 +45,15 @@ export function registerHandlebarsHelpers() {
     return result;
   });
 
-
-
- 
+  Handlebars.registerHelper("arrayLength", function (object) {
+    const array = Object.keys(object);
+    return array?.length || 0;
+  });
+  Handlebars.registerHelper("isFirst", function (index, object) {
+    return Object.keys(object)[0] === index;
+  });
+  Handlebars.registerHelper("isLast", function (index, object) {
+    const keys = Object.keys(object);
+    return keys[keys.length - 1] === index;
+  });
 }

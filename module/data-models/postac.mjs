@@ -17,224 +17,441 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
 
   static defineSchema() {
     return {
-      atrybuty: new SchemaField({ 
+      atrybuty: new SchemaField({
         sila: new SchemaField({
-          value: new NumberField({ 
+          value: new NumberField({
             initial: 10,
             min: 3,
             label: "awanturnik20.actor.atrybuty.sila",
-           }),
+          }),
           mod: new NumberField({
             initial: 0,
             label: "awanturnik20.actor.atrybuty.mod",
-            }),
+          }),
           kompetencje: new SchemaField({
-            kusznt_w_broni_białej: new NumberField({
-              initial: 0,
-              label: "awanturnik20.actor.atrybuty.kompetencje.kusznt_w_broni_białej",
+            kusznt_w_broni_białej: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label:
+                "awanturnik20.actor.atrybuty.kompetencje.kunszt_w_broni_bialej",
             }),
-            mieszane_sztuki_walki: new NumberField({
-              initial: 0,
-              label: "awanturnik20.actor.atrybuty.kompetencje.mieszane_sztuki_walki",
+            mieszane_sztuki_walki: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label:
+                "awanturnik20.actor.atrybuty.kompetencje.mieszane_sztuki_walki",
             }),
-            sprawnosc_fizyczna: new NumberField({
-              initial: 0,
-              label: "awanturnik20.actor.atrybuty.kompetencje.sprawnosc_fizyczna",
+            sprawnosc_fizyczna: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label:
+                "awanturnik20.actor.atrybuty.kompetencje.sprawnosc_fizyczna",
             }),
           }),
         }),
         zrecznosc: new SchemaField({
-          value: new NumberField({ 
+          value: new NumberField({
             initial: 10,
             min: 3,
             label: "awanturnik20.actor.atrybuty.zrecznosc",
-           }),
+          }),
           mod: new NumberField({
             initial: 0,
             label: "awanturnik20.actor.atrybuty.mod",
-            }),
-           kompetencje: new SchemaField({
-            celnosc: new NumberField({
-              initial: 0,
+          }),
+          kompetencje: new SchemaField({
+            celnosc: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.celnosc",
             }),
-            cichociemny: new NumberField({
-              initial: 0,
+            cichociemny: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.cichociemny",
             }),
-            spryt: new NumberField({
-              initial: 0,
+            spryt: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.spryt",
-           })
-          })
+            }),
+          }),
         }),
         postura: new SchemaField({
-          value: new NumberField({ 
+          value: new NumberField({
             initial: 10,
             min: 3,
             label: "awanturnik20.actor.atrybuty.postura",
-           }),
+          }),
           mod: new NumberField({
             initial: 0,
             label: "awanturnik20.actor.atrybuty.mod",
-            }),
+          }),
           kompetencje: new SchemaField({
-            przyswajanie_substancji: new NumberField({
-              initial: 0,
-              label: "awanturnik20.actor.atrybuty.kompetencje.przyswajanie_substancji",
+            przyswajanie_substancji: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label:
+                "awanturnik20.actor.atrybuty.kompetencje.przyswajanie_substancji",
             }),
-            skupienie: new NumberField({
-              initial: 0,
+            skupienie: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.skupienie",
             }),
-            wytrzymalosc: new NumberField({
-              initial: 0,
+            wytrzymalosc: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.wytrzymalosc",
-           })
+            }),
           }),
         }),
         wiedza: new SchemaField({
-          value: new NumberField({ 
+          value: new NumberField({
             initial: 10,
             min: 3,
             label: "awanturnik20.actor.atrybuty.wiedza",
-           }),
+          }),
           mod: new NumberField({
             initial: 0,
             label: "awanturnik20.actor.atrybuty.mod",
-            }),
+          }),
           kompetencje: new SchemaField({
-            inzynieria: new NumberField({
-              initial: 0,
+            inzynieria: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.inzynieria",
             }),
-            laczenie_kropek: new NumberField({
-              initial: 0,
+            laczenie_kropek: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.laczenie_kropek",
             }),
-            medycynaa: new NumberField({
-              initial: 0,
-              label: "awanturnik20.actor.atrybuty.kompetencje.medycynaa",
-           }),
-           nauki_przyrodnicze: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.nauki_przyrodnicze",
-           }),
-           nauki_spoleczne: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.nauki_spoleczne",
-           }),
-           percepcja: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.percepcja",
-           }),
-           rzemioslo: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.rzemioslo",
-           }),
-           szkola_przetrwania: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.szkola_przetrwania",
-           }),
-           szwindel: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.szwindel",
-           }),
-           tortury: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.tortury",
-           }),
-           wlam: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.wlam",
-           }),
+            medycynaa: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.medycyna",
+            }),
+            nauki_przyrodnicze: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label:
+                "awanturnik20.actor.atrybuty.kompetencje.nauki_przyrodnicze",
+            }),
+            nauki_spoleczne: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.nauki_spoleczne",
+            }),
+            percepcja: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.percepcja",
+            }),
+            rzemioslo: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.rzemioslo",
+            }),
+            szkola_przetrwania: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label:
+                "awanturnik20.actor.atrybuty.kompetencje.szkola_przetrwania",
+            }),
+            szwindel: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.szwindel",
+            }),
+            tortury: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.tortury",
+            }),
+            wlam: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.wlam",
+            }),
           }),
         }),
         moc: new SchemaField({
-          value: new NumberField({ 
+          value: new NumberField({
             initial: 10,
             min: 3,
             label: "awanturnik20.actor.atrybuty.moc",
-           }),
+          }),
           mod: new NumberField({
             initial: 0,
             label: "awanturnik20.actor.atrybuty.mod",
-            }),
+          }),
           kompetencje: new SchemaField({
-            intuicja: new NumberField({
-              initial: 0,
+            intuicja: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.intuicja",
             }),
-            jezyki_tajemne: new NumberField({
-              initial: 0,
+            jezyki_tajemne: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.jezyki_tajemne",
             }),
-            mistycyzm: new NumberField({
-              initial: 0,
-              label: "awanturnik20.actor.atrybuty.kompetencje.mistycyzm", 
+            mistycyzm: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.mistycyzm",
             }),
-            okultyzm: new NumberField({
-              initial: 0,
+            okultyzm: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.okultyzm",
             }),
-            przelamanie_mo: new NumberField({
-              initial: 0,
+            przelamanie_mo: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.przelamanie_mo",
             }),
-            talent: new NumberField({
-              initial: 0,
+            talent: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.talent",
             }),
-            trans: new NumberField({
-              initial: 0,
+            trans: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.trans",
             }),
           }),
         }),
         osobowosc: new SchemaField({
-          value: new NumberField({ 
+          value: new NumberField({
             initial: 10,
             min: 3,
             label: "awanturnik20.actor.atrybuty.osobowosc",
-           }),
+          }),
           mod: new NumberField({
             initial: 0,
             label: "awanturnik20.actor.atrybuty.mod",
-            }),
+          }),
           kompetencje: new SchemaField({
-            blef: new NumberField({
-              initial: 0,
+            blef: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
               label: "awanturnik20.actor.atrybuty.kompetencje.blef",
+            }),
+            etykieta: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.etykieta",
+            }),
+            grypsera: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.grypsera",
+            }),
+            przesluchiwanie: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.przesluchiwanie",
+            }),
+            podejscie_do_zwierzat: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label:
+                "awanturnik20.actor.atrybuty.kompetencje.podejscie_do_zwierzat",
+            }),
+            retoryka: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.retoryka",
+            }),
+            uwodzenie: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.uwodzenie",
+            }),
+            zastraszanie: new StringField({
+              initial: "niewyszkolony",
+              choices: {
+                niewyszkolony: "awanturnik20.actor.bieglosci.niewyszkolony",
+                adept: "awanturnik20.actor.bieglosci.adept",
+                ekspert: "awanturnik20.actor.bieglosci.ekspert",
+                mistrz: "awanturnik20.actor.bieglosci.mistrz",
+              },
+              label: "awanturnik20.actor.atrybuty.kompetencje.zastraszanie",
+            }),
           }),
-          etykieta: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.etykieta",
-          }),
-          grypsera: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.grypsera",
-          }),
-          przesluchiwanie: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.przesluchiwanie",
-          }),
-          podejscie_do_zwierzat: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.podejscie_do_zwierzat",
-          }),
-          retoryka: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.retoryka",
-          }),
-          uwodzenie: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.uwodzenie",
-          }), 
-          zastraszanie: new NumberField({
-            initial: 0,
-            label: "awanturnik20.actor.atrybuty.kompetencje.zastraszanie",
-          }),
-        })
         }),
       }),
       plec: new StringField({
@@ -274,8 +491,7 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
         initial: 0,
         label: "awanturnik20.actor.pm",
       }),
-
-    }
+    };
   }
 
   static get schema() {
@@ -284,7 +500,7 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
       console.error(`Schema for ${this.name} is empty.`);
     return schema;
   }
-    /** @override */
+  /** @override */
   prepareDerivedData() {
     super.prepareDerivedData();
     this._prepareMod();
@@ -294,14 +510,43 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
     const atrybuty = this.atrybuty;
     for (const key in atrybuty) {
       const atrybut = atrybuty[key];
-      if (atrybut.value < 9) {
-        atrybut.mod = Math.floor((atrybut.value - 10.5) / 2);
-      } else if (atrybut.value === 9) {
-        atrybut.mod = Math.ceil((atrybut.value - 9.5) / 2);
-      }else{
-        atrybut.mod = Math.floor((atrybut.value - 9.5) / 2);
+      switch (atrybut.value) {
+        case 3:
+        case 4:
+          atrybut.mod = -4;
+          break;
+        case 5:
+        case 6:
+          atrybut.mod = -3;
+          break;
+        case 7:
+        case 8:
+          atrybut.mod = -2;
+          break;
+        case 9:
+        case 10:
+        case 11:
+          atrybut.mod = 0;
+          break;
+        case 12:
+        case 13:
+          atrybut.mod = 1;
+          break;
+        case 14:
+        case 15:
+          atrybut.mod = 2;
+          break;
+        case 16:
+        case 17:
+          atrybut.mod = 3;
+          break;
+        case 18:
+        case 19:
+          atrybut.mod = 4;
+          break;
+        default:
+          atrybut.mod = Math.floor((atrybut.value - 10) / 2);
       }
     }
   }
-
 }

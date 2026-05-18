@@ -6,24 +6,24 @@ import { postacSheet } from "./sheets/actor/postac.mjs";
 import * as utils from "./utilities/utils.mjs";
 
 Hooks.once("init", async function () {
-     CONFIG.Actor.documentClass = postacActor;
-       CONFIG.Actor.dataModels = {
+  CONFIG.Actor.documentClass = postacActor;
+  CONFIG.Actor.dataModels = {
     awanturnik: models.postacDataModel,
   };
-   foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
+  foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
     foundry.documents.Actor,
     "core",
     foundry.applications.sheets.ActorSheet,
   );
-    utils.registerSystemSheet(foundry.documents.Actor, postacSheet, "awanturnik");
-    registerHandlebarsHelpers();
-    game.awanturnik20 = {socketHandler: new SocketHandler()};
-      const templates = [
+  utils.registerSystemSheet(foundry.documents.Actor, postacSheet, "awanturnik");
+  registerHandlebarsHelpers();
+  game.awanturnik20 = { socketHandler: new SocketHandler() };
+  const templates = [
     "systems/awanturnik20/module/templates/actor/postac-header.hbs",
     "systems/awanturnik20/module/templates/actor/postac-atrybuty.hbs",
     "systems/awanturnik20/module/templates/actor/postac-nav.hbs",
   ];
 
   foundry.applications.handlebars.loadTemplates(templates);
-    console.log("AwanturniK20 został zainicjiwany");
-});    
+  console.log("AwanturniK20 został zainicjiwany");
+});
