@@ -79,7 +79,8 @@
         "kosci_bieg": "Biegłość",
         "inne_mod": "Inne"
       },
-      "name_placeholder": "Imię Postaci"
+      "name_placeholder": "Imię Postaci",
+      "ekwipunek": "Ekwipunek"
     },
     "atrybuty_label": "Atrybuty",
     "inicjatywa": "Inicjatywa",
