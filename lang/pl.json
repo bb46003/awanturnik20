@@ -80,15 +80,21 @@
         "inne_mod": "Inne"
       },
       "name_placeholder": "Imię Postaci",
-      "ekwipunek": "Ekwipunek"
-    },
+      "ekwipunek": "Ekwipunek",
+      "pt": "Punkty Trafienia",
+      "pt_max": "Maksymalne Punkty Trafienia",
+      "pt_value": "Aktualne Punkty Trafienia",
+      "pm": "Punkty Manah",
+      "pm_max": "Maksymalne Punkty Manah",
+      "pm_value": "Aktualne Punkty Manah",
+    
     "atrybuty_label": "Atrybuty",
     "inicjatywa": "Inicjatywa",
     "ruch": "Ruch",
     "pd": "PD",
     "kp": "Klasa Pancerza",
-    "kmo": "Klasa Magicznej Obrony",
-    "pt": "Punkty Trafienia",
-    "pm": "Punkty Manah"
+    "kmo": "Klasa Magicznej Obrony"
+
+    }
   }
 }

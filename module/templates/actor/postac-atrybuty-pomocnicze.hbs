@@ -1,0 +1,141 @@
+<section class="atrybuty-pomocnicze prorel-root">
+
+  <div class="pomocnicze-jeden prorel-grid-main">
+
+    <!-- PT -->
+    <div class="prorel-box prorel-box--double">
+      <p class="prorel-header">{{localize "awanturnik20.actor.pt"}}</p>
+
+      <div class="flexcol atr-um prorel-content prorel-content--split">
+        <div class="pt prorel-field">
+          <p class="prorel-label">{{localize systemFields.pt.fields.value.label}}</p>
+
+          {{formInput
+            systemFields.pt.fields.value
+            value=(lookup @root.system "pt.value")
+            type="number"
+            class="prorel-input prorel-input--circle"
+          }}
+        </div>
+
+        <div class="pt prorel-field">
+          <p class="prorel-label">{{localize systemFields.pt.fields.max.label}}</p>
+
+          {{formInput
+            systemFields.pt.fields.max
+            value=(lookup @root.system "pt.max")
+            type="number"
+            class="prorel-input prorel-input--circle"
+          }}
+        </div>
+      </div>
+    </div>
+
+    <!-- PM -->
+    <div class="prorel-box prorel-box--double">
+      <p class="prorel-header">{{localize "awanturnik20.actor.pm"}}</p>
+
+      <div class="flexcol atr-um prorel-content prorel-content--split">
+        <div class="pt prorel-field">
+          <p class="prorel-label">{{localize systemFields.pm.fields.value.label}}</p>
+
+          {{formInput
+            systemFields.pm.fields.value
+            value=(lookup @root.system "pm.value")
+            type="number"
+            class="prorel-input prorel-input--circle"
+          }}
+        </div>
+
+        <div class="pt prorel-field">
+          <p class="prorel-label">{{localize systemFields.pm.fields.max.label}}</p>
+
+          {{formInput
+            systemFields.pm.fields.max
+            value=(lookup @root.system "pm.max")
+            type="number"
+            class="prorel-input prorel-input--circle"
+          }}
+        </div>
+      </div>
+    </div>
+
+    <!-- INICJATYWA -->
+    <div class="prorel-box">
+      <a
+        class="prorel-header prorel-action"
+        data-action="roll_iniciative"
+      >
+        {{localize systemFields.inicjatywa.label}}
+      </a>
+
+      <div class="flexcol atr-um prorel-content">
+        <p class="prorel-value prorel-value--circle">
+          {{system.inicjatywa}}
+        </p>
+      </div>
+    </div>
+
+    <!-- RUCH -->
+    <div class="prorel-box">
+      <p class="prorel-header">{{localize systemFields.ruch.label}}</p>
+
+      <div class="flexcol atr-um prorel-content">
+        {{formInput
+          systemFields.ruch
+          value=(lookup @root.system "ruch")
+          type="number"
+          class="prorel-input prorel-input--circle"
+        }}
+      </div>
+    </div>
+
+    <!-- RELIGIA -->
+    <div class="prorel-box">
+      <p class="prorel-header">Religia</p>
+
+      <div class="flexcol atr-um prorel-content">
+        <div class="prorel-empty-circle"></div>
+      </div>
+    </div>
+
+    <!-- PD -->
+    <div class="attribute-main prorel-box prorel-box--pd">
+      <p class="prorel-header">{{localize systemFields.pd.label}}</p>
+
+      <div class="flexcol atr-um prorel-content">
+        {{formInput
+          systemFields.pd
+          value=(lookup @root.system "pd")
+          type="number"
+          class="prorel-input prorel-input--rect"
+        }}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECOND ROW -->
+  <div class="pomocnicze-dwa prorel-grid-secondary">
+
+    <div class="prorel-box">
+      <p class="prorel-header">{{localize systemFields.kp.label}}</p>
+
+      <div class="flexcol atr-um prorel-content prorel-content--stack">
+        <p class="prorel-value">{{system.kp}}</p>
+        <p class="prorel-sub">składowe</p>
+      </div>
+    </div>
+
+    <div class="prorel-box">
+      <p class="prorel-header">{{localize systemFields.kmo.label}}</p>
+
+      <div class="flexcol atr-um prorel-content prorel-content--stack">
+        <p class="prorel-value">{{system.kmo}}</p>
+        <p class="prorel-sub">składowe</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>

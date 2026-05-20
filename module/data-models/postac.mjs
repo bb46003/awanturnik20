@@ -483,13 +483,27 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
         initial: 0,
         label: "awanturnik20.actor.kmo",
       }),
-      pt: new NumberField({
-        initial: 0,
-        label: "awanturnik20.actor.pt",
+      pt: new SchemaField({
+        value: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.pt_value",
+        }),
+        max: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.pt_max",
+        }),
+
       }),
-      pm: new NumberField({
-        initial: 0,
-        label: "awanturnik20.actor.pm",
+      pm: new SchemaField({
+        value: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.pm_value",
+        }),
+        max: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.pm_max",
+        }),
+
       }),
     };
   }

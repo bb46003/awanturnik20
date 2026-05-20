@@ -28,7 +28,12 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       template:
         "systems/awanturnik20/module/templates/actor/postac-atrybuty.hbs",
     },
-        nav: {
+    atrybuty_pomocnicze: {
+      id: "atrybuty_pomocnicze",
+      template:
+        "systems/awanturnik20/module/templates/actor/postac-atrybuty-pomocnicze.hbs",
+    },
+    nav: {
       id: "nav",
       template: "systems/awanturnik20/module/templates/actor/postac-nav.hbs",
     },
@@ -41,6 +46,7 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
   static TABS = {
     tabs: [
       { id: "atrybuty", group: "main", label: "" },
+      { id: "atrybuty_pomocnicze", group: "main", label: "" },
       { id: "kompetencje", group: "main", label: "" },
     ],
     initial: "atrybuty",

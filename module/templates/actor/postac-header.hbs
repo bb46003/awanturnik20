@@ -1,14 +1,14 @@
 <section class="header">
-    <div class="glowna">
+  <div class="glowna">
     <div class="image-container">
-    <img
-      class="profile-img"
-      src="{{actor.img}}"
-      data-edit="img"
-      data-action="editImage"
-      data-edit="img"
-    />
-  </div>
+      <img
+        class="profile-img"
+        src="{{actor.img}}"
+        data-edit="img"
+        data-action="editImage"
+        data-edit="img"
+      />
+    </div>
 
     <div class="actor-header">
       <label>{{localize "awanturnik20.actor.sciezka"}}</label>
@@ -20,7 +20,12 @@
     </div>
     <div class="actor-header">
       <label>{{localize "awanturnik20.actor.name"}}</label>
-      <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "awanturnik20.actor.name_placeholder"}}" />
+      <input
+        name="name"
+        type="text"
+        value="{{actor.name}}"
+        placeholder="{{localize 'awanturnik20.actor.name_placeholder'}}"
+      />
     </div>
     <div class="actor-header">
       <label>{{localize "awanturnik20.actor.gatunek"}}</label>
