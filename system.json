@@ -48,7 +48,7 @@
       "czar": {}
     }
   },
-  "initiative": "1d20 + @atrybuty.zrecznosc.value + @inicjatywa",
+  "initiative": "1d20 + @inicjatywa",
   "primaryTokenAttribute": "hitPoints",
   "secondaryTokenAttribute": "manah"
 }

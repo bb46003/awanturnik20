@@ -1,0 +1,52 @@
+<section class="charakter"   action-data="tab"  data-group="main"   data-tab="charakter">
+  <h2>{{localize "awanturnik20.actor.charakter.label"}}</h2>
+
+  <div class="charakter-grid">
+
+    {{!-- AXIS --}}
+    {{#each (array
+      "os_pobudek"
+      "os_porzadku"
+      "os_egoizmu"
+      "os_osadu"
+      "os_pasji"
+      "os_materii"
+      "os_ducha"
+    ) as |axis|}}
+
+      <div class="axis">
+
+        {{!-- TOP LABEL --}}
+        <div class="axis-top">
+          {{localize (lookup (lookup ../systemFields.charakter.fields axis) "label")}}
+        </div>
+
+        {{!-- TRACK --}}
+        <div class="axis-track">
+
+          {{#each (array 4 3 2 1 0) as |val|}}
+            <label class="point">
+              <input
+                type="radio"
+                name="system.charakter.{{axis}}"
+                value="{{val}}"
+                {{#if (eq (lookup ../system.charakter axis) val)}}checked{{/if}}
+              />
+              <span></span>
+            </label>
+          {{/each}}
+
+        </div>
+
+        {{!-- BOTTOM LABELS (example, you should localize properly) --}}
+        <div class="axis-labels">
+          <span>{{localize (concat "awanturnik20.actor.charakter." axis ".low")}}</span>
+          <span>{{localize (concat "awanturnik20.actor.charakter." axis ".high")}}</span>
+        </div>
+
+      </div>
+
+    {{/each}}
+
+  </div>
+</section>

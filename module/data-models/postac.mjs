@@ -492,7 +492,6 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
           initial: 0,
           label: "awanturnik20.actor.pt_max",
         }),
-
       }),
       pm: new SchemaField({
         value: new NumberField({
@@ -503,7 +502,50 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
           initial: 0,
           label: "awanturnik20.actor.pm_max",
         }),
-
+      }),
+      charakter: new SchemaField({
+        os_pobudek: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.charakter.os_pobudek",
+          min: 0,
+          max: 4,
+        }),
+        os_porzadku: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.charakter.os_porzadku",
+          min: 0,
+          max: 4,
+        }),
+        os_egoizmu: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.charakter.os_egoizmu",
+          min: 0,
+          max: 4,
+        }),
+        os_osadu: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.charakter.os_osadu",
+          min: 0,
+          max: 4,
+        }),
+        os_pasji: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.charakter.os_pasji",
+          min: 0,
+          max: 4,
+        }),
+        os_materii: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.charakter.os_materii",
+          min: 0,
+          max: 4,
+        }),
+        os_ducha: new NumberField({
+          initial: 0,
+          label: "awanturnik20.actor.charakter.os_ducha",
+          min: 0,
+          max: 4,
+        }),
       }),
     };
   }
@@ -518,6 +560,11 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
   prepareDerivedData() {
     super.prepareDerivedData();
     this._prepareMod();
+    this._prepareKP();
+    this._prepareKMO();
+    this._prepareInicjatywa();
+    this._preparePT();
+    this._preparePM();
   }
 
   _prepareMod() {
@@ -562,5 +609,25 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
           atrybut.mod = Math.floor((atrybut.value - 10) / 2);
       }
     }
+  }
+  _prepareKP() {
+    const zrecznosc = this.atrybuty.zrecznosc;
+    this.kp = 10 + zrecznosc.mod;
+  }
+  _prepareKMO() {
+    const osobowosc = this.atrybuty.osobowosc;
+    this.kmo = 10 + osobowosc.mod;
+  }
+  _prepareInicjatywa() {
+    const zrecznosc = this.atrybuty.zrecznosc;
+    this.inicjatywa = zrecznosc.mod;
+  }
+  _preparePT() {
+    const postura = this.atrybuty.postura;
+    this.pt.max = postura.mod;
+  }
+  _preparePM() {
+    const moc = this.atrybuty.moc;
+    this.pm.max = moc.mod;
   }
 }

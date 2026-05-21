@@ -12,7 +12,9 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
   static DEFAULT_OPTIONS = {
     classes: ["postac-sheet"],
     position: { width: 1020, height: 850 },
-    actions: {},
+    actions: {
+      roll_iniciative: postacSheet.#rollInitiative,
+    },
     form: {
       submitOnChange: true,
     },
@@ -42,12 +44,18 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       template:
         "systems/awanturnik20/module/templates/actor/postac-kompetencje.hbs",
     },
+    charakter: {
+      id: "charakter",
+      template:
+        "systems/awanturnik20/module/templates/actor/postac-charakter.hbs",
+    },
   };
   static TABS = {
     tabs: [
       { id: "atrybuty", group: "main", label: "" },
       { id: "atrybuty_pomocnicze", group: "main", label: "" },
       { id: "kompetencje", group: "main", label: "" },
+      { id: "charakter", group: "main", label: "" },
     ],
     initial: "atrybuty",
   };
@@ -62,5 +70,9 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       systemFields: this.actor.system.schema.fields,
     });
     return context;
+  }
+
+  static async #rollInitiative() {
+    await this.actor.rollInitiative();
   }
 }

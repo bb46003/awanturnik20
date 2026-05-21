@@ -56,4 +56,7 @@ export function registerHandlebarsHelpers() {
     const keys = Object.keys(object);
     return keys[keys.length - 1] === index;
   });
+  Handlebars.registerHelper("array", (...args) => args.slice(0, -1));
+
+  Handlebars.registerHelper("concat", (...args) => args.slice(0, -1).join(""));
 }

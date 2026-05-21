@@ -87,14 +87,79 @@
       "pm": "Punkty Manah",
       "pm_max": "Maksymalne Punkty Manah",
       "pm_value": "Aktualne Punkty Manah",
-    
-    "atrybuty_label": "Atrybuty",
-    "inicjatywa": "Inicjatywa",
-    "ruch": "Ruch",
-    "pd": "PD",
-    "kp": "Klasa Pancerza",
-    "kmo": "Klasa Magicznej Obrony"
 
+      "atrybuty_label": "Atrybuty",
+      "inicjatywa": "Inicjatywa",
+      "ruch": "Ruch",
+      "pd": "PD",
+      "kp": "Klasa Pancerza",
+      "kmo": "Klasa Magicznej Obrony",
+      "charakter": {
+        "label": "Charakter",
+
+        "os_pobudek": "Oś Pobudek",
+        "os_pobudek.values": [
+          "Męstwo",
+          "Uczynność",
+          "Interesowność",
+          "Opór",
+          "Oczarowanie"
+        ],
+
+        "os_porzadku": "Oś Porządku",
+        "os_porzadku.values": [
+          "Sprawiedliwość",
+          "Uczciwość",
+          "Kłamstwo",
+          "Samowola",
+          "Bezład"
+        ],
+
+        "os_egoizmu": "Oś Ego",
+        "os_egoizmu.values": [
+          "Roztropność",
+          "Skromność",
+          "Zuchwalstwo",
+          "Pycha",
+          "Zazdrość"
+        ],
+
+        "os_osadu": "Oś Osądu",
+        "os_osadu.values": [
+          "Miłosierdzie",
+          "Łagodność",
+          "Złość",
+          "Gniew",
+          "Okrutność"
+        ],
+
+        "os_pasji": "Oś Pasji",
+        "os_pasji.values": [
+          "Nadzieja",
+          "Chęć",
+          "Niechęć",
+          "Rezygnacja",
+          "Rozpacz"
+        ],
+
+        "os_materii": "Oś Materii",
+        "os_materii.values": [
+          "Umiarkowanie",
+          "Oszczędność",
+          "Skąpstwo",
+          "Chciwość",
+          "Rozrzutność"
+        ],
+
+        "os_ducha": "Oś Ducha",
+        "os_ducha.values": [
+          "Czystość",
+          "Ideały",
+          "Deprawacja",
+          "Nieczystość",
+          "Zepsucie"
+        ]
+      }
     }
   }
 }
