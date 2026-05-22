@@ -13,40 +13,47 @@
       "os_materii"
       "os_ducha"
     ) as |axis|}}
-
       <div class="axis">
-
-        {{!-- TOP LABEL --}}
         <div class="axis-top">
           {{localize (lookup (lookup ../systemFields.charakter.fields axis) "label")}}
         </div>
-
-        {{!-- TRACK --}}
         <div class="axis-track">
-
-          {{#each (array 4 3 2 1 0) as |val|}}
+          {{#each (array 0 1 2 3 ) as |val|}}
             <label class="point">
+             <label class="vertical">{{localize (concat "awanturnik20.actor.charakter." axis "_" val)}}</label>
               <input
                 type="radio"
                 name="system.charakter.{{axis}}"
                 value="{{val}}"
-                {{#if (eq (lookup ../system.charakter axis) val)}}checked{{/if}}
+                {{#if (eq (lookup @root.system.charakter axis) val)}}checked{{/if}}
               />
               <span></span>
             </label>
           {{/each}}
-
         </div>
-
-        {{!-- BOTTOM LABELS (example, you should localize properly) --}}
-        <div class="axis-labels">
-          <span>{{localize (concat "awanturnik20.actor.charakter." axis ".low")}}</span>
-          <span>{{localize (concat "awanturnik20.actor.charakter." axis ".high")}}</span>
-        </div>
-
       </div>
-
     {{/each}}
-
+    <div class="axis right">
+      <div></div>
+      <div class="axis-track">
+        <label style="height:90px"></label>
+            <label class="point">
+              <label class="vertical">{{localize "awanturnik20.actor.charakter.cnota"}}</label>
+             
+            </label>
+                        <label class="point">
+              <label class="vertical">{{localize "awanturnik20.actor.charakter.zaleta"}}</label>
+       
+            </label>
+                        <label class="point">
+              <label class="vertical">{{localize "awanturnik20.actor.charakter.wada"}}</label>
+    
+            </label>
+                        <label class="point">
+              <label class="vertical">{{localize "awanturnik20.actor.charakter.przywara"}}</label>
+       
+            </label>
+      </div>
+    </div>
   </div>
 </section>

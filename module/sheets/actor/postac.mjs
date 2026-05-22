@@ -11,7 +11,7 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
   }
   static DEFAULT_OPTIONS = {
     classes: ["postac-sheet"],
-    position: { width: 1020, height: 850 },
+    position: { width: 1020, height: 1050 },
     actions: {
       roll_iniciative: postacSheet.#rollInitiative,
     },
@@ -75,4 +75,11 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
   static async #rollInitiative() {
     await this.actor.rollInitiative();
   }
+   _processFormData(event, form, formData){
+    let name = event?.target?.name;
+      if (name.includes("charakter")) {
+        formData.object[name] = Number( formData.object[name])
+    }
+    return super._processFormData(event, form, formData);
+   }
 }

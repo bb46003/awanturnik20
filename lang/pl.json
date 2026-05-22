@@ -87,7 +87,6 @@
       "pm": "Punkty Manah",
       "pm_max": "Maksymalne Punkty Manah",
       "pm_value": "Aktualne Punkty Manah",
-
       "atrybuty_label": "Atrybuty",
       "inicjatywa": "Inicjatywa",
       "ruch": "Ruch",
@@ -96,69 +95,60 @@
       "kmo": "Klasa Magicznej Obrony",
       "charakter": {
         "label": "Charakter",
-
         "os_pobudek": "Oś Pobudek",
-        "os_pobudek.values": [
-          "Męstwo",
-          "Uczynność",
-          "Interesowność",
-          "Opór",
-          "Oczarowanie"
-        ],
-
+        "os_pobudek_0": "Męstwo",
+        "os_pobudek_1": "Uczynność",
+        "os_pobudek_2": "Interesowność",
+        "os_pobudek_3": "Oportunizm",
         "os_porzadku": "Oś Porządku",
-        "os_porzadku.values": [
-          "Sprawiedliwość",
-          "Uczciwość",
-          "Kłamstwo",
-          "Samowola",
-          "Bezład"
-        ],
-
+        "os_porzadku_0": "Sprawiedliwość",
+        "os_porzadku_1": "Uczciwość",
+        "os_porzadku_2": "Krętactwo",
+        "os_porzadku_3": "Samowola",
         "os_egoizmu": "Oś Ego",
-        "os_egoizmu.values": [
-          "Roztropność",
-          "Skromność",
-          "Zuchwalstwo",
-          "Pycha",
-          "Zazdrość"
-        ],
-
+        "os_egoizmu_0": "Roztropność",
+        "os_egoizmu_1": "Skromność",
+        "os_egoizmu_2": "Zuchwałość",
+        "os_egoizmu_3": "Pycha",
         "os_osadu": "Oś Osądu",
-        "os_osadu.values": [
-          "Miłosierdzie",
-          "Łagodność",
-          "Złość",
-          "Gniew",
-          "Okrutność"
-        ],
-
+        "os_osadu_0": "Miłosierdzie",
+        "os_osadu_1": "Łagodność",
+        "os_osadu_2": "Złość",
+        "os_osadu_3": "Gniew",
         "os_pasji": "Oś Pasji",
-        "os_pasji.values": [
-          "Nadzieja",
-          "Chęć",
-          "Niechęć",
-          "Rezygnacja",
-          "Rozpacz"
-        ],
-
+        "os_pasji_0": "Nadzieja",
+        "os_pasji_1": "Chęć",
+        "os_pasji_2": "Niechęć",
+        "os_pasji_3": "Rezygnacja",
         "os_materii": "Oś Materii",
-        "os_materii.values": [
-          "Umiarkowanie",
-          "Oszczędność",
-          "Skąpstwo",
-          "Chciwość",
-          "Rozrzutność"
-        ],
-
+        "os_materii_0": "Umiarkowanie",
+        "os_materii_1": "Oszczędność",
+        "os_materii_2": "Skąpstwo",
+        "os_materii_3": "Chciwość",
         "os_ducha": "Oś Ducha",
-        "os_ducha.values": [
-          "Czystość",
-          "Ideały",
-          "Deprawacja",
-          "Nieczystość",
-          "Zepsucie"
-        ]
+        "os_ducha_0": "Czystość",
+        "os_ducha_1": "Ideały",
+        "os_ducha_2": "Dekadencja",
+        "os_ducha_3": "Nieczystość",
+        "cnota": "Cnota",
+        "zaleta": "Zaleta",
+        "wada": "Wada",
+        "przywara": "Przywara"
+      },
+      "rutyny": {
+        "label": "Rutyny"
+      },
+      "czary": {
+        "label": "Czary"
+      },
+      "kontuzje_stany": {
+        "label": "Kontuzje i Stany"
+      },
+      "biografia": {
+        "label": "Biografia"
+      },
+      "notatki": {
+        "label": "Notatki"
       }
     }
   }

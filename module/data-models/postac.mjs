@@ -508,43 +508,43 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
           initial: 0,
           label: "awanturnik20.actor.charakter.os_pobudek",
           min: 0,
-          max: 4,
+          max: 3,
         }),
         os_porzadku: new NumberField({
           initial: 0,
           label: "awanturnik20.actor.charakter.os_porzadku",
           min: 0,
-          max: 4,
+          max: 3,
         }),
         os_egoizmu: new NumberField({
           initial: 0,
           label: "awanturnik20.actor.charakter.os_egoizmu",
           min: 0,
-          max: 4,
+          max: 3,
         }),
         os_osadu: new NumberField({
           initial: 0,
           label: "awanturnik20.actor.charakter.os_osadu",
           min: 0,
-          max: 4,
+          max: 3,
         }),
         os_pasji: new NumberField({
           initial: 0,
           label: "awanturnik20.actor.charakter.os_pasji",
           min: 0,
-          max: 4,
+          max: 3,
         }),
         os_materii: new NumberField({
           initial: 0,
           label: "awanturnik20.actor.charakter.os_materii",
           min: 0,
-          max: 4,
+          max: 3,
         }),
         os_ducha: new NumberField({
           initial: 0,
           label: "awanturnik20.actor.charakter.os_ducha",
           min: 0,
-          max: 4,
+          max: 3,
         }),
       }),
     };
@@ -593,7 +593,7 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
         case 13:
           atrybut.mod = 1;
           break;
-        case 14:
+        case 13:
         case 15:
           atrybut.mod = 2;
           break;
@@ -603,7 +603,7 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
           break;
         case 18:
         case 19:
-          atrybut.mod = 4;
+          atrybut.mod = 3;
           break;
         default:
           atrybut.mod = Math.floor((atrybut.value - 10) / 2);
