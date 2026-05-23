@@ -149,7 +149,11 @@
       },
       "notatki": {
         "label": "Notatki"
-      }
+      },
+      "pieniadze": "Pieniądze",
+      "miedz": "Miedziane Monety",
+      "srebro": "Srebrne Monety",
+      "zloto": "Złote Monety"
     }
   }
 }

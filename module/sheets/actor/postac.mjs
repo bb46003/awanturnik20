@@ -24,7 +24,6 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       id: "header",
       template: "systems/awanturnik20/module/templates/actor/postac-header.hbs",
     },
-
     atrybuty: {
       id: "atrybuty",
       template:
@@ -45,19 +44,28 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
         "systems/awanturnik20/module/templates/actor/postac-kompetencje.hbs",
     },
     charakter: {
-      id: "charakter",
       template:
         "systems/awanturnik20/module/templates/actor/postac-charakter.hbs",
     },
+    ekwipunek: {
+      template:
+        "systems/awanturnik20/module/templates/actor/postac-ekwipunek.hbs",
+    },
+        rutyny: {
+      template:
+        "systems/awanturnik20/module/templates/actor/postac-rutyny.hbs",
+    },
   };
   static TABS = {
-    tabs: [
-      { id: "atrybuty", group: "main", label: "" },
-      { id: "atrybuty_pomocnicze", group: "main", label: "" },
-      { id: "kompetencje", group: "main", label: "" },
-      { id: "charakter", group: "main", label: "" },
-    ],
-    initial: "atrybuty",
+    main: {
+      tabs: [
+        { id: "charakter", group: "main", label: "" },
+        { id: "ekwipunek", group: "main", label: "" },
+        {id: "rutyny", group: "main", label: ""}
+      ],
+
+      initial: "ekwipunek",
+    },
   };
   /** @override */
   async _prepareContext(options) {
@@ -75,11 +83,11 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
   static async #rollInitiative() {
     await this.actor.rollInitiative();
   }
-   _processFormData(event, form, formData){
+  _processFormData(event, form, formData) {
     let name = event?.target?.name;
-      if (name.includes("charakter")) {
-        formData.object[name] = Number( formData.object[name])
+    if (name.includes("charakter")) {
+      formData.object[name] = Number(formData.object[name]);
     }
     return super._processFormData(event, form, formData);
-   }
+  }
 }

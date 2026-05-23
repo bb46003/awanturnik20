@@ -449,4 +449,27 @@
       }
     }
   }
+  .ekwipunek {
+    padding: 5px;
+    width: 540px;
+    position: absolute;
+    left: 480px;
+    top: 520px;
+    overflow: auto;
+    h2 {
+      text-align: center;
+    }
+    .monety {
+      width: 33%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 10px;
+      gap: 5px;
+      input {
+        text-align: center;
+        width: 50px;
+      }
+    }
+  }
 }

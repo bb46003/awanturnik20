@@ -1,0 +1,31 @@
+<section
+  class="tab ekwipunek {{tabs.ekwipunek.cssClass}}"
+  action-data="tab"
+  data-group="main"
+  data-tab="ekwipunek"
+>
+  <div class="pieniadze">
+    <h2>{{localize "awanturnik20.actor.pieniadze"}}</h2>
+    <div class="flexrow">
+      {{#each systemFields.monety as |monety|}}
+
+        <div class="monety">
+          <label>{{localize monety.label}}</label>
+          {{formInput monety value=(lookup @root.system.monety monety.name)}}
+        </div>
+      {{/each}}
+    </div>
+    <div class="pancerz">
+      <h2>{{localize "awanturnik20.actor.pancerz"}}</h2>
+      <div class="flexrow"></div>
+    </div>
+  </div>
+  <div class="bronnie">
+    <h2>{{localize "awanturnik20.actor.bronie"}}</h2>
+    <div class="flexrow"></div>
+  </div>
+  <div class="inne">
+    <h2>{{localize "awanturnik20.actor.inne"}}</h2>
+    <div class="flexrow"></div>
+  </div>
+</section>

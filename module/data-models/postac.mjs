@@ -547,6 +547,23 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
           max: 3,
         }),
       }),
+      monety: new SchemaField({
+        miedz: new NumberField({
+          initial: 0,
+          min: 0,
+          label: "awanturnik20.actor.miedz",
+        }),
+        srebro: new NumberField({
+          initial: 0,
+          min: 0,
+          label: "awanturnik20.actor.srebro",
+        }),
+        zloto: new NumberField({
+          initial: 0,
+          min: 0,
+          label: "awanturnik20.actor.zloto",
+        }),
+      }),
     };
   }
 

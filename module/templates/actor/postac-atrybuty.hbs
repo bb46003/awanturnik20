@@ -22,10 +22,13 @@
                   (gte
                     (lookup (lookup @root.system.atrybuty atrybut.name) "mod") 0
                   )
-                }}<br>
+                }}<br />
                   +{{lookup (lookup @root.system.atrybuty atrybut.name) "mod"}}
                 {{else}}
-                  <br>{{lookup (lookup @root.system.atrybuty atrybut.name) "mod"}}
+                  <br />{{lookup
+                    (lookup @root.system.atrybuty atrybut.name)
+                    "mod"
+                  }}
                 {{/if}}
               </p>
             </div>
