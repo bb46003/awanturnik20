@@ -564,6 +564,10 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
           label: "awanturnik20.actor.zloto",
         }),
       }),
+      os_charakteru: new BooleanField({
+        initial: false,
+        label: "awanturnik20.actor.obroc",
+      }),
     };
   }
 

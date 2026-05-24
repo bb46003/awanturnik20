@@ -355,14 +355,30 @@
     width: 515px;
     position: relative;
     left: 470px;
+    .rotate {
+      transform: rotate(-90deg);
+      position: relative;
+      transform-origin: bottom left;
+      right: -480px;
+    }
     h2 {
       text-align: center;
       margin-bottom: 5px;
+      display: flex;
+      position: relative;
+      z-index: 99;
+      justify-content: center;
+      button {
+        margin-left: 10px;
+      }
     }
 
     .charakter-grid {
       display: grid;
       grid-template-columns: repeat(8, 70px);
+    }
+    .rot {
+      left: -40px !important;
     }
     .axis.right {
       position: relative;
@@ -371,6 +387,18 @@
         left: 0px !important;
         background: whitesmoke;
         border: 1px solid;
+      }
+
+      .axis.rotate {
+        position: relative;
+        left: -50px;
+        transform: rotate(0deg);
+        top: 5px;
+        .point {
+          left: 0px !important;
+          background: whitesmoke;
+          border: 1px solid;
+        }
       }
     }
     .axis {

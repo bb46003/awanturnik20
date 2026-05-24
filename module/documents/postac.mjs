@@ -3,7 +3,7 @@ export class postacActor extends foundry.documents.Actor {
   async _preCreate(data, options, user) {
     await super._preCreate(data, options, user);
 
-    if (this.type === "postac") {
+    if (this.type === "awanturnik") {
       await this.updateSource({
         "prototypeToken.actorLink": true,
         "prototypeToken.bar1.attribute": "zycie",

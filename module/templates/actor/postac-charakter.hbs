@@ -1,7 +1,8 @@
 <section class="tab charakter {{tabs.charakter.cssClass}}"   action-data="tab"  data-group="main"   data-tab="charakter">
-  <h2>{{localize "awanturnik20.actor.charakter.label"}}</h2>
-
-  <div class="charakter-grid">
+  <h2>{{localize "awanturnik20.actor.charakter.label"}}
+  <button data-action="obroc" data-tooltip="{{localize systemFields.os_charakteru.label}}"><i class="fa-solid fa-rotate"></i></button>
+  </h2>
+    <div class="charakter-grid{{#if system.os_charakteru}} rotate {{/if}}">
 
     {{!-- AXIS --}}
     {{#each (array
@@ -13,7 +14,7 @@
       "os_materii"
       "os_ducha"
     ) as |axis|}}
-      <div class="axis">
+      <div class="axis {{#if system.os_charakteru}} rotate {{/if}}">
         <div class="axis-top">
           {{localize (lookup (lookup ../systemFields.charakter.fields axis) "label")}}
         </div>
@@ -33,7 +34,7 @@
         </div>
       </div>
     {{/each}}
-    <div class="axis right">
+    <div class="axis right {{#if system.os_charakteru}} rot{{/if}}">
       <div></div>
       <div class="axis-track">
         <label style="height:90px"></label>

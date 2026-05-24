@@ -11,9 +11,10 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
   }
   static DEFAULT_OPTIONS = {
     classes: ["postac-sheet"],
-    position: { width: 1020, height: 1050 },
+    position: { width: 1020, height: 1150 },
     actions: {
       roll_iniciative: postacSheet.#rollInitiative,
+      obroc: postacSheet.#obroc,
     },
     form: {
       submitOnChange: true,
@@ -51,9 +52,8 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       template:
         "systems/awanturnik20/module/templates/actor/postac-ekwipunek.hbs",
     },
-        rutyny: {
-      template:
-        "systems/awanturnik20/module/templates/actor/postac-rutyny.hbs",
+    rutyny: {
+      template: "systems/awanturnik20/module/templates/actor/postac-rutyny.hbs",
     },
   };
   static TABS = {
@@ -61,7 +61,7 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       tabs: [
         { id: "charakter", group: "main", label: "" },
         { id: "ekwipunek", group: "main", label: "" },
-        {id: "rutyny", group: "main", label: ""}
+        { id: "rutyny", group: "main", label: "" },
       ],
 
       initial: "ekwipunek",
@@ -85,9 +85,16 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
   }
   _processFormData(event, form, formData) {
     let name = event?.target?.name;
-    if (name.includes("charakter")) {
+    if (typeof name === "string" && name.includes("charakter")) {
       formData.object[name] = Number(formData.object[name]);
     }
+
     return super._processFormData(event, form, formData);
+  }
+
+  static async #obroc() {
+    const actor = this.actor;
+    const obroc = actor.system.os_charakteru;
+    await actor.update({ "system.os_charakteru": !obroc });
   }
 }

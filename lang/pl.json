@@ -153,7 +153,11 @@
       "pieniadze": "Pieniądze",
       "miedz": "Miedziane Monety",
       "srebro": "Srebrne Monety",
-      "zloto": "Złote Monety"
+      "zloto": "Złote Monety",
+      "obroc": "Obróc osie Charakteru",
+      "pancerz": "Pancerz",
+      "bronie": "Bronie",
+      "inne": "Pozostały Ekwipunek"
     }
   }
 }
