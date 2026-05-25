@@ -201,7 +201,7 @@
     width: 470px;
     height: 48%;
     top: 530px;
-            left: 5px;
+    left: 5px;
 
     .skills-table {
       width: 100%;
@@ -357,7 +357,7 @@
       position: relative;
       transform-origin: bottom left;
       right: -480px;
-                  justify-items: end;
+      justify-items: end;
     }
     h2 {
       text-align: center;
@@ -526,11 +526,10 @@
         border: 1px solid black;
         border-radius: 10px;
       }
-      prose-mirror{
-            min-height: 450px;
+      prose-mirror {
+        min-height: 450px;
       }
     }
-
   }
   .tab {
     padding: 5px;

@@ -166,8 +166,7 @@ export const kompetencje = /** @type {const} */ ({
     umiejkaKey: "przesluchiwanie",
   },
   podejscie_do_zwierzat: {
-    label:
-      "awanturnik20.actor.atrybuty.kompetencje.podejscie_do_zwierzat",
+    label: "awanturnik20.actor.atrybuty.kompetencje.podejscie_do_zwierzat",
     atrybKey: "osobowosc",
     umiejkaKey: "podejscie_do_zwierzat",
   },

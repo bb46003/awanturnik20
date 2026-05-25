@@ -14,7 +14,9 @@
       {{#each systemFields.atrybuty as |atrybut|}}
 
         {{#each atrybut.fields.kompetencje.fields as |skill index|}}
-          <tr class="{{#if (isFirst index atrybut.fields.kompetencje.fields)}}group-start{{/if}} {{#if (isLast index atrybut.fields.kompetencje.fields)}}group-end{{/if}}">
+          <tr class="
+          {{#if (isFirst index atrybut.fields.kompetencje.fields)}}group-start{{/if}} 
+          {{#if (isLast index atrybut.fields.kompetencje.fields)}}group-end{{/if}}">
 
             {{#if (isFirst index atrybut.fields.kompetencje.fields)}}
               <td class="atr-type" rowspan="{{arrayLength atrybut.fields.kompetencje.fields}}">

@@ -8,7 +8,7 @@ export function registerSystemSheet(
   options.makeDefault ??= true;
   return foundry.applications.apps.DocumentSheetConfig.registerSheet(
     documentClass,
-    "wiedzmin_yze",
+    "awanturnik20",
     sheetClass,
     {
       types,

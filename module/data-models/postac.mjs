@@ -18,85 +18,85 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
 
   static defineSchema() {
     return {
-atrybuty: new SchemaField({
-  sila: new SchemaField({
-    value: new NumberField({
-      initial: 10,
-      min: 3,
-      label: "awanturnik20.actor.atrybuty.sila",
-    }),
-    mod: new NumberField({
-      initial: 0,
-      label: "awanturnik20.actor.atrybuty.mod",
-    }),
-    kompetencje: buildKompetencjeSchema("sila"),
-  }),
+      atrybuty: new SchemaField({
+        sila: new SchemaField({
+          value: new NumberField({
+            initial: 10,
+            min: 3,
+            label: "awanturnik20.actor.atrybuty.sila",
+          }),
+          mod: new NumberField({
+            initial: 0,
+            label: "awanturnik20.actor.atrybuty.mod",
+          }),
+          kompetencje: buildKompetencjeSchema("sila"),
+        }),
 
-  zrecznosc: new SchemaField({
-    value: new NumberField({
-      initial: 10,
-      min: 3,
-      label: "awanturnik20.actor.atrybuty.zrecznosc",
-    }),
-    mod: new NumberField({
-      initial: 0,
-      label: "awanturnik20.actor.atrybuty.mod",
-    }),
-    kompetencje: buildKompetencjeSchema("zrecznosc"),
-  }),
+        zrecznosc: new SchemaField({
+          value: new NumberField({
+            initial: 10,
+            min: 3,
+            label: "awanturnik20.actor.atrybuty.zrecznosc",
+          }),
+          mod: new NumberField({
+            initial: 0,
+            label: "awanturnik20.actor.atrybuty.mod",
+          }),
+          kompetencje: buildKompetencjeSchema("zrecznosc"),
+        }),
 
-  postura: new SchemaField({
-    value: new NumberField({
-      initial: 10,
-      min: 3,
-      label: "awanturnik20.actor.atrybuty.postura",
-    }),
-    mod: new NumberField({
-      initial: 0,
-      label: "awanturnik20.actor.atrybuty.mod",
-    }),
-    kompetencje: buildKompetencjeSchema("postura"),
-  }),
+        postura: new SchemaField({
+          value: new NumberField({
+            initial: 10,
+            min: 3,
+            label: "awanturnik20.actor.atrybuty.postura",
+          }),
+          mod: new NumberField({
+            initial: 0,
+            label: "awanturnik20.actor.atrybuty.mod",
+          }),
+          kompetencje: buildKompetencjeSchema("postura"),
+        }),
 
-  wiedza: new SchemaField({
-    value: new NumberField({
-      initial: 10,
-      min: 3,
-      label: "awanturnik20.actor.atrybuty.wiedza",
-    }),
-    mod: new NumberField({
-      initial: 0,
-      label: "awanturnik20.actor.atrybuty.mod",
-    }),
-    kompetencje: buildKompetencjeSchema("wiedza"),
-  }),
+        wiedza: new SchemaField({
+          value: new NumberField({
+            initial: 10,
+            min: 3,
+            label: "awanturnik20.actor.atrybuty.wiedza",
+          }),
+          mod: new NumberField({
+            initial: 0,
+            label: "awanturnik20.actor.atrybuty.mod",
+          }),
+          kompetencje: buildKompetencjeSchema("wiedza"),
+        }),
 
-  moc: new SchemaField({
-    value: new NumberField({
-      initial: 10,
-      min: 3,
-      label: "awanturnik20.actor.atrybuty.moc",
-    }),
-    mod: new NumberField({
-      initial: 0,
-      label: "awanturnik20.actor.atrybuty.mod",
-    }),
-    kompetencje: buildKompetencjeSchema("moc"),
-  }),
+        moc: new SchemaField({
+          value: new NumberField({
+            initial: 10,
+            min: 3,
+            label: "awanturnik20.actor.atrybuty.moc",
+          }),
+          mod: new NumberField({
+            initial: 0,
+            label: "awanturnik20.actor.atrybuty.mod",
+          }),
+          kompetencje: buildKompetencjeSchema("moc"),
+        }),
 
-  osobowosc: new SchemaField({
-    value: new NumberField({
-      initial: 10,
-      min: 3,
-      label: "awanturnik20.actor.atrybuty.osobowosc",
-    }),
-    mod: new NumberField({
-      initial: 0,
-      label: "awanturnik20.actor.atrybuty.mod",
-    }),
-    kompetencje: buildKompetencjeSchema("osobowosc"),
-  }),
-}),
+        osobowosc: new SchemaField({
+          value: new NumberField({
+            initial: 10,
+            min: 3,
+            label: "awanturnik20.actor.atrybuty.osobowosc",
+          }),
+          mod: new NumberField({
+            initial: 0,
+            label: "awanturnik20.actor.atrybuty.mod",
+          }),
+          kompetencje: buildKompetencjeSchema("osobowosc"),
+        }),
+      }),
       plec: new StringField({
         initial: "nieokreslona",
         label: "awanturnik20.actor.plec",

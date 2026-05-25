@@ -4,6 +4,7 @@ import * as models from "./data-models/_module.mjs";
 import { postacActor } from "./documents/postac.mjs";
 import { postacSheet } from "./sheets/actor/postac.mjs";
 import * as utils from "./utilities/utils.mjs";
+import { addChatListeners } from "./chat/chat.mjs"
 
 Hooks.once("init", async function () {
   CONFIG.Actor.documentClass = postacActor;
@@ -18,12 +19,8 @@ Hooks.once("init", async function () {
   utils.registerSystemSheet(foundry.documents.Actor, postacSheet, "awanturnik");
   registerHandlebarsHelpers();
   game.awanturnik20 = { socketHandler: new SocketHandler() };
-  const templates = [
-    "systems/awanturnik20/module/templates/actor/postac-header.hbs",
-    "systems/awanturnik20/module/templates/actor/postac-atrybuty.hbs",
-    "systems/awanturnik20/module/templates/actor/postac-nav.hbs",
-  ];
 
-  foundry.applications.handlebars.loadTemplates(templates);
+
   console.log("AwanturniK20 został zainicjiwany");
 });
+Hooks.on("renderChatMessageHTML", addChatListeners);
