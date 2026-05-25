@@ -1,3 +1,5 @@
+import { enrich } from "../../utilities/utils.mjs";
+
 const { api, sheets } = foundry.applications;
 
 export class postacSheet extends api.HandlebarsApplicationMixin(
@@ -55,6 +57,21 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     rutyny: {
       template: "systems/awanturnik20/module/templates/actor/postac-rutyny.hbs",
     },
+    czary: {
+      template: "systems/awanturnik20/module/templates/actor/postac-czary.hbs",
+    },
+    kontuzje_stany: {
+      template:
+        "systems/awanturnik20/module/templates/actor/postac-kontuzje_stany.hbs",
+    },
+    notatki: {
+      template:
+        "systems/awanturnik20/module/templates/actor/postac-notatki.hbs",
+    },
+    biografia: {
+      template:
+        "systems/awanturnik20/module/templates/actor/postac-biografia.hbs",
+    },
   };
   static TABS = {
     main: {
@@ -62,6 +79,10 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
         { id: "charakter", group: "main", label: "" },
         { id: "ekwipunek", group: "main", label: "" },
         { id: "rutyny", group: "main", label: "" },
+        { id: "czary", group: "main", label: "" },
+        { id: "kontuzje_stany", group: "main", label: "" },
+        { id: "notatki", group: "main", label: "" },
+        { id: "biografia", group: "main", label: "" },
       ],
 
       initial: "ekwipunek",
@@ -77,6 +98,21 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       fields: this.actor.schema.fields,
       systemFields: this.actor.system.schema.fields,
     });
+    context.historia_postaci = {
+      value: this.actor.system.biografia.historia_postaci,
+      enriched: await enrich(this.actor.system.biografia.historia_postaci),
+      field: this.actor.system.schema.fields.biografia.fields.historia_postaci,
+    };
+    context.opis = {
+      value: this.actor.system.biografia.opis,
+      enriched: await enrich(this.actor.system.biografia.opis),
+      field: this.actor.system.schema.fields.biografia.fields.opis,
+    };
+    context.notatki = {
+      value: this.actor.system.notatki,
+      enriched: await enrich(this.actor.system.notatki),
+      field: this.actor.system.schema.fields.notatki,
+    };
     return context;
   }
 

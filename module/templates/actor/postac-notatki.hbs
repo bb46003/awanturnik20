@@ -1,0 +1,18 @@
+<section
+  class="tab notatki {{tabs.notatki.cssClass}}"
+  action-data="tab"
+  data-group="main"
+  data-tab="notatki"
+>
+  <div class="enrich">
+    <h2>{{localize notatki.field.label}}</h2>
+    {{formInput
+      notatki.field
+      value=notatki.value
+      enriched=notatki.enriched
+      toggled="true"
+    }}
+
+  </div>
+
+</section>

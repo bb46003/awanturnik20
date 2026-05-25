@@ -1,0 +1,37 @@
+<section
+  class="tab biografia {{tabs.biografia.cssClass}}"
+  action-data="tab"
+  data-group="main"
+  data-tab="biografia"
+>
+  <h2>{{localize "awanturnik20.actor.wyglad.label"}}</h2>
+  <div class="flexrow">
+
+    {{#each systemFields.biografia.fields.wyglad.fields as |field key|}}
+      <div class="wyglad">
+        <label>{{localize field.label}}</label>
+
+        {{formInput field value=(lookup @root.system.biografia.wyglad key)}}
+      </div>
+    {{/each}}
+  </div>
+  <div class="enrich">
+    <h2>{{localize opis.field.label}}</h2>
+    {{formInput
+      opis.field
+      value=opis.value
+      enriched=opis.enriched
+      toggled="true"
+    }}
+
+  </div>
+  <div class="enrich">
+    <h2>{{localize historia_postaci.field.label}}</h2>
+    {{formInput
+      historia_postaci.field
+      value=historia_postaci.value
+      enriched=historia_postaci.enriched
+      toggled="true"
+    }}
+  </div>
+</section>

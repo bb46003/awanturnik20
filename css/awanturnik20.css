@@ -199,8 +199,9 @@
     overflow-x: auto;
     position: absolute;
     width: 470px;
-    height: 45%;
+    height: 48%;
     top: 530px;
+            left: 5px;
 
     .skills-table {
       width: 100%;
@@ -351,15 +352,12 @@
     }
   }
   .charakter {
-    padding: 10px;
-    width: 515px;
-    position: relative;
-    left: 470px;
     .rotate {
       transform: rotate(-90deg);
       position: relative;
       transform-origin: bottom left;
       right: -480px;
+                  justify-items: end;
     }
     h2 {
       text-align: center;
@@ -375,7 +373,7 @@
 
     .charakter-grid {
       display: grid;
-      grid-template-columns: repeat(8, 70px);
+      grid-template-columns: repeat(8, 65px);
     }
     .rot {
       left: -40px !important;
@@ -478,12 +476,6 @@
     }
   }
   .ekwipunek {
-    padding: 5px;
-    width: 540px;
-    position: absolute;
-    left: 480px;
-    top: 520px;
-    overflow: auto;
     h2 {
       text-align: center;
     }
@@ -499,5 +491,53 @@
         width: 50px;
       }
     }
+  }
+  .biografia {
+    h2 {
+      text-align: center;
+    }
+    .wyglad {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      margin: 5px;
+    }
+    .enrich {
+      border: 1px solid black;
+      border: 1px solid black;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      h2 {
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+    }
+  }
+  .notatki {
+    h2 {
+      text-align: center;
+    }
+    .enrich {
+      border: 1px solid black;
+      border: 1px solid black;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      h2 {
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+      prose-mirror{
+            min-height: 450px;
+      }
+    }
+
+  }
+  .tab {
+    padding: 5px;
+    width: 540px;
+    position: absolute;
+    left: 480px;
+    top: 520px;
+    overflow: auto;
   }
 }

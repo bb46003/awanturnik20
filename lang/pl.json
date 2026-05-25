@@ -157,7 +157,15 @@
       "obroc": "Obróc osie Charakteru",
       "pancerz": "Pancerz",
       "bronie": "Bronie",
-      "inne": "Pozostały Ekwipunek"
+      "inne": "Pozostały Ekwipunek",
+      "wyglad": {
+        "wiek": "Wiek",
+        "waga": "Waga",
+        "wzrost": "Wzrost",
+        "opis": "Opis",
+        "label": "Wygląd Postaci"
+      },
+      "historia_postaci": "Historia Postaci"
     }
   }
 }

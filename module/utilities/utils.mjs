@@ -142,3 +142,16 @@ export async function _onEditText(_event, target) {
   const editor = new TextEditorApplication({ document: doc, field });
   editor.render({ force: true });
 }
+export async function enrich(html) {
+  if (html) {
+    return await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+      html,
+      {
+        secrets: game.user.isOwner,
+        async: true,
+      },
+    );
+  } else {
+    return html;
+  }
+}
