@@ -138,27 +138,32 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
 
     return data;
   }
-  async prepareKP(){
-    const pancerz = this.actor.items.filter((item) => item.type === "pancerz" && item.system.noszona === true);
+  async prepareKP() {
+    const pancerz = this.actor.items.filter(
+      (item) => item.type === "pancerz" && item.system.noszona === true,
+    );
     const kp = {};
-     const zr_mod = this.actor.system.atrybuty.zrecznosc.mod;
-    if(pancerz[0]){
-    const max_zr = pancerz[0].system.max_zr;
-    const mod_kp = pancerz[0].system.mod_kp;
-   
-    
-    if(max_zr !==0 && zr_mod > max_zr){
-      kp.zr = max_zr;
-    }else{
+    const zr_mod = this.actor.system.atrybuty.zrecznosc.mod;
+    if (pancerz[0]) {
+      const max_zr = pancerz[0].system.max_zr.value;
+      const mod_kp = pancerz[0].system.mod_kp;
+      const stosuje_zr = pancerz[0].system.max_zr.stosuje;
+
+      if (stosuje_zr) {
+        if (zr_mod > max_zr) {
+          kp.zr = max_zr;
+        } else {
+          kp.zr = zr_mod;
+        }
+      } else {
+        kp.zr = 0;
+      }
+      kp.pancerz = mod_kp;
+    } else {
       kp.zr = zr_mod;
+      kp.pancerz = 0;
     }
-    kp.pancerz = mod_kp;
-  }else{
-    kp.zr = zr_mod;
-    kp.pancerz = 0
-  }
-    return kp
-     
+    return kp;
   }
   static async #rollInitiative() {
     await this.actor.rollInitiative();
@@ -193,7 +198,8 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     <div class="menu-option" data-action="open">${otworz}</div>
     <div class="menu-option" data-action="delete">${usun}</div>
   `;
-
+    menu.style.left = `${ev.pageX}px`;
+    menu.style.top = `${ev.pageY}px`;
     document.body.appendChild(menu);
     menu.addEventListener("click", async (e) => {
       const action = e.target.dataset.action;
@@ -218,16 +224,18 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     const mainDiv = target.closest(".pancerz");
     const itemID = mainDiv.dataset.itemid;
     const item = this.actor.items.get(itemID);
-    const pancerz = this.actor.items.filter((item) => item.type === "pancerz" && item.system.noszona === true);
+    const pancerz = this.actor.items.filter(
+      (item) => item.type === "pancerz" && item.system.noszona === true,
+    );
 
     const noszona = item.system.noszona;
-    if(noszona === false){
+    if (noszona === false) {
       pancerz.forEach(async (zbroja) => {
-      await zbroja.update({ "system.noszona": false });
-    })
+        await zbroja.update({ "system.noszona": false });
+      });
     }
     await item.update({ "system.noszona": !noszona });
-    this.render(true); 
+    this.render(true);
   }
 
   _processFormData(event, form, formData) {

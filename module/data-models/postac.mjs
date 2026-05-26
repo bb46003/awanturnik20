@@ -308,13 +308,18 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
       (item) => item.type === "pancerz" && item.system.noszona === true,
     );
     let mod_kp = 0;
-    if(pancerz[0]){
-   mod_kp = pancerz[0].system.mod_kp;
-    const max_zr = pancerz[0].system.max_zr;
-    if (max_zr !== 0 && zrecznosc_mod > max_zr) {
-      zrecznosc_mod = max_zr;
+    if (pancerz[0]) {
+      mod_kp = pancerz[0].system.mod_kp;
+      const max_zr_stosuje = pancerz[0].system.max_zr.stosuje;
+      const max_zr = pancerz[0].system.max_zr.value;
+      if (max_zr_stosuje) {
+        if (zrecznosc_mod > max_zr) {
+          zrecznosc_mod = max_zr;
+        }
+      } else {
+        zrecznosc_mod = 0;
+      }
     }
-  }
     this.kp = 10 + zrecznosc_mod + mod_kp;
   }
   _prepareKMO() {

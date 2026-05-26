@@ -4,17 +4,62 @@
   data-group="main"
   data-tab="dane"
 >
-  <div>
-    <div>
+  <div class="staty">
+    <div class="flexrow">
       <label>{{localize systemFields.mod_kp.label}}</label>
-      {{formInput systemFields.mod_kp value=system.mod_Kp}}
+      {{formInput systemFields.mod_kp value=system.mod_kp}}
     </div>
-    <div>
-      <label data-tooltip="{{localize "awanturnik20.item.pancerz.max_zr"}}">{{localize systemFields.max_zr.label}}</label>     
-      {{formInput systemFields.max_zr value=system.max_zr}}
+    <div class="flexcol">
+      <div class="flexrow">
+        <label>{{localize systemFields.max_zr.fields.stosuje.label}}</label>
+        {{formInput
+          systemFields.max_zr.fields.stosuje
+          value=system.max_zr.stosuje
+        }}
+      </div>
+      {{#if system.max_zr.stosuje}}
+        <div class="flexrow">
+          <label>{{localize systemFields.max_zr.fields.value.label}}</label>
+          {{formInput
+            systemFields.max_zr.fields.value
+            value=system.max_zr.value
+          }}
+        </div>
+      {{/if}}
+    </div>
+    <div class="flexrow">
+      <label>{{localize systemFields.typ.label}}</label>
+      {{formInput systemFields.typ value=system.typ localize=true}}
+    </div>
+    <div class="flexcol">
+      <div class="flexrow">
+        <label>{{localize "awanturnik20.modyfikator.label"}}</label>
+        {{formInput
+          systemFields.modyfikatory.fields.rodzaj
+          value=system.modyfikatory.rodzaj
+          localize=true
+        }}
+      </div>
+      <div class="flexrow">
+
+        <label>{{localize "awanturnik20.modyfikator.typ"}}</label>
+        {{formInput
+          systemFields.modyfikatory.fields.typ
+          value=system.modyfikatory.typ
+          localize=true
+        }}
+      </div>
+      <div class="flexrow">
+        <label>{{localize "awanturnik20.modyfikator.atrybut"}}</label>
+        {{formInput
+          systemFields.modyfikatory.fields.atrybut
+          value=system.modyfikatory.atrybut
+          localize=true
+        }}
+      </div>
     </div>
   </div>
-  <div>
+  <div class="flexrow">
     <label>{{localize systemFields.cena.label}}</label>
     {{formInput systemFields.cena value=system.cena}}
     {{formInput systemFields.monety value=system.monety localize=true}}

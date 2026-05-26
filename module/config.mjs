@@ -194,3 +194,12 @@ export const monety = {
 
   miedz: "awanturnik20.miedz",
 };
+
+export const atrybuty = {
+  sila: "awanturnik20.actor.atrybuty.sila",
+  zrecznosc: "awanturnik20.actor.atrybuty.zrecznosc",
+  postura: "awanturnik20.actor.atrybuty.postura",
+  wiedza: "awanturnik20.actor.atrybuty.wiedza",
+  moc: "awanturnik20.actor.atrybuty.moc",
+  osobowosc: "awanturnik20.actor.atrybuty.osobowosc",
+};

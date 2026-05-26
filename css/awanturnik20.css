@@ -496,6 +496,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        margin-bottom: 5px;
         a {
           width: 25px;
         }
@@ -596,19 +597,44 @@
   }
 }
 .pancerz-sheet {
+  .sheet-tabs {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
   .glowna {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    input {
+      text-align: start;
+    }
+    .item-header {
+      min-width: 250px;
+      label {
+        font-weight: bold;
+        font-size: 24px;
+      }
+    }
   }
   .image-container {
     width: 60px;
   }
+  .staty {
+    margin-bottom: 10px;
+    .flexrow {
+      margin-bottom: 10px;
+      label {
+        min-width: 70%;
+      }
+    }
+  }
+  select,
+  input {
+    text-align: center;
+  }
 }
 .custom-context-menu {
   position: absolute;
-  left: 617px;
-  top: 721px;
   z-index: 1000;
   border: 1px solid black;
   border-radius: 5px;

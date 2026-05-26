@@ -9,7 +9,8 @@
       "rutyny": "Rutyny",
       "bron": "Broń",
       "pancerz": "Pancerz",
-      "czar": "Czar"
+      "czar": "Czar",
+      "tarcza": "Tarcza"
     }
   },
   "awanturnik20": {
@@ -177,15 +178,28 @@
     "zloto": "Złote Monety",
     "item": {
       "pancerz": {
-        "max_zr": "Wartość 0 nie ogranicza KP ze Zręczności",
         "mod_kp": "Modyfikator do Klasy Pancerza",
         "max_zr_label": "Maksymalny modyfikator ze Zręczności do KP",
         "data": "Statystyki Pancerza",
         "opis": "Opis",
-        "name_placeholder": "Nazwa Pancerza"
+        "name_placeholder": "Nazwa Pancerza",
+        "lekka": "Lekki Pancerz",
+        "srednia": "Średni Pancerz",
+        "ciezka": "Ciężki Pancerz",
+        "typ": "Typ Pancerza",
+        "stosuje_zr": "Pancerz pozwala dodać Mod ze ZR do KP"
       },
       "cena": "Cena Pancerza",
       "opis": "Opis"
+    },
+    "ulatwienie": "Ułatwienie",
+    "utrudnienie": "Utrudnienie",
+    "normalne": "Normalne",
+    "duze": "Duże",
+    "modyfikator": {
+      "label": "Modyfikator Kompetencji",
+      "typ": "Typ Modyfikatora",
+      "atrybut": "Do kompetencji opartych o atrybut"
     }
   }
 }

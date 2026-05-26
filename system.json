@@ -45,7 +45,8 @@
       "rutyny": { "htmlFields": ["opis"] },
       "bron": {},
       "pancerz": {},
-      "czar": {}
+      "czar": {},
+      "tarcza": {}
     }
   },
   "initiative": "1d20 + @inicjatywa",
