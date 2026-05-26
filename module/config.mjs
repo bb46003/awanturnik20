@@ -185,6 +185,12 @@ export const kompetencje = /** @type {const} */ ({
     atrybKey: "osobowosc",
     umiejkaKey: "zastraszanie",
   },
-
-  Brak: { label: "-" },
 });
+
+export const monety = {
+  zloto: "awanturnik20.zloto",
+
+  srebro: "awanturnik20.srebro",
+
+  miedz: "awanturnik20.miedz",
+};

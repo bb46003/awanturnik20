@@ -1,0 +1,23 @@
+<section
+  class="tab dane {{tabs.dane.cssClass}}"
+  action-data="tab"
+  data-group="main"
+  data-tab="dane"
+>
+  <div>
+    <div>
+      <label>{{localize systemFields.mod_kp.label}}</label>
+      {{formInput systemFields.mod_kp value=system.mod_Kp}}
+    </div>
+    <div>
+      <label data-tooltip="{{localize "awanturnik20.item.pancerz.max_zr"}}">{{localize systemFields.max_zr.label}}</label>     
+      {{formInput systemFields.max_zr value=system.max_zr}}
+    </div>
+  </div>
+  <div>
+    <label>{{localize systemFields.cena.label}}</label>
+    {{formInput systemFields.cena value=system.cena}}
+    {{formInput systemFields.monety value=system.monety localize=true}}
+  </div>
+
+</section>

@@ -8,17 +8,36 @@
     <h2>{{localize "awanturnik20.actor.pieniadze"}}</h2>
     <div class="flexrow">
       {{#each systemFields.monety as |monety|}}
-
         <div class="monety">
           <label>{{localize monety.label}}</label>
           {{formInput monety value=(lookup @root.system.monety monety.name)}}
         </div>
       {{/each}}
     </div>
-    <div class="pancerz">
+  </div>
+  <div class="pancerze">
       <h2>{{localize "awanturnik20.actor.pancerz"}}</h2>
-      <div class="flexrow"></div>
-    </div>
+      <div class="flexrow">
+        {{#each pancerze as |pancerz|}}
+          <div class="pancerz" data-itemid="{{@key}}">
+              <div class="item-eq-wrapper" data-item-id="{{pancerz._id}}">
+                <img class="item-img" src="{{pancerz.img}}">
+                <img class="item-hover" src="systems/awanturnik20/assets/icon/conversation.png">
+              </div>
+              <span> {{this.name}}</span>
+              {{#if pancerz.noszona}}
+                <a data-action="zaloz_pancerz" data-tooltip="{{localize "awanturnik20.actor.zdejmij"}}">
+                  <img src="systems/awanturnik20/assets/icon/armor2.png"></img>
+                </a>
+              {{else}}
+                <a data-action="zaloz_pancerz" data-tooltip="{{localize "awanturnik20.actor.zalorz"}}">
+                  <img src="systems/awanturnik20/assets/icon/armor.png"></img>
+                </a>
+              {{/if}}
+              <a class="threeDots" data-action="itemContextMenu" data-item="{{@key}}"> ⋮</a>
+          </div>
+        {{/each}}
+      </div>
   </div>
   <div class="bronnie">
     <h2>{{localize "awanturnik20.actor.bronie"}}</h2>

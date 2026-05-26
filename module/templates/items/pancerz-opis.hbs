@@ -1,0 +1,17 @@
+<section
+  class="tab opis {{tabs.opis.cssClass}}"
+  action-data="tab"
+  data-group="main"
+  data-tab="opis"
+>
+  <div class="enrich">
+    <h2>{{localize opis.field.label}}</h2>
+    {{formInput
+      opis.field
+      value=opis.value
+      enriched=opis.enriched
+      toggled="true"
+    }}
+
+  </div>
+</section>

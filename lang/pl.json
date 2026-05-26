@@ -3,7 +3,7 @@
     "Actor": {
       "awanturnik": "Awanturnik"
     },
-    "Items": {
+    "Item": {
       "gatunek": "Gatunek",
       "profesja": "Profesja",
       "rutyny": "Rutyny",
@@ -151,9 +151,6 @@
         "label": "Notatki"
       },
       "pieniadze": "Pieniądze",
-      "miedz": "Miedziane Monety",
-      "srebro": "Srebrne Monety",
-      "zloto": "Złote Monety",
       "obroc": "Obróc osie Charakteru",
       "pancerz": "Pancerz",
       "bronie": "Bronie",
@@ -165,7 +162,30 @@
         "opis": "Opis",
         "label": "Wygląd Postaci"
       },
-      "historia_postaci": "Historia Postaci"
+      "historia_postaci": "Historia Postaci",
+      "otworz": "Otwórz {type}",
+      "usun": "Usuń {type}",
+      "zdejmij": "Zdejmij Pancerz",
+      "zalorz": "Załóż Pancerz",
+      "kp_mod": {
+        "mod_zr": "Modyfikator ze Zr do KP",
+        "mod_pancerz": "Modyfikator Pancerza do KP"
+      }
+    },
+    "miedz": "Miedziane Monety",
+    "srebro": "Srebrne Monety",
+    "zloto": "Złote Monety",
+    "item": {
+      "pancerz": {
+        "max_zr": "Wartość 0 nie ogranicza KP ze Zręczności",
+        "mod_kp": "Modyfikator do Klasy Pancerza",
+        "max_zr_label": "Maksymalny modyfikator ze Zręczności do KP",
+        "data": "Statystyki Pancerza",
+        "opis": "Opis",
+        "name_placeholder": "Nazwa Pancerza"
+      },
+      "cena": "Cena Pancerza",
+      "opis": "Opis"
     }
   }
 }

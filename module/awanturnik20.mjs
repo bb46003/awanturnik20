@@ -4,22 +4,33 @@ import * as models from "./data-models/_module.mjs";
 import { postacActor } from "./documents/postac.mjs";
 import { postacSheet } from "./sheets/actor/postac.mjs";
 import * as utils from "./utilities/utils.mjs";
-import { addChatListeners } from "./chat/chat.mjs"
+import { addChatListeners } from "./chat/chat.mjs";
+import { awanturnik20Item } from "./documents/awanturnik20Item.mjs";
+import { pancerzSheet } from "./sheets/items/pancerz.mjs";
 
 Hooks.once("init", async function () {
   CONFIG.Actor.documentClass = postacActor;
+  CONFIG.Item.documentClass = awanturnik20Item;
   CONFIG.Actor.dataModels = {
     awanturnik: models.postacDataModel,
+  };
+  CONFIG.Item.dataModels = {
+    pancerz: models.pancerzDataModel,
   };
   foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
     foundry.documents.Actor,
     "core",
     foundry.applications.sheets.ActorSheet,
   );
+  foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
+    foundry.documents.Item,
+    "core",
+    foundry.applications.sheets.ItemSheetV2,
+  );
   utils.registerSystemSheet(foundry.documents.Actor, postacSheet, "awanturnik");
+  utils.registerSystemSheet(foundry.documents.Item, pancerzSheet, "pancerz");
   registerHandlebarsHelpers();
   game.awanturnik20 = { socketHandler: new SocketHandler() };
-
 
   console.log("AwanturniK20 został zainicjiwany");
 });

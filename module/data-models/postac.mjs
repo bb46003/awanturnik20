@@ -194,17 +194,17 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
         miedz: new NumberField({
           initial: 0,
           min: 0,
-          label: "awanturnik20.actor.miedz",
+          label: "awanturnik20.miedz",
         }),
         srebro: new NumberField({
           initial: 0,
           min: 0,
-          label: "awanturnik20.actor.srebro",
+          label: "awanturnik20.srebro",
         }),
         zloto: new NumberField({
           initial: 0,
           min: 0,
-          label: "awanturnik20.actor.zloto",
+          label: "awanturnik20.zloto",
         }),
       }),
       os_charakteru: new BooleanField({
@@ -303,7 +303,19 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
   }
   _prepareKP() {
     const zrecznosc = this.atrybuty.zrecznosc;
-    this.kp = 10 + zrecznosc.mod;
+    let zrecznosc_mod = zrecznosc.mod;
+    const pancerz = this.parent.items.filter(
+      (item) => item.type === "pancerz" && item.system.noszona === true,
+    );
+    let mod_kp = 0;
+    if(pancerz[0]){
+   mod_kp = pancerz[0].system.mod_kp;
+    const max_zr = pancerz[0].system.max_zr;
+    if (max_zr !== 0 && zrecznosc_mod > max_zr) {
+      zrecznosc_mod = max_zr;
+    }
+  }
+    this.kp = 10 + zrecznosc_mod + mod_kp;
   }
   _prepareKMO() {
     const osobowosc = this.atrybuty.osobowosc;

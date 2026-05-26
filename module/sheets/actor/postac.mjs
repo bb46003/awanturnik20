@@ -16,7 +16,9 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     position: { width: 1020, height: 1150 },
     actions: {
       roll_iniciative: postacSheet.#rollInitiative,
+      itemContextMenu: postacSheet.#itemContextMenu,
       obroc: postacSheet.#obroc,
+      zaloz_pancerz: postacSheet.#zaloz_pancerz,
     },
     form: {
       submitOnChange: true,
@@ -113,12 +115,121 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       enriched: await enrich(this.actor.system.notatki),
       field: this.actor.system.schema.fields.notatki,
     };
+    const pancerze = await this.preparePancerz();
+    Object.assign(context, { pancerze });
+    const kp = await this.prepareKP();
+    Object.assign(context, { kp });
     return context;
   }
+  async preparePancerz() {
+    const pancerz = this.actor.items.filter((item) => item.type === "pancerz");
+    const data = {};
+    pancerz.forEach((pancerzItem) => {
+      const itemID = pancerzItem.id;
+      const img = pancerzItem.img;
+      const name = pancerzItem.name;
+      const noszona = pancerzItem.system.noszona;
+      data[itemID] = {
+        img,
+        name,
+        noszona,
+      };
+    });
 
+    return data;
+  }
+  async prepareKP(){
+    const pancerz = this.actor.items.filter((item) => item.type === "pancerz" && item.system.noszona === true);
+    const kp = {};
+     const zr_mod = this.actor.system.atrybuty.zrecznosc.mod;
+    if(pancerz[0]){
+    const max_zr = pancerz[0].system.max_zr;
+    const mod_kp = pancerz[0].system.mod_kp;
+   
+    
+    if(max_zr !==0 && zr_mod > max_zr){
+      kp.zr = max_zr;
+    }else{
+      kp.zr = zr_mod;
+    }
+    kp.pancerz = mod_kp;
+  }else{
+    kp.zr = zr_mod;
+    kp.pancerz = 0
+  }
+    return kp
+     
+  }
   static async #rollInitiative() {
     await this.actor.rollInitiative();
   }
+
+  static async #obroc() {
+    const actor = this.actor;
+    const obroc = actor.system.os_charakteru;
+    await actor.update({ "system.os_charakteru": !obroc });
+  }
+  static async #itemContextMenu(ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    const button = ev.target;
+    const itemId = button.parentElement.dataset.itemid;
+    const item = this.actor.items.get(itemId);
+    // Remove old menu if exists
+    document.querySelector(".custom-context-menu")?.remove();
+
+    // Create element instead of raw string (safer and cleaner)
+    const menu = document.createElement("div");
+    menu.classList.add("custom-context-menu");
+    const otworz = game.i18n.format(`awanturnik20.actor.otworz`, {
+      type: item.type,
+    });
+    const usun = game.i18n.format(`awanturnik20.actor.usun`, {
+      type: item.type,
+    });
+
+    menu.innerHTML = `
+    <div class="menu-option" data-action="open">${otworz}</div>
+    <div class="menu-option" data-action="delete">${usun}</div>
+  `;
+
+    document.body.appendChild(menu);
+    menu.addEventListener("click", async (e) => {
+      const action = e.target.dataset.action;
+      if (!action) return;
+
+      if (action === "open") {
+        const item = this.actor.items.get(itemId);
+        item?.sheet.render(true);
+      }
+
+      if (action === "delete") {
+        const item = this.actor.items.get(itemId);
+        await item?.delete();
+      }
+
+      menu.remove();
+    });
+  }
+
+  static async #zaloz_pancerz(ev) {
+    const target = ev.target;
+    const mainDiv = target.closest(".pancerz");
+    const itemID = mainDiv.dataset.itemid;
+    const item = this.actor.items.get(itemID);
+    const pancerz = this.actor.items.filter((item) => item.type === "pancerz" && item.system.noszona === true);
+
+    const noszona = item.system.noszona;
+    if(noszona === false){
+      pancerz.forEach(async (zbroja) => {
+      await zbroja.update({ "system.noszona": false });
+    })
+    }
+    await item.update({ "system.noszona": !noszona });
+    this.render(true); 
+  }
+
   _processFormData(event, form, formData) {
     let name = event?.target?.name;
     if (typeof name === "string" && name.includes("charakter")) {
@@ -126,11 +237,5 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     }
 
     return super._processFormData(event, form, formData);
-  }
-
-  static async #obroc() {
-    const actor = this.actor;
-    const obroc = actor.system.os_charakteru;
-    await actor.update({ "system.os_charakteru": !obroc });
   }
 }
