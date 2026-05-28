@@ -6,7 +6,7 @@ import { postacSheet } from "./sheets/actor/postac.mjs";
 import * as utils from "./utilities/utils.mjs";
 import { addChatListeners } from "./chat/chat.mjs";
 import { awanturnik20Item } from "./documents/awanturnik20Item.mjs";
-import { pancerzSheet } from "./sheets/items/pancerz.mjs";
+import * as ItemSheets from "./sheets/items/_module.mjs";
 
 Hooks.once("init", async function () {
   CONFIG.Actor.documentClass = postacActor;
@@ -16,6 +16,7 @@ Hooks.once("init", async function () {
   };
   CONFIG.Item.dataModels = {
     pancerz: models.pancerzDataModel,
+    tarcza: models.tarczaDataModel
   };
   foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
     foundry.documents.Actor,
@@ -28,7 +29,8 @@ Hooks.once("init", async function () {
     foundry.applications.sheets.ItemSheetV2,
   );
   utils.registerSystemSheet(foundry.documents.Actor, postacSheet, "awanturnik");
-  utils.registerSystemSheet(foundry.documents.Item, pancerzSheet, "pancerz");
+  utils.registerSystemSheet(foundry.documents.Item, ItemSheets.pancerzSheet, "pancerz");
+   utils.registerSystemSheet(foundry.documents.Item, ItemSheets.tarczaSheet, "tarcza");
   registerHandlebarsHelpers();
   game.awanturnik20 = { socketHandler: new SocketHandler() };
 

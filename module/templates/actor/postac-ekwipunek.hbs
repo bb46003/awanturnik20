@@ -15,30 +15,113 @@
       {{/each}}
     </div>
   </div>
-  <div class="pancerze">
-      <h2>{{localize "awanturnik20.actor.pancerz"}}</h2>
-      <div class="flexcol">
-        {{#each pancerze as |pancerz|}}
-          <div class="pancerz" data-itemid="{{@key}}">
-              <div class="item-eq-wrapper" data-item-id="{{pancerz._id}}">
-                <img class="item-img" src="{{pancerz.img}}">
-                <img class="item-hover" src="systems/awanturnik20/assets/icon/conversation.png">
-              </div>
-              <span> {{this.name}}</span>
-              {{#if pancerz.noszona}}
-                <a data-action="zaloz_pancerz" data-tooltip="{{localize "awanturnik20.actor.zdejmij"}}">
-                  <img src="systems/awanturnik20/assets/icon/armor2.png"></img>
-                </a>
-              {{else}}
-                <a data-action="zaloz_pancerz" data-tooltip="{{localize "awanturnik20.actor.zalorz"}}">
-                  <img src="systems/awanturnik20/assets/icon/armor.png"></img>
-                </a>
-              {{/if}}
-              <a class="threeDots" data-action="itemContextMenu" data-item="{{@key}}"> ⋮</a>
-          </div>
-        {{/each}}
-      </div>
-  </div>
+<div class="pancerze">
+  <h2>{{localize "awanturnik20.actor.pancerz"}}</h2>
+
+  <table class="pancerze-table">
+    <thead>
+      <tr>
+        <th>{{localize "awanturnik20.actor.nazwa"}}</th>
+        <th>{{localize "awanturnik20.actor.noszony"}}</th>
+        <th>{{localize "awanturnik20.actor.kary"}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each pancerze as |pancerz|}}
+        <tr class="pancerz-row" data-itemid="{{@key}}">
+          <td class="name-cell">
+            <div class="name-wrapper" data-item-id="{{pancerz._id}}">
+              <img class="item-img" src="{{pancerz.img}}">
+              <span>{{pancerz.name}}</span>
+
+              <a class="threeDots"
+                 data-action="itemContextMenu"
+                 data-item="{{@key}}">
+                 ⋮
+              </a>
+            </div>
+          </td>
+          <td class="wear-cell noszona">
+            {{#if pancerz.noszona}}
+              <a data-action="zaloz_pancerz"
+                 data-tooltip="{{localize "awanturnik20.actor.zdejmij"}}">
+                <img src="systems/awanturnik20/assets/icon/armor2.png">
+              </a>
+            {{else}}
+              <a data-action="zaloz_pancerz"
+                 data-tooltip="{{localize "awanturnik20.actor.zalorz"}}">
+                <img src="systems/awanturnik20/assets/icon/armor.png">
+              </a>
+            {{/if}}
+          </td>
+          <td class="penalty-cell">
+            {{#if (ne pancerz.rodzaj "brak")}}
+              <p>{{localize pancerz.modyfikator}}</p>
+              <p>{{localize pancerz.modyfikatorTyp}}</p>
+              <p>{{localize pancerz.atrybut}}</p>
+            {{/if}}
+          </td>
+
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+    <table class="pancerze-table">
+    <thead>
+      <tr>
+        <th>{{localize "awanturnik20.actor.nazwa"}}</th>
+        <th>{{localize "awanturnik20.actor.noszony"}}</th>
+        <th>{{localize "awanturnik20.item.tarcza.reka"}}</th>
+        <th>{{localize "awanturnik20.actor.kary"}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each tarcze as |tarcza|}}
+        <tr class="pancerz-row" data-itemid="{{@key}}">
+          <td class="name-cell">
+            <div class="name-wrapper" data-item-id="{{tarcza._id}}">
+              <img class="item-img" src="{{tarcza.img}}">
+              <span>{{tarcza.name}}</span>
+
+              <a class="threeDots"
+                 data-action="itemContextMenu"
+                 data-item="{{@key}}">
+                 ⋮
+              </a>
+            </div>
+          </td>
+          <td class="wear-cell">
+            {{#if tarcza.noszona}}
+              <a data-action="zaloz_pancerz"
+                 data-tooltip="{{localize "awanturnik20.actor.zdejmij_tarcze"}}">
+                <i class="fa-solid fa-shield"></i>
+              </a>
+            {{else}}
+              <a data-action="zaloz_pancerz"
+                 data-tooltip="{{localize "awanturnik20.actor.zalorz_tarcze"}}">
+               <i class="fa-regular fa-shield"></i>
+              </a>
+            {{/if}}
+          </td>
+          <td class="wear-cell hand">
+           <i class="fa-solid fa-hand"></i>
+           <p>{{localize tarcza.rece}}</p>
+          </td>
+          <td class="penalty-cell">
+            {{#if (ne tarcza.rodzaj "brak")}}
+              <p>{{localize tarcza.modyfikator}}</p>
+              <p>{{localize tarcza.modyfikatorTyp}}</p>
+              <p>{{localize tarcza.atrybut}}</p>
+            {{/if}}
+          </td>
+
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
   <div class="bronnie">
     <h2>{{localize "awanturnik20.actor.bronie"}}</h2>
     <div class="flexrow"></div>

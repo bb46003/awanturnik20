@@ -153,7 +153,7 @@
       },
       "pieniadze": "Pieniądze",
       "obroc": "Obróc osie Charakteru",
-      "pancerz": "Pancerz",
+      "pancerz": "Pancerze i Tarcze",
       "bronie": "Bronie",
       "inne": "Pozostały Ekwipunek",
       "wyglad": {
@@ -170,8 +170,14 @@
       "zalorz": "Załóż Pancerz",
       "kp_mod": {
         "mod_zr": "Modyfikator ze Zr do KP",
-        "mod_pancerz": "Modyfikator Pancerza do KP"
-      }
+        "mod_pancerz": "Modyfikator Pancerza do KP",
+        "mod_tarcza": "Modyfikator KP z Tarczy"
+      },
+      "nazwa": "Nazwa Przedmiotu",
+      "noszony": "Noszony",
+      "kary": "Kary",
+      "zdejmij_tarcze": "Zdejmij Tarczę",
+      "zalorz_tarcze": "Załóż Tarczę"
     },
     "miedz": "Miedziane Monety",
     "srebro": "Srebrne Monety",
@@ -187,10 +193,22 @@
         "srednia": "Średni Pancerz",
         "ciezka": "Ciężki Pancerz",
         "typ": "Typ Pancerza",
-        "stosuje_zr": "Pancerz pozwala dodać Mod ze ZR do KP"
+        "stosuje_zr": "Pancerz pozwala dodać Mod ze ZR do KP",
+        "cena": "Cena Pancerza"
       },
-      "cena": "Cena Pancerza",
-      "opis": "Opis"
+      "opis": "Opis",
+      "tarcza": {
+        "reka": "Wymagana ilość rąk",
+        "typ": "Typ Tarczy",
+        "data": "Statystyki Tarczy",
+        "cena": "Cena Tarczy",
+        "name_placeholder": "Nazwa Tarczy",
+        "lekka": "Lekka Tarcza",
+        "srednia": "Średnia Tarcza",
+        "ciezka": "Ciężka Tarcza"
+      },
+      "jednoreczna": "1R",
+      "dwureczna": "2R"
     },
     "ulatwienie": "Ułatwienie",
     "utrudnienie": "Utrudnienie",

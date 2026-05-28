@@ -491,17 +491,108 @@
         width: 50px;
       }
     }
-    .pancerze {
-      .pancerz {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 5px;
-        a {
-          width: 25px;
+.pancerze {
+  margin-top:5px;
+  overflow-y: auto;
+  .pancerze-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+      background: #3a3a3a;
+      color: white;
+
+      th {
+        padding: 6px 10px;
+        text-align: left;
+      }
+    }
+
+    tbody {
+      tr {
+        &.pancerz-row {
+          min-height: 65px;
+          max-height: 65px;
+          height: 65px;
+          td {
+            padding: 6px 10px;
+          }
+        }
+
+        /* STRIPES */
+        &:nth-child(odd) {
+          background: #acacac;
+        }
+
+        &:nth-child(even) {
+          background: #c4c4c4;
         }
       }
     }
+
+    /* NAME COLUMN */
+    .name-cell {
+      .name-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        .item-img {
+          width: 24px;
+          height: 24px;
+        }
+
+        .threeDots {
+          margin-left: auto;
+          cursor: pointer;
+        }
+      }
+    }
+
+    /* WEAR COLUMN */
+    .wear-cell {
+      text-align: center;
+
+      img {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+      }
+      .fa-shield{
+        font-size: x-large;
+      }
+    }
+    .wear-cell.noszona{
+      a{
+            display: block;
+    margin: auto;
+    width: 50%;
+      }
+    }
+    .wear-cell.hand{
+          max-height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .fa-solid.fa-hand{
+          font-size: xx-large;
+                                  padding-top: 10px;
+    }
+    p{
+          position: relative;
+    color: white;
+    top: -26px;
+    }
+    }
+    /* PENALTY COLUMN */
+    .penalty-cell {
+      p {
+        margin: 0;
+        line-height: 1.2;
+      }
+    }
+  }
+}
     .item-eq-wrapper {
       position: relative;
       width: 45px;
@@ -596,7 +687,7 @@
     width: 40px;
   }
 }
-.pancerz-sheet {
+.pancerz-sheet, .tarcza-sheet {
   .sheet-tabs {
     margin-bottom: 10px;
     margin-top: 10px;
@@ -641,4 +732,13 @@
   background: white;
   padding: 10px;
   color: black;
+
+  .menu-option {
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover {
+      background: #f0f0f0;
+    }
+  }
 }

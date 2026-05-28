@@ -12,7 +12,7 @@ const {
   IntegerSortField,
 } = foundry.data.fields;
 
-export class pancerzDataModel extends foundry.abstract.TypeDataModel {
+export class tarczaDataModel extends foundry.abstract.TypeDataModel {
   static metadata = Object.freeze({});
 
   static defineSchema() {
@@ -21,19 +21,9 @@ export class pancerzDataModel extends foundry.abstract.TypeDataModel {
         initial: 0,
         label: "awanturnik20.item.pancerz.mod_kp",
       }),
-      max_zr: new SchemaField({
-        value: new NumberField({
-          initial: 0,
-          label: "awanturnik20.item.pancerz.max_zr_label",
-        }),
-        stosuje: new BooleanField({
-          initial: true,
-          label: "awanturnik20.item.pancerz.stosuje_zr",
-        }),
-      }),
       cena: new NumberField({
         initial: 0,
-        label: "awanturnik20.item.pancerz.cena",
+        label: "awanturnik20.item.tarcza.cena",
       }),
       monety: new StringField({
         initial: "zloto",
@@ -49,12 +39,12 @@ export class pancerzDataModel extends foundry.abstract.TypeDataModel {
       typ: new StringField({
         initial: "lekka",
         choices: {
-          lekka: "awanturnik20.item.pancerz.lekka",
-          srednia: "awanturnik20.item.pancerz.srednia",
-          ciezka: "awanturnik20.item.pancerz.ciezka",
+          lekka: "awanturnik20.item.tarcza.lekka",
+          srednia: "awanturnik20.item.tarcza.srednia",
+          ciezka: "awanturnik20.item.tarcza.ciezka",
         },
         required: true,
-        label: "awanturnik20.item.pancerz.typ",
+        label: "awanturnik20.item.tarcza.typ",
       }),
       modyfikatory: new SchemaField({
         rodzaj: new StringField({
@@ -80,6 +70,15 @@ export class pancerzDataModel extends foundry.abstract.TypeDataModel {
           required: true,
         }),
       }),
+      rece: new StringField({
+        initial: "1r",
+        choices: {
+            "1r": "awanturnik20.item.jednoreczna",
+            "2r": "awanturnik20.item.dwureczna"
+        },
+        required: true,
+        label: "awanturnik20.item.tarcza.reka"
+      })
     };
   }
 }

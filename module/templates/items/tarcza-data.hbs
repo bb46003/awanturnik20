@@ -9,23 +9,9 @@
       <label>{{localize systemFields.mod_kp.label}}</label>
       {{formInput systemFields.mod_kp value=system.mod_kp}}
     </div>
-    <div class="flexcol">
-      <div class="flexrow">
-        <label>{{localize systemFields.max_zr.fields.stosuje.label}}</label>
-        {{formInput
-          systemFields.max_zr.fields.stosuje
-          value=system.max_zr.stosuje
-        }}
-      </div>
-      {{#if system.max_zr.stosuje}}
-        <div class="flexrow">
-          <label>{{localize systemFields.max_zr.fields.value.label}}</label>
-          {{formInput
-            systemFields.max_zr.fields.value
-            value=system.max_zr.value
-          }}
-        </div>
-      {{/if}}
+    <div class="flexrow">
+      <label>{{localize systemFields.rece.label}}</label>
+       {{formInput systemFields.rece value=system.rece localize=true}}
     </div>
     <div class="flexrow">
       <label>{{localize systemFields.typ.label}}</label>

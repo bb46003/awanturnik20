@@ -117,6 +117,8 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     };
     const pancerze = await this.preparePancerz();
     Object.assign(context, { pancerze });
+        const tarcze = await this.prepareTarcze();
+    Object.assign(context, { tarcze });
     const kp = await this.prepareKP();
     Object.assign(context, { kp });
     return context;
@@ -129,10 +131,52 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       const img = pancerzItem.img;
       const name = pancerzItem.name;
       const noszona = pancerzItem.system.noszona;
+      const modifikatorChoices = pancerzItem.system.schema.fields.modyfikatory.fields.rodzaj.choices
+      const modyfikator = modifikatorChoices[pancerzItem.system.modyfikatory.rodzaj]
+      const modifikatorTypChoices = pancerzItem.system.schema.fields.modyfikatory.fields.typ.choices
+      const modyfikatorTyp = modifikatorTypChoices[pancerzItem.system.modyfikatory.typ]
+      const rodzaj = pancerzItem.system.modyfikatory.rodzaj;
+      const atrybutChoice = pancerzItem.system.schema.fields.modyfikatory.fields.atrybut.choices
+      const atrybut = atrybutChoice[pancerzItem.system.modyfikatory.atrybut]
       data[itemID] = {
         img,
         name,
         noszona,
+        rodzaj,
+        modyfikator,
+        modyfikatorTyp,
+        atrybut
+      };
+    });
+
+    return data;
+  }
+    async prepareTarcze() {
+    const tarcza = this.actor.items.filter((item) => item.type === "tarcza");
+    const data = {};
+    tarcza.forEach((tarczaItem) => {
+      const itemID = tarczaItem.id;
+      const img = tarczaItem.img;
+      const name = tarczaItem.name;
+      const noszona = tarczaItem.system.noszona;
+      const modifikatorChoices = tarczaItem.system.schema.fields.modyfikatory.fields.rodzaj.choices
+      const modyfikator = modifikatorChoices[tarczaItem.system.modyfikatory.rodzaj]
+      const modifikatorTypChoices = tarczaItem.system.schema.fields.modyfikatory.fields.typ.choices
+      const modyfikatorTyp = modifikatorTypChoices[tarczaItem.system.modyfikatory.typ]
+      const rodzaj = tarczaItem.system.modyfikatory.rodzaj;
+      const atrybutChoice = tarczaItem.system.schema.fields.modyfikatory.fields.atrybut.choices
+      const atrybut = atrybutChoice[tarczaItem.system.modyfikatory.atrybut]
+            const receChoices = tarczaItem.system.schema.fields.rece.choices
+      const rece = receChoices[tarczaItem.system.rece]
+      data[itemID] = {
+        img,
+        name,
+        noszona,
+        rodzaj,
+        modyfikator,
+        modyfikatorTyp,
+        atrybut,
+        rece
       };
     });
 
@@ -141,6 +185,9 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
   async prepareKP() {
     const pancerz = this.actor.items.filter(
       (item) => item.type === "pancerz" && item.system.noszona === true,
+    );
+    const tarcza = this.actor.items.filter(
+      (item) => item.type === "tarcza" && item.system.noszona === true,
     );
     const kp = {};
     const zr_mod = this.actor.system.atrybuty.zrecznosc.mod;
@@ -163,6 +210,11 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       kp.zr = zr_mod;
       kp.pancerz = 0;
     }
+    if(tarcza[0]){
+      kp.tarcza = tarcza[0].system.mod_kp;
+    }else{
+      kp.tarcza = 0
+    }
     return kp;
   }
   static async #rollInitiative() {
@@ -179,7 +231,7 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     ev.stopPropagation();
 
     const button = ev.target;
-    const itemId = button.parentElement.dataset.itemid;
+    const itemId = button.dataset.item;
     const item = this.actor.items.get(itemId);
     // Remove old menu if exists
     document.querySelector(".custom-context-menu")?.remove();
@@ -217,11 +269,14 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
 
       menu.remove();
     });
+       setTimeout(() => {
+      document.addEventListener("click", () => menu.remove(), { once: true });
+    }, 10);
   }
 
   static async #zaloz_pancerz(ev) {
     const target = ev.target;
-    const mainDiv = target.closest(".pancerz");
+    const mainDiv = target.closest(".pancerz-row");
     const itemID = mainDiv.dataset.itemid;
     const item = this.actor.items.get(itemID);
     const pancerz = this.actor.items.filter(
