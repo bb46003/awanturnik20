@@ -203,3 +203,10 @@ export const atrybuty = {
   moc: "awanturnik20.actor.atrybuty.moc",
   osobowosc: "awanturnik20.actor.atrybuty.osobowosc",
 };
+
+export const wlasciwosciBroni = {
+  celna : "awanturnik20.item.bron.wlasciwosci.celna",
+  przeladowanie: "awanturnik20.item.bron.przeladowanie",
+  drzewcowa: "awanturnik20.item.bron.drzewcowa",
+  brak: "-"
+}

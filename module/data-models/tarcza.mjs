@@ -73,12 +73,12 @@ export class tarczaDataModel extends foundry.abstract.TypeDataModel {
       rece: new StringField({
         initial: "1r",
         choices: {
-            "1r": "awanturnik20.item.jednoreczna",
-            "2r": "awanturnik20.item.dwureczna"
+          "1r": "awanturnik20.item.jednoreczna",
+          "2r": "awanturnik20.item.dwureczna",
         },
         required: true,
-        label: "awanturnik20.item.tarcza.reka"
-      })
+        label: "awanturnik20.item.tarcza.reka",
+      }),
     };
   }
 }

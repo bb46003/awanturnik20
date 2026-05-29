@@ -208,7 +208,32 @@
         "ciezka": "Ciężka Tarcza"
       },
       "jednoreczna": "1R",
-      "dwureczna": "2R"
+      "dwureczna": "2R",
+      "jedno_lub_dwureczna": "1/2R",
+      "bron": {
+        "walsciwosci": "Właściwości Broni",
+        "typ": "Typ Bronii",
+        "cena": "Cena Broni",
+        "trzeci_zasieg": "Trzeci przyrost zasiegu",
+        "drugi_zasieg": "Drugi przyrost zasiegu",
+        "pierwszy_zasieg": "Pierwszy przyrost zasiegu",
+        "posiadaZasieg": "Broń zasięgowa?",
+        "powiazana_kompetencja": "Kompetencja do testu ataku Bronią",
+        "ilosc_kosci_trafienia": "Ikość Kości Trafienia",
+        "typ_kosci": "Rodzaj Kości Trafienia",
+        "pt": {
+          "d4": "K4",
+          "d6": "K6",
+          "d8": "K8",
+          "d10": "K10",
+          "d12": "K12",
+          "d20": "K20"
+        },
+        "lekka": "Lekka Broń",
+        "srednia": "Średnia Broń",
+        "ciezka": "Ciężka Broń",
+        "reka": "Trzymana w"
+      }
     },
     "ulatwienie": "Ułatwienie",
     "utrudnienie": "Utrudnienie",

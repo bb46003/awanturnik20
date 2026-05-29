@@ -307,13 +307,13 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
     const pancerz = this.parent.items.filter(
       (item) => item.type === "pancerz" && item.system.noszona === true,
     );
-        const tarcza = this.parent.items.filter(
+    const tarcza = this.parent.items.filter(
       (item) => item.type === "tarcza" && item.system.noszona === true,
     );
-    let tarcza_mod_kp = 0
-    if(tarcza[0]){
-    tarcza_mod_kp = tarcza[0].system.mod_kp;
-    }  
+    let tarcza_mod_kp = 0;
+    if (tarcza[0]) {
+      tarcza_mod_kp = tarcza[0].system.mod_kp;
+    }
     let mod_kp = 0;
     if (pancerz[0]) {
       mod_kp = pancerz[0].system.mod_kp;

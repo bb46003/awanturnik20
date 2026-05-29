@@ -16,7 +16,8 @@ Hooks.once("init", async function () {
   };
   CONFIG.Item.dataModels = {
     pancerz: models.pancerzDataModel,
-    tarcza: models.tarczaDataModel
+    tarcza: models.tarczaDataModel,
+    bron: models.bronDataModel,
   };
   foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
     foundry.documents.Actor,
@@ -29,8 +30,16 @@ Hooks.once("init", async function () {
     foundry.applications.sheets.ItemSheetV2,
   );
   utils.registerSystemSheet(foundry.documents.Actor, postacSheet, "awanturnik");
-  utils.registerSystemSheet(foundry.documents.Item, ItemSheets.pancerzSheet, "pancerz");
-   utils.registerSystemSheet(foundry.documents.Item, ItemSheets.tarczaSheet, "tarcza");
+  utils.registerSystemSheet(
+    foundry.documents.Item,
+    ItemSheets.pancerzSheet,
+    "pancerz",
+  );
+  utils.registerSystemSheet(
+    foundry.documents.Item,
+    ItemSheets.tarczaSheet,
+    "tarcza",
+  );
   registerHandlebarsHelpers();
   game.awanturnik20 = { socketHandler: new SocketHandler() };
 
