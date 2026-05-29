@@ -205,8 +205,8 @@ export const atrybuty = {
 };
 
 export const wlasciwosciBroni = {
-  celna : "awanturnik20.item.bron.wlasciwosci.celna",
-  przeladowanie: "awanturnik20.item.bron.przeladowanie",
-  drzewcowa: "awanturnik20.item.bron.drzewcowa",
-  brak: "-"
-}
+  celna: "awanturnik20.item.bron.wlasciwosci.celna",
+  przeladowanie: "awanturnik20.item.bron.wlasciwosci.przeladowanie",
+  drzewcowa: "awanturnik20.item.bron.wlasciwosci.drzewcowa",
+  brak: "-",
+};

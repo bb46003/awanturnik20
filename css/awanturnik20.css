@@ -688,7 +688,8 @@
   }
 }
 .pancerz-sheet,
-.tarcza-sheet {
+.tarcza-sheet,
+.bron-sheet {
   .sheet-tabs {
     margin-bottom: 10px;
     margin-top: 10px;
@@ -723,6 +724,18 @@
   select,
   input {
     text-align: center;
+  }
+}
+.bron-sheet {
+  overflow-y: auto;
+    .staty {
+    margin-bottom: 10px;
+    .flexrow {
+      margin-bottom: 10px;
+      label {
+        min-width: 60%;
+      }
+    }
   }
 }
 .custom-context-menu {

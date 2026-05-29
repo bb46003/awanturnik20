@@ -11,7 +11,7 @@
     </div>
     <div class="flexrow">
       <label>{{localize systemFields.rece.label}}</label>
-       {{formInput systemFields.rece value=system.rece localize=true}}
+      {{formInput systemFields.rece value=system.rece localize=true}}
     </div>
     <div class="flexrow">
       <label>{{localize systemFields.typ.label}}</label>
@@ -27,25 +27,26 @@
         }}
       </div>
       {{#if (ne system.modyfikatory.rodzaj "brak")}}
-      <div class="flexrow">
+        <div class="flexrow">
 
-        <label>{{localize "awanturnik20.modyfikator.typ"}}</label>
-        {{formInput
-          systemFields.modyfikatory.fields.typ
-          value=system.modyfikatory.typ
-          localize=true
-        }}
-      </div>
-      <div class="flexrow">
-        <label>{{localize "awanturnik20.modyfikator.atrybut"}}</label>
-        {{formInput
-          systemFields.modyfikatory.fields.atrybut
-          value=system.modyfikatory.atrybut
-          localize=true
-        }}
-      </div>
+          <label>{{localize "awanturnik20.modyfikator.typ"}}</label>
+          {{formInput
+            systemFields.modyfikatory.fields.typ
+            value=system.modyfikatory.typ
+            localize=true
+          }}
+        </div>
+        <div class="flexrow">
+          <label>{{localize "awanturnik20.modyfikator.atrybut"}}</label>
+          {{formInput
+            systemFields.modyfikatory.fields.atrybut
+            value=system.modyfikatory.atrybut
+            localize=true
+          }}
+        </div>
+
+      {{/if}}
     </div>
-    {{/if}}
   </div>
   <div class="flexrow">
     <label>{{localize systemFields.cena.label}}</label>

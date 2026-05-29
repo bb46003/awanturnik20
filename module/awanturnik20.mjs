@@ -40,6 +40,11 @@ Hooks.once("init", async function () {
     ItemSheets.tarczaSheet,
     "tarcza",
   );
+  utils.registerSystemSheet(
+    foundry.documents.Item,
+    ItemSheets.bronSheet,
+    "bron",
+  );
   registerHandlebarsHelpers();
   game.awanturnik20 = { socketHandler: new SocketHandler() };
 

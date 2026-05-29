@@ -227,12 +227,22 @@
           "d8": "K8",
           "d10": "K10",
           "d12": "K12",
-          "d20": "K20"
+          "d20": "K20",
+          "label": "Punkty Trafienia Broni"
         },
         "lekka": "Lekka Broń",
         "srednia": "Średnia Broń",
         "ciezka": "Ciężka Broń",
-        "reka": "Trzymana w"
+        "reka": "Trzymana w",
+        "name_placeholder": "Nazwa Broni",
+        "data": "Statystyki Broni",
+        "pt_1r": "Obrażenia przy trzymaniu w jednej ręce",
+        "pt_2r": "Obrażenia przy trzymaniu w dwuch rękach",
+        "wlasciwosci": {
+          "celna": "Celna",
+          "przeladowanie": "Przeladowanie",
+          "drzewcowa": "Drzewcowa"
+        }
       }
     },
     "ulatwienie": "Ułatwienie",
