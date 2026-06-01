@@ -1,5 +1,5 @@
 import { enrich } from "../../utilities/utils.mjs";
-
+import { bronSheet } from "../items/bron.mjs";
 const { api, sheets } = foundry.applications;
 
 export class postacSheet extends api.HandlebarsApplicationMixin(
@@ -121,6 +121,8 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     Object.assign(context, { tarcze });
     const kp = await this.prepareKP();
     Object.assign(context, { kp });
+    const bronie = await this.prepareBron();
+    Object.assign(context, { bronie });
     return context;
   }
   async preparePancerz() {
@@ -227,6 +229,34 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     }
     return kp;
   }
+  async prepareBron() {
+    const bronie = this.actor.items.filter((item) => item.type === "bron");
+    const data = {};
+    bronie.forEach((bronItem) => {
+      const itemID = bronItem.id;
+      const img = bronItem.img;
+      const name = bronItem.name;
+      const trzymana = bronItem.system.trzymana;
+      const rece = bronItem.system.rece;
+      let pt = { trzymana: false };
+      if (trzymana !== "brak") {
+        pt = bronItem.system.pt[trzymana];
+        pt.trzymana = true;
+      }
+      const typ_pt = bronItem.system.pt.typ;
+      const wlasciwosci = bronItem.system.wlasciwosci;
+      data[itemID] = {
+        img,
+        name,
+        trzymana,
+        rece,
+        pt,
+        typ_pt,
+        wlasciwosci,
+      };
+    });
+    return data;
+  }
   static async #rollInitiative() {
     await this.actor.rollInitiative();
   }
@@ -307,6 +337,11 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     let name = event?.target?.name;
     if (typeof name === "string" && name.includes("charakter")) {
       formData.object[name] = Number(formData.object[name]);
+    }
+    const target = event?.target;
+    if (target.dataset.action === "changeTrzymana") {
+      const item = this.actor.items.get(target.dataset.item);
+      item.system.zmienChwyt(target.value);
     }
 
     return super._processFormData(event, form, formData);

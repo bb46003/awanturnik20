@@ -32,7 +32,10 @@
           <tr class="pancerz-row" data-itemid="{{@key}}">
             <td class="name-cell">
               <div class="name-wrapper" data-item-id="{{pancerz._id}}">
-                <img class="item-img" src="{{pancerz.img}}" />
+                           <div class="item-eq-wrapper">
+            <img class="item-img" src="{{pancerz.img}}" />
+            <img class="item-hover" src="systems/awanturnik20/assets/icon/conversation.png" />
+            </div>
                 <span>{{pancerz.name}}</span>
 
                 <a
@@ -88,7 +91,10 @@
           <tr class="pancerz-row" data-itemid="{{@key}}">
             <td class="name-cell">
               <div class="name-wrapper" data-item-id="{{tarcza._id}}">
-                <img class="item-img" src="{{tarcza.img}}" />
+                           <div class="item-eq-wrapper">
+            <img class="item-img" src="{{tarcza.img}}" />
+            <img class="item-hover" src="systems/awanturnik20/assets/icon/conversation.png" />
+            </div>
                 <span>{{tarcza.name}}</span>
 
                 <a
@@ -136,9 +142,87 @@
       </tbody>
     </table>
   </div>
-  <div class="bronnie">
+  <div class="bronie">
     <h2>{{localize "awanturnik20.actor.bronie"}}</h2>
-    <div class="flexrow"></div>
+   <table class="bronie-table">
+  <thead>
+    <tr>
+      <th>{{localize "awanturnik20.actor.nazwa"}}</th>
+      <th>{{localize "awanturnik20.item.bron.reka"}}</th>
+      <th>{{localize "awanturnik20.pt"}}</th>
+      <th>{{localize "awanturnik20.item.bron.typ_obrazen.label"}}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each bronie as |bron|}}
+      <tr data-itemid="{{@key}}">
+        <td class="name-cell">
+          <div class="name-wrapper" data-item-id="{{tarcza._id}}">
+            <div class="item-eq-wrapper">
+            <img class="item-img" src="{{bron.img}}" />
+            <img class="item-hover" src="systems/awanturnik20/assets/icon/conversation.png" />
+            </div>
+
+            {{#if bron.pt.trzymana}}
+            <a data-action="atak">{{bron.name}}</a>
+            {{else}}
+             <span>{{bron.name}}</span>
+            {{/if}}
+                       <a
+                  class="threeDots"
+                  data-action="itemContextMenu"
+                  data-item="{{@key}}"
+                >
+                  ⋮
+                </a>
+          </div>
+        </td>
+
+        <td>
+          <select data-action="changeTrzymana" data-item="{{@key}}" name="system.trzymana">
+            <option value="brak" {{#if (eq bron.trzymana "brak")}}selected{{/if}}>
+              -
+            </option>
+            {{#if (or (eq bron.rece "1r") (eq bron.rece "1r_2r"))}}
+              <option value="1r" {{#if (eq bron.trzymana "1r")}}selected{{/if}}>
+                {{localize "awanturnik20.item.jednoreczna"}}
+              </option>
+            {{/if}}
+            {{#if (or (eq bron.rece "2r") (eq bron.rece "1r_2r"))}}
+              <option value="2r" {{#if (eq bron.trzymana "2r")}}selected{{/if}}>
+                {{localize "awanturnik20.item.dwureczna"}}
+              </option>
+            {{/if}}
+
+          </select>
+        </td>
+        <td>
+          {{#if bron.pt.trzymana}}
+            <span>
+              {{bron.pt.ilosc}}{{localize bron.pt.typ_kosci}}
+            </span>
+          {{else}}
+            <span>-</span>
+          {{/if}}
+        </td>
+        <td>
+          <div class="damage-type" data-tooltip="{{localize (concat 'awanturnik20.item.bron.typ_obrazen.' bron.typ_pt)}}">
+            {{#if (includes bron.typ_pt "sieczne")}}
+              <i class="fa-solid fa-sword"></i>
+            {{/if}}
+            {{#if (includes bron.typ_pt "klute")}}
+              <i class="fa-solid fa-crosshairs"></i>
+            {{/if}}
+            {{#if (includes bron.typ_pt "obuchowe")}}
+              <i class="fa-solid fa-hammer"></i>
+            {{/if}}
+          </div>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
   </div>
   <div class="inne">
     <h2>{{localize "awanturnik20.actor.inne"}}</h2>

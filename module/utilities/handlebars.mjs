@@ -59,4 +59,11 @@ export function registerHandlebarsHelpers() {
   Handlebars.registerHelper("array", (...args) => args.slice(0, -1));
 
   Handlebars.registerHelper("concat", (...args) => args.slice(0, -1).join(""));
+
+  Handlebars.registerHelper("includes", function (element, expression) {
+    if (typeof element === "string") {
+      return element.includes(expression);
+    }
+    return false;
+  });
 }

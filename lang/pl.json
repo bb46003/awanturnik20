@@ -242,6 +242,15 @@
           "celna": "Celna",
           "przeladowanie": "Przeladowanie",
           "drzewcowa": "Drzewcowa"
+        },
+        "typ_obrazen": {
+          "label": "Rodzaj Obrażeń",
+          "sieczne": "Sieczne",
+          "klute": "Kłute",
+          "obuchowe": "Obuchowe",
+          "obuchowe_klute": "Obuchowo-Kłute",
+          "obuchowe_sieczne": "Obuchowo-Sieczne",
+          "sieczne_klute": "Sieczno-Kłute"
         }
       }
     },
@@ -253,6 +262,7 @@
       "label": "Modyfikator Kompetencji",
       "typ": "Typ Modyfikatora",
       "atrybut": "Do kompetencji opartych o atrybut"
-    }
+    },
+    "pt": "PT"
   }
 }

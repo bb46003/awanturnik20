@@ -58,4 +58,9 @@ export class bronSheet extends api.HandlebarsApplicationMixin(
     };
     return context;
   }
+
+  async zmianaChwytu(event) {
+    const target = event.target;
+    console.log(target);
+  }
 }

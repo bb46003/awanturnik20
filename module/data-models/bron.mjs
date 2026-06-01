@@ -1,5 +1,10 @@
 import { toLabelObject } from "../utilities/utils.mjs";
-import { kompetencje, monety, wlasciwosciBroni } from "../config.mjs";
+import {
+  kompetencje,
+  monety,
+  typ_obrazen,
+  wlasciwosciBroni,
+} from "../config.mjs";
 
 const {
   StringField,
@@ -74,6 +79,7 @@ export class bronDataModel extends foundry.abstract.TypeDataModel {
       trzymana: new StringField({
         initial: "1r",
         choices: {
+          brak: "-",
           "1r": "awanturnik20.item.jednoreczna",
           "2r": "awanturnik20.item.dwureczna",
         },
@@ -121,6 +127,13 @@ export class bronDataModel extends foundry.abstract.TypeDataModel {
             label: "awanturnik20.item.bron.typ_kosci",
           }),
         }),
+
+        typ: new StringField({
+          initial: "sieczne",
+          choices: typ_obrazen,
+          required: true,
+          label: "awanturnik20.item.bron.typ_obrazen.label",
+        }),
       }),
       wlasciwosci: new StringField({
         initial: "brak",
@@ -132,5 +145,8 @@ export class bronDataModel extends foundry.abstract.TypeDataModel {
         label: "awanturnik20.item.opis",
       }),
     };
+  }
+  zmienChwyt(value) {
+    this.parent.update({ "system.trzymana": value });
   }
 }

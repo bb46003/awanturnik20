@@ -210,3 +210,12 @@ export const wlasciwosciBroni = {
   drzewcowa: "awanturnik20.item.bron.wlasciwosci.drzewcowa",
   brak: "-",
 };
+
+export const typ_obrazen = {
+  sieczne: "awanturnik20.item.bron.typ_obrazen.sieczne",
+  klute: "awanturnik20.item.bron.typ_obrazen.klute",
+  obuchowe: "awanturnik20.item.bron.typ_obrazen.obuchowe",
+  obuchowe_klute: "awanturnik20.item.bron.typ_obrazen.obuchowe_klute",
+  obuchowe_sieczne: "awanturnik20.item.bron.typ_obrazen.obuchowe_sieczne",
+  sieczne_klute: "awanturnik20.item.bron.typ_obrazen.sieczne_klute",
+};
