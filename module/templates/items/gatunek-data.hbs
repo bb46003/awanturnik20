@@ -1,0 +1,96 @@
+<section
+  class="tab dane {{tabs.dane.cssClass}}"
+  data-group="main"
+  data-tab="dane"
+>
+  <div class="staty">
+    <h2>{{localize "awanturnik20.item.gatunek.pt.label"}}</h2>
+    <div class="flexrow">
+      <label>{{localize systemFields.pt.fields.rodzaj.label}}</label>
+      {{formInput
+        systemFields.pt.fields.rodzaj
+        value=system.pt.rodzaj
+        localize=true
+      }}
+    </div>
+    <div class="flexrow">
+      <label>{{localize systemFields.pt.fields.modyfikator.label}}</label>
+      {{formInput
+        systemFields.pt.fields.modyfikator
+        value=system.pt.modyfikator
+      }}
+    </div>
+    <h2>{{localize "awanturnik20.item.gatunek.kompetencje.label"}}</h2>
+    <div class="flexcol">
+        <label>{{localize systemFields.ilosc_kompetencji.label}}</label>
+        {{formInput systemFields.ilosc_kompetencji value=system.ilosc_kompetencji}}
+    </div>
+    <div class="flexcol">
+      {{#each system.kompetencje as |komp i|}}
+        <div class="flexrow">
+          {{formInput
+            @root.systemFields.kompetencje.element
+            name=(concat "system.kompetencje." i)
+            value=komp
+            localize=true
+          }}
+          <button
+            type="button"
+            data-action="remove_kompetencja"
+            data-index="{{i}}"
+          >
+            ✖
+          </button>
+        </div>
+      {{/each}}
+      <button type="button" data-action="add_kompetencja">
+        +
+        {{localize "Add"}}
+      </button>
+    </div>
+    <h2>{{localize "awanturnik20.item.gatunek.modyfikator_cech.label"}}</h2>
+    <div class="flexcol">
+
+      {{#each system.modyfikator_cech as |mod i|}}
+        <div class="flexrow">
+          {{formInput
+            @root.systemFields.modyfikator_cech.element.fields.cecha
+            name=(concat "system.modyfikator_cech." i ".cecha")
+            value=mod.cecha
+            localize=true
+          }}
+          {{formInput
+            @root.systemFields.modyfikator_cech.element.fields.wartosc
+            name=(concat "system.modyfikator_cech." i ".wartosc")
+            value=mod.wartosc
+          }}
+          <button
+            type="button"
+            data-action="remove_modyfikator"
+            data-index="{{i}}"
+          >
+            ✖
+          </button>
+        </div>
+      {{/each}}
+      <button type="button" data-action="add_modyfikator">
+        +
+        {{localize "Add"}}
+      </button>
+    </div>
+    <div class="flexrow">
+      <label>{{localize "awanturnik20.item.gatunek.os_wartosci.label"}}</label>
+    {{#each systemFields.os_wartosci.fields as |field key|}}
+      <div class="flexrow">
+        <label>{{localize field.label}}</label>
+        {{formInput field name=(concat "system.os_wartosci." key) value=(lookup system.os_wartosci key)}}
+      </div>
+    {{/each}}
+    </div>
+    <div class="flexrow">
+      <label>{{localize systemFields.jezyk.label}}</label>
+      <textarea name="system.jezyk">{{system.jezyk}}</textarea>
+    </div>
+  </div>
+
+</section>

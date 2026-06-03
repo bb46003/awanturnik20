@@ -1,5 +1,6 @@
 import { enrich } from "../../utilities/utils.mjs";
 import { bronSheet } from "../items/bron.mjs";
+import { przedmiotDataModel } from "../../data-models/przedmiot.mjs";
 const { api, sheets } = foundry.applications;
 
 export class postacSheet extends api.HandlebarsApplicationMixin(
@@ -19,6 +20,7 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       itemContextMenu: postacSheet.#itemContextMenu,
       obroc: postacSheet.#obroc,
       zaloz_pancerz: postacSheet.#zaloz_pancerz,
+      changeIlosc: postacSheet.#changeIlosc,
     },
     form: {
       submitOnChange: true,
@@ -123,6 +125,8 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     Object.assign(context, { kp });
     const bronie = await this.prepareBron();
     Object.assign(context, { bronie });
+    const przedmioty = await this.preparePrzedmioty();
+    Object.assign(context, { przedmioty });
     return context;
   }
   async preparePancerz() {
@@ -257,6 +261,26 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     });
     return data;
   }
+  async preparePrzedmioty() {
+    const przedmioty = this.actor.items.filter(
+      (item) => item.type === "przedmiot",
+    );
+    const data = {};
+    przedmioty.forEach((przedmiotItem) => {
+      const itemID = przedmiotItem.id;
+      const img = przedmiotItem.img;
+      const name = przedmiotItem.name;
+      const waga = przedmiotItem.system.waga;
+      const ilosc = przedmiotItem.system.ilosc;
+      data[itemID] = {
+        img,
+        name,
+        waga,
+        ilosc,
+      };
+    });
+    return data;
+  }
   static async #rollInitiative() {
     await this.actor.rollInitiative();
   }
@@ -333,6 +357,15 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     this.render(true);
   }
 
+  static async #changeIlosc(ev) {
+    const target = ev.target.parentElement;
+    const itemID = target.dataset.item;
+    const item = this.actor.items.get(itemID);
+    const change = Number(target.dataset.change);
+    const newIlosc =
+      item.system.ilosc + change < 0 ? 0 : item.system.ilosc + change;
+    await item.update({ "system.ilosc": newIlosc });
+  }
   _processFormData(event, form, formData) {
     let name = event?.target?.name;
     if (typeof name === "string" && name.includes("charakter")) {
@@ -342,6 +375,11 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     if (target.dataset.action === "changeTrzymana") {
       const item = this.actor.items.get(target.dataset.item);
       item.system.zmienChwyt(target.value);
+    }
+    if (target.dataset.action === "zmianaIlosci") {
+      const item = this.actor.items.get(target.dataset.item);
+      const newIlosc = Number(target.value);
+      item.update({ "system.ilosc": newIlosc });
     }
 
     return super._processFormData(event, form, formData);

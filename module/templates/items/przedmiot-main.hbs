@@ -1,0 +1,29 @@
+<section
+  class="tab opis {{tabs.opis.cssClass}}"
+  action-data="tab"
+  data-group="main"
+  data-tab="opis"
+>
+  <div class="main">
+    <div class="flexrow">
+      <label>{{localize systemFields.waga.label}} </label>
+      {{formInput systemFields.waga value=system.waga}}
+    </div>
+    <div class="flexrow">
+      <label>{{localize systemFields.cena.label}} </label>
+      {{formInput systemFields.cena value=system.cena}}
+      <label>{{localize systemFields.monety.label}} </label>
+      {{formInput systemFields.monety value=system.monety localize=true}}
+    </div>
+  </div>
+  <div class="enrich">
+    <h2>{{localize systemFields.opis.label}}</h2>
+    {{formInput
+      opis.field
+      value=opis.value
+      enriched=opis.enriched
+      toggled="true"
+    }}
+
+  </div>
+</section>

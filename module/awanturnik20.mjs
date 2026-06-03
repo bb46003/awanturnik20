@@ -18,6 +18,8 @@ Hooks.once("init", async function () {
     pancerz: models.pancerzDataModel,
     tarcza: models.tarczaDataModel,
     bron: models.bronDataModel,
+    przedmiot: models.przedmiotDataModel,
+    gatunek: models.gatunekDataModel,
   };
   foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
     foundry.documents.Actor,
@@ -45,6 +47,17 @@ Hooks.once("init", async function () {
     ItemSheets.bronSheet,
     "bron",
   );
+  utils.registerSystemSheet(
+    foundry.documents.Item,
+    ItemSheets.przedmiotSheet,
+    "przedmiot",
+  );
+  utils.registerSystemSheet(
+    foundry.documents.Item,
+    ItemSheets.gatunekSheet,
+    "gatunek",
+  );
+
   registerHandlebarsHelpers();
   game.awanturnik20 = { socketHandler: new SocketHandler() };
 

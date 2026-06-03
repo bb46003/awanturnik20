@@ -62,52 +62,55 @@
               }}
             </div>
           {{else}}
-            <div class="flexrow">
-              <label>{{localize "awanturnik20.item.bron.pt_1r"}}</label>
-              <label>{{localize
-                  systemFields.pt.fields.[1r].fields.ilosc.label
-                }}</label>
-              {{formInput
-                systemFields.pt.fields.[1r].fields.ilosc
-                value=system.pt.[1r].ilosc
-              }}
-              <label>{{localize
-                  systemFields.pt.fields.[1r].fields.typ_kosci.label
-                }}</label>
-              {{formInput
-                systemFields.pt.fields.[1r].fields.typ_kosci
-                value=system.pt.[1r].typ_kosci
-                localize=true
-              }}
-            </div>
-            <div class="flexrow">
-              <label>{{localize "awanturnik20.item.bron.pt_2r"}}</label>
-              <label>{{localize
-                  systemFields.pt.fields.[2r].fields.ilosc.label
-                }}</label>
-              {{formInput
-                systemFields.pt.fields.[2r].fields.ilosc
-                value=system.pt.[2r].ilosc
-              }}
-              <label>{{localize
-                  ssystemFields.pt.fields.[2r].fields.typ_kosci.label
-                }}</label>
-              {{formInput
-                systemFields.pt.fields.[2r].fields.typ_kosci
-                value=system.pt.[2r].typ_kosci
-                localize=true
-              }}
+            <div class="flexcol">
+              <div class="flexrow">
+                <label>{{localize "awanturnik20.item.bron.pt_1r"}}</label>
+                <label>{{localize
+                    systemFields.pt.fields.[1r].fields.ilosc.label
+                  }}</label>
+                {{formInput
+                  systemFields.pt.fields.[1r].fields.ilosc
+                  value=system.pt.[1r].ilosc
+                }}
+                <label>{{localize
+                    systemFields.pt.fields.[1r].fields.typ_kosci.label
+                  }}</label>
+                {{formInput
+                  systemFields.pt.fields.[1r].fields.typ_kosci
+                  value=system.pt.[1r].typ_kosci
+                  localize=true
+                }}
+              </div>
+              <div class="flexrow">
+                <label>{{localize "awanturnik20.item.bron.pt_2r"}}</label>
+                <label>{{localize
+                    systemFields.pt.fields.[2r].fields.ilosc.label
+                  }}</label>
+                {{formInput
+                  systemFields.pt.fields.[2r].fields.ilosc
+                  value=system.pt.[2r].ilosc
+                }}
+                <label>{{localize
+                    ssystemFields.pt.fields.[2r].fields.typ_kosci.label
+                  }}</label>
+                {{formInput
+                  systemFields.pt.fields.[2r].fields.typ_kosci
+                  value=system.pt.[2r].typ_kosci
+                  localize=true
+                }}
+              </div>
             </div>
           {{/if}}
         {{/if}}
-        <div class="flexrow">
-          <label>{{localize systemFields.pt.fields.typ.label}}</label>
-          {{formInput
-            systemFields.pt.fields.typ
-            value=system.pt.typ
-            localize=true
-          }}
-        </div>
+
+      </div>
+      <div class="flexrow">
+        <label>{{localize systemFields.pt.fields.typ.label}}</label>
+        {{formInput
+          systemFields.pt.fields.typ
+          value=system.pt.typ
+          localize=true
+        }}
       </div>
       <div class="flexrow">
         <label>{{localize systemFields.wlasciwosci.label}}</label>

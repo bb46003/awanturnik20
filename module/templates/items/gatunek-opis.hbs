@@ -1,0 +1,37 @@
+<section
+  class="tab opis {{tabs.opis.cssClass}}"
+  action-data="tab"
+  data-group="main"
+  data-tab="opis"
+>
+  <div class="enrich">
+    <h2>{{localize opis.field.label}}</h2>
+    {{formInput
+      opis.field
+      value=opis.value
+      enriched=opis.enriched
+      toggled="true"
+    }}
+
+  </div>
+  <div class="enrich">
+    <h2>{{localize archetyp_fabularny.field.label}}</h2>
+    {{formInput
+      archetyp_fabularny.field
+      value=archetyp_fabularny.value
+      enriched=archetyp_fabularny.enriched
+      toggled="true"
+    }}
+
+  </div>
+  <div class="enrich">
+    <h2>{{localize lore_etrii.field.label}}</h2>
+    {{formInput
+      lore_etrii.field
+      value=lore_etrii.value
+      enriched=lore_etrii.enriched
+      toggled="true"
+    }}
+
+  </div>
+</section>

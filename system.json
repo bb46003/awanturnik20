@@ -46,7 +46,8 @@
       "bron": {},
       "pancerz": {},
       "czar": {},
-      "tarcza": {}
+      "tarcza": {},
+      "przedmiot": {}
     }
   },
   "initiative": "1d20 + @inicjatywa",

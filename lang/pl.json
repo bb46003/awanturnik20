@@ -10,7 +10,8 @@
       "bron": "Broń",
       "pancerz": "Pancerz",
       "czar": "Czar",
-      "tarcza": "Tarcza"
+      "tarcza": "Tarcza",
+      "przedmiot": "Przedmiot"
     }
   },
   "awanturnik20": {
@@ -252,6 +253,12 @@
           "obuchowe_sieczne": "Obuchowo-Sieczne",
           "sieczne_klute": "Sieczno-Kłute"
         }
+      },
+      "przedmiot": {
+        "waga": "Waga",
+        "ilosc": "Ilość",
+        "cena": "Cena Przedmiotu",
+        "name_placeholder": "Nzwa Przedmiotu"
       }
     },
     "ulatwienie": "Ułatwienie",

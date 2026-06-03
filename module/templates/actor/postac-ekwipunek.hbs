@@ -5,7 +5,7 @@
   data-tab="ekwipunek"
 >
   <div class="pieniadze">
-    <h2>{{localize "awanturnik20.actor.pieniadze"}}</h2>
+    <h3>{{localize "awanturnik20.actor.pieniadze"}}</h3>
     <div class="flexrow">
       {{#each systemFields.monety as |monety|}}
         <div class="monety">
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="pancerze">
-    <h2>{{localize "awanturnik20.actor.pancerz"}}</h2>
+    <h4>{{localize "awanturnik20.actor.pancerz"}}</h4>
 
     <table class="pancerze-table">
       <thead>
@@ -32,10 +32,13 @@
           <tr class="pancerz-row" data-itemid="{{@key}}">
             <td class="name-cell">
               <div class="name-wrapper" data-item-id="{{pancerz._id}}">
-                           <div class="item-eq-wrapper">
-            <img class="item-img" src="{{pancerz.img}}" />
-            <img class="item-hover" src="systems/awanturnik20/assets/icon/conversation.png" />
-            </div>
+                <div class="item-eq-wrapper">
+                  <img class="item-img" src="{{pancerz.img}}" />
+                  <img
+                    class="item-hover"
+                    src="systems/awanturnik20/assets/icon/conversation.png"
+                  />
+                </div>
                 <span>{{pancerz.name}}</span>
 
                 <a
@@ -91,10 +94,13 @@
           <tr class="pancerz-row" data-itemid="{{@key}}">
             <td class="name-cell">
               <div class="name-wrapper" data-item-id="{{tarcza._id}}">
-                           <div class="item-eq-wrapper">
-            <img class="item-img" src="{{tarcza.img}}" />
-            <img class="item-hover" src="systems/awanturnik20/assets/icon/conversation.png" />
-            </div>
+                <div class="item-eq-wrapper">
+                  <img class="item-img" src="{{tarcza.img}}" />
+                  <img
+                    class="item-hover"
+                    src="systems/awanturnik20/assets/icon/conversation.png"
+                  />
+                </div>
                 <span>{{tarcza.name}}</span>
 
                 <a
@@ -143,89 +149,168 @@
     </table>
   </div>
   <div class="bronie">
-    <h2>{{localize "awanturnik20.actor.bronie"}}</h2>
-   <table class="bronie-table">
-  <thead>
-    <tr>
-      <th>{{localize "awanturnik20.actor.nazwa"}}</th>
-      <th>{{localize "awanturnik20.item.bron.reka"}}</th>
-      <th>{{localize "awanturnik20.pt"}}</th>
-      <th>{{localize "awanturnik20.item.bron.typ_obrazen.label"}}</th>
-    </tr>
-  </thead>
+    <h4>{{localize "awanturnik20.actor.bronie"}}</h4>
+    <table class="bronie-table">
+      <thead>
+        <tr>
+          <th>{{localize "awanturnik20.actor.nazwa"}}</th>
+          <th>{{localize "awanturnik20.item.bron.reka"}}</th>
+          <th>{{localize "awanturnik20.pt"}}</th>
+          <th>{{localize "awanturnik20.item.bron.typ_obrazen.label"}}</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    {{#each bronie as |bron|}}
-      <tr data-itemid="{{@key}}">
-        <td class="name-cell">
-          <div class="name-wrapper" data-item-id="{{tarcza._id}}">
-            <div class="item-eq-wrapper">
-            <img class="item-img" src="{{bron.img}}" />
-            <img class="item-hover" src="systems/awanturnik20/assets/icon/conversation.png" />
-            </div>
+      <tbody>
+        {{#each bronie as |bron|}}
+          <tr data-itemid="{{@key}}">
+            <td class="name-cell">
+              <div class="name-wrapper" data-item-id="{{tarcza._id}}">
+                <div class="item-eq-wrapper">
+                  <img class="item-img" src="{{bron.img}}" />
+                  <img
+                    class="item-hover"
+                    src="systems/awanturnik20/assets/icon/conversation.png"
+                  />
+                </div>
 
-            {{#if bron.pt.trzymana}}
-            <a data-action="atak">{{bron.name}}</a>
-            {{else}}
-             <span>{{bron.name}}</span>
-            {{/if}}
-                       <a
+                {{#if bron.pt.trzymana}}
+                  <a data-action="atak">{{bron.name}}</a>
+                {{else}}
+                  <span>{{bron.name}}</span>
+                {{/if}}
+                <a
                   class="threeDots"
                   data-action="itemContextMenu"
                   data-item="{{@key}}"
                 >
                   ⋮
                 </a>
-          </div>
-        </td>
+              </div>
+            </td>
 
-        <td>
-          <select data-action="changeTrzymana" data-item="{{@key}}" name="system.trzymana">
-            <option value="brak" {{#if (eq bron.trzymana "brak")}}selected{{/if}}>
-              -
-            </option>
-            {{#if (or (eq bron.rece "1r") (eq bron.rece "1r_2r"))}}
-              <option value="1r" {{#if (eq bron.trzymana "1r")}}selected{{/if}}>
-                {{localize "awanturnik20.item.jednoreczna"}}
-              </option>
-            {{/if}}
-            {{#if (or (eq bron.rece "2r") (eq bron.rece "1r_2r"))}}
-              <option value="2r" {{#if (eq bron.trzymana "2r")}}selected{{/if}}>
-                {{localize "awanturnik20.item.dwureczna"}}
-              </option>
-            {{/if}}
-
-          </select>
-        </td>
-        <td>
-          {{#if bron.pt.trzymana}}
-            <a data-action="rzut_obrazenia">
-              {{bron.pt.ilosc}}{{localize bron.pt.typ_kosci}}
-            </a>
-          {{else}}
-            <span>-</span>
-          {{/if}}
-        </td>
-        <td>
-          <div class="damage-type" data-tooltip="{{localize (concat 'awanturnik20.item.bron.typ_obrazen.' bron.typ_pt)}}">
-            {{#if (includes bron.typ_pt "sieczne")}}
-              <i class="fa-solid fa-sword"></i>
-            {{/if}}
-            {{#if (includes bron.typ_pt "klute")}}
-              <i class="fa-solid fa-crosshairs"></i>
-            {{/if}}
-            {{#if (includes bron.typ_pt "obuchowe")}}
-              <i class="fa-solid fa-hammer"></i>
-            {{/if}}
-          </div>
-        </td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+            <td>
+              <select data-action="changeTrzymana" data-item="{{@key}}" name="system.trzymana">
+                <option value="brak" {{#if (eq bron.trzymana "brak")}}selected{{/if}}>
+                  -
+                </option>
+                {{#if (or (eq bron.rece "1r") (eq bron.rece "1r_2r"))}}
+                  <option value="1r" {{#if (eq bron.trzymana "1r")}}selected{{/if}}>
+                    {{localize "awanturnik20.item.jednoreczna"}}
+                  </option>
+                {{/if}}
+                {{#if (or (eq bron.rece "2r") (eq bron.rece "1r_2r"))}}
+                  <option value="2r" {{#if (eq bron.trzymana "2r")}}selected{{/if}}>
+                    {{localize "awanturnik20.item.dwureczna"}}
+                  </option>
+                {{/if}}
+              </select>
+            </td>
+            <td>
+              {{#if bron.pt.trzymana}}
+                <a data-action="rzut_obrazenia">
+                  {{bron.pt.ilosc}}{{localize bron.pt.typ_kosci}}
+                </a>
+              {{else}}
+                <span>-</span>
+              {{/if}}
+            </td>
+            <td>
+              <div
+                class="damage-type"
+                data-tooltip="{{localize
+                  (concat 'awanturnik20.item.bron.typ_obrazen.' bron.typ_pt)
+                }}"
+              >
+                {{#if (includes bron.typ_pt "sieczne")}}
+                  <i class="fa-solid fa-sword"></i>
+                {{/if}}
+                {{#if (includes bron.typ_pt "klute")}}
+                  <i class="fa-solid fa-crosshairs"></i>
+                {{/if}}
+                {{#if (includes bron.typ_pt "obuchowe")}}
+                  <i class="fa-solid fa-hammer"></i>
+                {{/if}}
+              </div>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
   <div class="inne">
-    <h2>{{localize "awanturnik20.actor.inne"}}</h2>
-    <div class="flexrow"></div>
+    <h4>{{localize "awanturnik20.actor.inne"}}</h4>
+    <div class="flexrow">
+      <table class="przedmioty-table">
+        <thead>
+          <tr>
+            <th>{{localize "awanturnik20.actor.nazwa"}}</th>
+            <th>{{localize "awanturnik20.item.przedmiot.ilosc"}}</th>
+            <th>{{localize "awanturnik20.item.przedmiot.waga"}}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {{#each przedmioty as |przedmiot|}}
+            <tr data-itemid="{{@key}}">
+              <td class="name-cell">
+                <div class="name-wrapper" data-item-id="{{przedmiot._id}}">
+                  <div class="item-eq-wrapper">
+                    <img class="item-img" src="{{przedmiot.img}}" />
+                    <img
+                      class="item-hover"
+                      src="systems/awanturnik20/assets/icon/conversation.png"
+                    />
+                  </div>
+                  {{#if (gt przedmiot.ilosc 0)}}
+                    <a data-action="uzyj">{{przedmiot.name}}</a>
+                  {{else}}
+                    <span>{{przedmiot.name}}</span>
+                  {{/if}}
+
+                  <a
+                    class="threeDots"
+                    data-action="itemContextMenu"
+                    data-item="{{@key}}"
+                  >
+                    ⋮
+                  </a>
+                </div>
+              </td>
+
+              <td class="ilosc">
+                <div class="flexrow">
+                  <input
+                    type="number"
+                    name="system.ilosc"
+                    data-action="zmianaIlosci"
+                    value="{{przedmiot.ilosc}}"
+                    data-item="{{@key}}"
+                  />
+                  <div class="ilosc-button">
+                    <a class="ilosc-chage"
+                      data-action="changeIlosc"
+                      data-item="{{@key}}"
+                      data-change="1"
+                    >
+                      <i class="fa-solid fa-plus"></i>
+                    </a>
+                    <a class="ilosc-change"
+                      data-action="changeIlosc"
+                      data-item="{{@key}}"
+                      data-change="-1"
+                    >
+                      <i class="fa-solid fa-minus"></i>
+                    </a>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span>{{przedmiot.waga}}</span>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>

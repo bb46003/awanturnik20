@@ -2,7 +2,7 @@ import { enrich } from "../../utilities/utils.mjs";
 
 const { api, sheets } = foundry.applications;
 
-export class bronSheet extends api.HandlebarsApplicationMixin(
+export class przedmiotSheet extends api.HandlebarsApplicationMixin(
   sheets.ItemSheetV2,
 ) {
   constructor(...args) {
@@ -10,7 +10,7 @@ export class bronSheet extends api.HandlebarsApplicationMixin(
     this.item;
   }
   static DEFAULT_OPTIONS = {
-    classes: ["bron-sheet"],
+    classes: ["przedmiot-sheet"],
     position: { width: 500, height: 520 },
     actions: {},
     form: {
@@ -19,24 +19,15 @@ export class bronSheet extends api.HandlebarsApplicationMixin(
   };
   static PARTS = {
     header: {
-      template: `systems/awanturnik20/module/templates/items/bron-header.hbs`,
-    },
-    nav: {
-      template: `systems/awanturnik20/module/templates/items/bron-nav.hbs`,
-    },
-    dane: {
-      template: `systems/awanturnik20/module/templates/items/bron-data.hbs`,
+      template: `systems/awanturnik20/module/templates/items/przedmiot-header.hbs`,
     },
     opis: {
-      template: `systems/awanturnik20/module/templates/items/bron-opis.hbs`,
+      template: `systems/awanturnik20/module/templates/items/przedmiot-main.hbs`,
     },
   };
   static TABS = {
     main: {
-      tabs: [
-        { id: "dane", group: "main", label: "" },
-        { id: "opis", group: "main", label: "" },
-      ],
+      tabs: [{ id: "opis", group: "main", label: "" }],
 
       initial: "opis",
     },
