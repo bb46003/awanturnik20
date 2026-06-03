@@ -22,8 +22,11 @@
     </div>
     <h2>{{localize "awanturnik20.item.gatunek.kompetencje.label"}}</h2>
     <div class="flexcol">
-        <label>{{localize systemFields.ilosc_kompetencji.label}}</label>
-        {{formInput systemFields.ilosc_kompetencji value=system.ilosc_kompetencji}}
+      <label>{{localize systemFields.ilosc_kompetencji.label}}</label>
+      {{formInput
+        systemFields.ilosc_kompetencji
+        value=system.ilosc_kompetencji
+      }}
     </div>
     <div class="flexcol">
       {{#each system.kompetencje as |komp i|}}
@@ -45,25 +48,81 @@
       {{/each}}
       <button type="button" data-action="add_kompetencja">
         +
-        {{localize "Add"}}
+        {{localize "awanturnik20.item.gatunek.kompetencje.dodaj"}}
       </button>
     </div>
     <h2>{{localize "awanturnik20.item.gatunek.modyfikator_cech.label"}}</h2>
     <div class="flexcol">
 
       {{#each system.modyfikator_cech as |mod i|}}
-        <div class="flexrow">
-          {{formInput
-            @root.systemFields.modyfikator_cech.element.fields.cecha
-            name=(concat "system.modyfikator_cech." i ".cecha")
-            value=mod.cecha
-            localize=true
-          }}
+
+        <div class="flexcol">
+             <div class="flexrow">
+          <label>{{localize "awanturnik20.item.gatunek.modyfikator_cech.cecha_obnizenie"}}</label>
+          <button data-action="dodaj_ceche" data-type= "cecha_do_obnizenia" data-index={{i}} type="button">+</button>
+          </div>
+          {{#if (eq mod.cecha_do_obnizenia.length 0)}}
+              <div class="flexrow">
+              
+                {{formInput
+                  @root.systemFields.modyfikator_cech.element.fields.cecha_do_obnizenia.element
+                  name=(concat "system.modyfikator_cech." i ".cecha_do_obnizenia." 0)
+                  value=mod.cecha_do_obnizenia.[0]
+                  localize=true
+                }}
+              <button data-action="usun_ceche" data-type= "cecha_do_obnizenia" data-index={{i}} data-index2 = {{0}} type="button">-</button>
+
+              </div>
+              {{else}}
+            {{#each mod.cecha_do_obnizenia as |cecha j|}}
+              <div class="flexrow">
+                {{formInput
+                  @root.systemFields.modyfikator_cech.element.fields.cecha_do_obnizenia.element
+                  name=(concat "system.modyfikator_cech." i ".cecha_do_obnizenia." j)
+                  value=cecha
+                  localize=true
+                }}
+                <button data-action="usun_ceche" data-type= "cecha_do_obnizenia" data-index={{i}} data-index2 = {{j}} type="button">-</button>
+              </div>
+            {{/each}}
+              {{/if}}
+              <div class="flexrow">
+              <label>{{localize "awanturnik20.item.gatunek.modyfikator_cech.cecha_zwiekszenie"}}</label>
+                        <button data-action="dodaj_ceche" data-type= "cecha_do_zwiekszenia" data-index={{i}} type="button">+</button>
+              </div>
+              {{#if (eq mod.cecha_do_zwiekszenia.length 0)}}
+                <div class="flexrow">
+                
+                {{formInput
+                  @root.systemFields.modyfikator_cech.element.fields.cecha_do_zwiekszenia.element
+                  name=(concat "system.modyfikator_cech." i ".cecha_do_zwiekszenia." 0)
+                  value=mod.cecha_do_zwiekszenia.[0]
+                  localize=true
+                }}
+                <button data-action="usun_ceche" data-type= "cecha_do_zwiekszenia" data-index={{i}} data-index2 = {{0}} type="button">-</button>
+              </div>
+              {{else}}
+
+            {{#each mod.cecha_do_zwiekszenia as |cecha k|}}
+              <div class="flexrow">
+                {{formInput
+                  @root.systemFields.modyfikator_cech.element.fields.cecha_do_zwiekszenia.element
+                  name=(concat "system.modyfikator_cech." i ".cecha_do_zwiekszenia." k)
+                  value=cecha
+                  localize=true
+                }}
+                <button data-action="usun_ceche" data-type= "cecha_do_zwiekszenia" data-index={{i}} data-index2 = {{k}} type="button">-</button>
+              </div>
+            {{/each}}
+              {{/if}}
+            <div class="flexrow">
+              <label>{{localize  @root.systemFields.modyfikator_cech.element.fields.wartosc.label}}</label>
           {{formInput
             @root.systemFields.modyfikator_cech.element.fields.wartosc
             name=(concat "system.modyfikator_cech." i ".wartosc")
             value=mod.wartosc
           }}
+            </div>
           <button
             type="button"
             data-action="remove_modyfikator"
@@ -75,20 +134,24 @@
       {{/each}}
       <button type="button" data-action="add_modyfikator">
         +
-        {{localize "Add"}}
+        {{localize "awanturnik20.item.gatunek.modyfikator_cech.dodaj"}}
       </button>
     </div>
-    <div class="flexrow">
-      <label>{{localize "awanturnik20.item.gatunek.os_wartosci.label"}}</label>
-    {{#each systemFields.os_wartosci.fields as |field key|}}
-      <div class="flexrow">
-        <label>{{localize field.label}}</label>
-        {{formInput field name=(concat "system.os_wartosci." key) value=(lookup system.os_wartosci key)}}
-      </div>
-    {{/each}}
+    <div class="flexcol">
+      <h2>{{localize "awanturnik20.item.gatunek.os_wartosci.label"}}</h2>
+      {{#each systemFields.os_wartosci.fields as |field key|}}
+        <div class="flexrow">
+          <label>{{localize field.label}}</label>
+          {{formInput
+            field
+            name=(concat "system.os_wartosci." key)
+            value=(lookup system.os_wartosci key)
+          }}
+        </div>
+      {{/each}}
     </div>
-    <div class="flexrow">
-      <label>{{localize systemFields.jezyk.label}}</label>
+    <div class="flexcol">
+      <h2>{{localize systemFields.jezyk.label}}</h2>
       <textarea name="system.jezyk">{{system.jezyk}}</textarea>
     </div>
   </div>

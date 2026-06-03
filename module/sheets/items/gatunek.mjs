@@ -21,6 +21,8 @@ export class gatunekSheet extends api.HandlebarsApplicationMixin(
       add_kompetencja: gatunekSheet.#addKompetencja,
       remove_modyfikator: gatunekSheet.#removeModyfikator,
       add_modyfikator: gatunekSheet.#addModyfikator,
+      dodaj_ceche: gatunekSheet.#dodajCeche,
+      usun_ceche: gatunekSheet.#usunCeche,
     },
   };
   static PARTS = {
@@ -87,7 +89,6 @@ export class gatunekSheet extends api.HandlebarsApplicationMixin(
     await this.item.update({
       "system.kompetencje": [...this.item.system.kompetencje, "dowolna"],
     });
-
   }
   static async #removeModyfikator(event, context) {
     const index = event.target.dataset.index;
@@ -98,11 +99,32 @@ export class gatunekSheet extends api.HandlebarsApplicationMixin(
     });
   }
   static async #addModyfikator(event, context) {
-    await this.item.update({
-      "system.modyfikator_cech": [
-        ...this.item.system.modyfikator_cech,
-        { cecha: "sila", wartosc: 0 },
-      ],
+      await this.item.update({
+      "system.modyfikator_cech":[...this.item.system.modyfikator_cech, {
+        "cecha_do_obnizenie": ["sila"],
+        "cecha_do_zwiekszenie": ["sila"],
+        "wartosc": 0,
+      }],
     });
   }
+  static async #dodajCeche(event, context) {
+    const index = event.target.dataset.index;
+    const type = event.target.dataset.type;
+    const modyfikatory = [...this.item.system.modyfikator_cech];
+    modyfikatory[index][type].push("sila");
+    await this.item.update({
+      "system.modyfikator_cech": modyfikatory,
+    });
+  }
+  static async #usunCeche(event, context) {
+    const index = event.target.dataset.index;
+    const index2 = event.target.dataset.index2;
+    const type = event.target.dataset.type;
+    const modyfikatory = [...this.item.system.modyfikator_cech];
+    modyfikatory[index][type].splice(index2, 1);
+    await this.item.update({
+      "system.modyfikator_cech": modyfikatory,
+    });
+  } 
 }
+

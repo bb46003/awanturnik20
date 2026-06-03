@@ -259,6 +259,38 @@
         "ilosc": "Ilość",
         "cena": "Cena Przedmiotu",
         "name_placeholder": "Nzwa Przedmiotu"
+      },
+      "gatunek": {
+        "ilosc_kompetencji": "Ilość Kompetencji do wyboru",
+        "os_wartosci": {
+          "conoty": "Ilość Cnót do wyboru",
+          "zalety": "Ilość Zalet do Wyboru",
+          "wady": "Ilość Wad do wyboru",
+          "przywary": "Ilość Przywar do Wyboru",
+          "label": "Ilość Cnót, Zalet, Wad i Przywar do wyboru"
+        },
+        "jezyk": "Znane Języki",
+        "lore_Etrii": "Opis Gatunku na Eteri",
+        "archetyp_fabularny": "Archetyp Fabularny",
+        "pt": {
+          "modyfikator": "Modyfikator PT",
+          "rodzaj": "Kość PT",
+          "label": "Punkty Trafienia "
+        },
+        "modyfikator_cech": {
+          "wartosc": "Maksymalny modyfikator Cechy",
+             "cecha_obnizenie": "Cecha do obniżenia",
+            "cecha_zwiekszenie": "Cecha do zwiększenia",
+          
+          "label": "Modyfikator Cech z Gatunku",
+          "dodaj": "Dodaj Modyfikator Cechy"
+        },
+        "kompetencje": {
+          "label": "Kompetencje z gatunku do wyboru",
+          "dodaj": "Dodaj Kompetencje do wyboru"
+        },
+        "data": "Statystyki Gatunku",
+        "name_placeholder": "Nazwa Gatunku"
       }
     },
     "ulatwienie": "Ułatwienie",

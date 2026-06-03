@@ -19,12 +19,22 @@ export class gatunekDataModel extends foundry.abstract.TypeDataModel {
     return {
       modyfikator_cech: new ArrayField(
         new SchemaField({
-          cecha: new StringField({
-            initial: "sila",
-            choices: atrybuty,
-            required: true,
-            label: "awanturnik20.item.gatunek.modyfikator_cech.cecha",
-          }),
+          cecha_do_obnizenia: new ArrayField(
+            new StringField({
+              initial: "sila",
+              choices: atrybuty,
+              required: true,
+              label: "awanturnik20.item.gatunek.modyfikator_cech.cecha_obnizenie",
+            }),
+          ),
+          cecha_do_zwiekszenia: new ArrayField(
+            new StringField({
+              initial: "sila",
+              choices: atrybuty,
+              required: true,
+              label: "awanturnik20.item.gatunek.modyfikator_cech.cecha_zwiekszenie",
+            }),
+          ),
           wartosc: new NumberField({
             initial: 0,
             label: "awanturnik20.item.gatunek.modyfikator_cech.wartosc",
@@ -52,7 +62,6 @@ export class gatunekDataModel extends foundry.abstract.TypeDataModel {
         wartosc_na_lvl: new ArrayField(
           new NumberField({
             initial: 0,
-            label: "awanturnik20.item.gatunek.pt.wartosc_na_lvl",
           }),
         ),
       }),
@@ -68,9 +77,9 @@ export class gatunekDataModel extends foundry.abstract.TypeDataModel {
       kompetencje: new ArrayField(
         new StringField({
           initial: "dowolna",
-          choices: {    
+          choices: {
             ...kompetencje,
-            dowolna: "awanturnik20.item.gatunek.kompetencje.dowolna"
+            dowolna: "awanturnik20.item.gatunek.kompetencje.dowolna",
           },
           required: true,
         }),
@@ -79,7 +88,7 @@ export class gatunekDataModel extends foundry.abstract.TypeDataModel {
         initial: 0,
         label: "awanturnik20.item.gatunek.ilosc_kompetencji",
       }),
-      os_wartosci:new SchemaField({
+      os_wartosci: new SchemaField({
         cnoty: new NumberField({
           initial: 0,
           label: "awanturnik20.item.gatunek.os_wartosci.conoty",
