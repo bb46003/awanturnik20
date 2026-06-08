@@ -307,6 +307,13 @@
       "warn": {
         "ma_gatunek": "Twoja Postać posiada już wybrany Gatunek, usuń go zanim dodasz nowy!"
       }
+    },
+    "dialog":{
+      "bonus_z_rasy": "Bonusy z Rasy",
+      "ok": "OK",
+      "obniz": "Cechy do obniżenia",
+      "zwieksz": "Cechy do zwiększenia",
+      "wartosc": "Maksymalna wartość do zmodyfikowania"
     }
   }
 }

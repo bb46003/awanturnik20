@@ -12,7 +12,9 @@
 
     <div class="actor-header">
       <label>{{localize "awanturnik20.actor.sciezka"}}</label>
-      <div>miejsce na przedmiot ścieżka</div>
+      <div class="item">miejsce na przedmiot ścieżka        <a class="threeDots"
+            data-action="itemContextMenu"
+            data-item="">⋮</a></div>
     </div>
     <div class="actor-header">
       <label>{{localize "awanturnik20.actor.poziom"}}</label>
@@ -29,7 +31,7 @@
     </div>
     <div class="actor-header">
       <label>{{localize "awanturnik20.actor.gatunek"}}</label>
-      <div>{{rasa.name}}                  
+      <div class="item">{{rasa.name}}                  
         <a class="threeDots"
             data-action="itemContextMenu"
             data-item="{{rasa.id}}">⋮</a>

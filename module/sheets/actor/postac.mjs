@@ -324,11 +324,17 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     const usun = game.i18n.format(`awanturnik20.actor.usun`, {
       type: item.type,
     });
+        const edytuj = game.i18n.format(`awanturnik20.actor.edytuj`, {
+      type: item.type,
+    });
 
     menu.innerHTML = `
     <div class="menu-option" data-action="open">${otworz}</div>
     <div class="menu-option" data-action="delete">${usun}</div>
   `;
+  if(item.type === "gatunek"){
+     menu.innerHTML += `<div class="menu-option" data-action="edit">${edytuj}</div>`
+  }
     menu.style.left = `${ev.pageX}px`;
     menu.style.top = `${ev.pageY}px`;
     document.body.appendChild(menu);
@@ -337,13 +343,18 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       if (!action) return;
 
       if (action === "open") {
-        const item = this.actor.items.get(itemId);
+        const item = await this.actor.items.get(itemId);
         item?.sheet.render(true);
       }
 
       if (action === "delete") {
-        const item = this.actor.items.get(itemId);
+        const item = await this.actor.items.get(itemId);
         await item?.delete();
+      }
+            if (action === "edit") {
+        const item = await this.actor.items.get(itemId);
+        const dialog= new awanturnik20DialogRasy({type:"rasa", item:item} )
+dialog.render({force:true})
       }
 
       menu.remove();
@@ -413,14 +424,13 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
 
     switch (itemData.type) {
       case "gatunek":
-        console.log(itemDoc);
-        
         const maGatunek = this.actor.items.filter(item => item.type ==="gatunek");
         if(maGatunek.length > 0){
            ui.notifications.warn(game.i18n.localize("awanturnik20.ui.warn.ma_gatunek"))
         }
         else{
 const dialog= new awanturnik20DialogRasy({type:"rasa", item:itemDoc} )
+console.log(dialog)
 dialog.render({force:true})
   await actor.createEmbeddedDocuments("Item", [itemData]);
         }

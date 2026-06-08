@@ -1,33 +1,43 @@
+  <section>
   {{#each modyfikatory as |mod i|}}
     <div class="mod-row">
-
-      <!-- decrease -->
-      <label>Obniż</label>
+      <div class="flexrow">
+      <label>{{localize "awanturnik20.dialog.obniz"}}</label>
       <select name="modyfikator_cech.{{i}}.cecha_do_obnizenia">
-        {{#each ../atrybuty as |label key|}}
-          <option value="{{key}}" {{#if (eq key (lookup mod.cecha_do_obnizenia 0))}}selected{{/if}}>
-            {{localize label}}
+        {{#each mod.cecha_do_obnizenia as |label key|}}
+          <option value="{{key}}">
+            {{localize (concat "awanturnik20.actor.atrybuty." label)}}
           </option>
         {{/each}}
       </select>
-
-      <!-- increase -->
-      <label>Zwiększ</label>
+      <select name="zmniejszenie">
+        {{#each (range 0 mod.wartosc)}}
+          <option value={{this}}>{{this}}</option>
+        {{/each}}
+      </select>
+      </div>
+      <div class="flexrow">
+      <label>{{localize "awanturnik20.dialog.zwieksz"}}</label>
       <select name="modyfikator_cech.{{i}}.cecha_do_zwiekszenia">
-        {{#each ../atrybuty as |label key|}}
-          <option value="{{key}}" {{#if (eq key (lookup mod.cecha_do_zwiekszenia 0))}}selected{{/if}}>
-            {{localize label}}
+        {{#each mod.cecha_do_zwiekszenia as |label key|}}
+          <option value="{{key}}">
+            {{localize (concat "awanturnik20.actor.atrybuty." label)}}
           </option>
         {{/each}}
       </select>
-
-      <!-- value -->
-      <label>Wartość</label>
-      <input
-        type="number"
-        name="modyfikator_cech.{{i}}.wartosc"
-        value="{{mod.wartosc}}"
-      />
-
+      <select name="zwiekszenie">
+        {{#each (range 0 mod.wartosc)}}
+          <option value={{this}} disabled>{{this}}</option>
+        {{/each}}
+      </select>
+      </div>
+      <div class="flexrow">     
+        <label>{{localize "awanturnik20.dialog.wartosc"}}</label>
+        <p>{{mod.wartosc}}</p>
+      </div>
     </div>
   {{/each}}
+  <footer>
+    <button data-action="save">{{localize "awanturnik20.dialog.ok"}}</button>
+  </footer>
+  </section>
