@@ -279,15 +279,15 @@
         },
         "modyfikator_cech": {
           "wartosc": "Maksymalny modyfikator Cechy",
-             "cecha_obnizenie": "Cecha do obniżenia",
-            "cecha_zwiekszenie": "Cecha do zwiększenia",
-          
+          "cecha_obnizenie": "Cecha do obniżenia",
+          "cecha_zwiekszenie": "Cecha do zwiększenia",
           "label": "Modyfikator Cech z Gatunku",
           "dodaj": "Dodaj Modyfikator Cechy"
         },
         "kompetencje": {
           "label": "Kompetencje z gatunku do wyboru",
-          "dodaj": "Dodaj Kompetencje do wyboru"
+          "dodaj": "Dodaj Kompetencje do wyboru",
+          "dowolna": "Dowolna Kompetencja"
         },
         "data": "Statystyki Gatunku",
         "name_placeholder": "Nazwa Gatunku"
@@ -302,6 +302,11 @@
       "typ": "Typ Modyfikatora",
       "atrybut": "Do kompetencji opartych o atrybut"
     },
-    "pt": "PT"
+    "pt": "PT",
+    "ui": {
+      "warn": {
+        "ma_gatunek": "Twoja Postać posiada już wybrany Gatunek, usuń go zanim dodasz nowy!"
+      }
+    }
   }
 }

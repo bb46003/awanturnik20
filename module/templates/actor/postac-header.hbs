@@ -29,7 +29,11 @@
     </div>
     <div class="actor-header">
       <label>{{localize "awanturnik20.actor.gatunek"}}</label>
-      <div>miejsce na przedmiot gatunek</div>
+      <div>{{rasa.name}}                  
+        <a class="threeDots"
+            data-action="itemContextMenu"
+            data-item="{{rasa.id}}">⋮</a>
+      </div>
     </div>
     <div class="actor-header">
       <label>{{localize "awanturnik20.actor.plec"}}</label>

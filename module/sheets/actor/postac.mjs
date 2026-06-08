@@ -1,6 +1,8 @@
 import { enrich } from "../../utilities/utils.mjs";
 import { bronSheet } from "../items/bron.mjs";
 import { przedmiotDataModel } from "../../data-models/przedmiot.mjs";
+import {awanturnik20DialogRasy} from "../../dialogs/modyfikacjiRasy.mjs"
+
 const { api, sheets } = foundry.applications;
 
 export class postacSheet extends api.HandlebarsApplicationMixin(
@@ -127,6 +129,8 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     Object.assign(context, { bronie });
     const przedmioty = await this.preparePrzedmioty();
     Object.assign(context, { przedmioty });
+    const rasa = await this.prepareRasa();
+    Object.assign(context, { rasa });
     return context;
   }
   async preparePancerz() {
@@ -281,6 +285,17 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     });
     return data;
   }
+  async prepareRasa() {
+    const rasa = this.actor.items.filter((item) => item.type === "gatunek")[0];
+    let data = { id: "", name: "Brak" };
+    if (rasa) {
+      data = {
+        id: rasa.id,
+        name: rasa.name,
+      };
+    }
+    return data;
+  }
   static async #rollInitiative() {
     await this.actor.rollInitiative();
   }
@@ -337,7 +352,6 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       document.addEventListener("click", () => menu.remove(), { once: true });
     }, 10);
   }
-
   static async #zaloz_pancerz(ev) {
     const target = ev.target;
     const mainDiv = target.closest(".pancerz-row");
@@ -356,7 +370,6 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     await selectItem.update({ "system.noszona": !noszona });
     this.render(true);
   }
-
   static async #changeIlosc(ev) {
     const target = ev.target.parentElement;
     const itemID = target.dataset.item;
@@ -366,6 +379,7 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       item.system.ilosc + change < 0 ? 0 : item.system.ilosc + change;
     await item.update({ "system.ilosc": newIlosc });
   }
+
   _processFormData(event, form, formData) {
     let name = event?.target?.name;
     if (typeof name === "string" && name.includes("charakter")) {
@@ -383,5 +397,37 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     }
 
     return super._processFormData(event, form, formData);
+  }
+  async _onDrop(event) {
+    event.preventDefault();
+
+    const data = event.dataTransfer;
+    const actor = this.actor;
+    if (!data) return;
+
+    const droppedItem = JSON.parse(data.getData("text/plain"));
+    if (droppedItem.type !== "Item") return;
+
+    const itemDoc = await fromUuid(droppedItem.uuid);
+    let itemData = itemDoc.toObject(); // IMPORTANT
+
+    switch (itemData.type) {
+      case "gatunek":
+        console.log(itemDoc);
+        
+        const maGatunek = this.actor.items.filter(item => item.type ==="gatunek");
+        if(maGatunek.length > 0){
+           ui.notifications.warn(game.i18n.localize("awanturnik20.ui.warn.ma_gatunek"))
+        }
+        else{
+const dialog= new awanturnik20DialogRasy({type:"rasa", item:itemDoc} )
+dialog.render({force:true})
+  await actor.createEmbeddedDocuments("Item", [itemData]);
+        }
+        break;
+      default:
+        await actor.createEmbeddedDocuments("Item", [itemData]);
+        break;
+    }
   }
 }

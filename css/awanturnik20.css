@@ -770,6 +770,21 @@
   .tab {
     overflow-y: auto;
   }
+  .staty {
+    .flexrow {
+      gap: 10px;
+      button {
+        max-width: 50px;
+      }
+    }
+    .cechy-gatunek,
+    .kompetencje-group {
+      border: 1px solid;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 5px;
+    }
+  }
 }
 .przedmiot-sheet {
   .main {

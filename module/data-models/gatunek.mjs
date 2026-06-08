@@ -24,7 +24,8 @@ export class gatunekDataModel extends foundry.abstract.TypeDataModel {
               initial: "sila",
               choices: atrybuty,
               required: true,
-              label: "awanturnik20.item.gatunek.modyfikator_cech.cecha_obnizenie",
+              label:
+                "awanturnik20.item.gatunek.modyfikator_cech.cecha_obnizenie",
             }),
           ),
           cecha_do_zwiekszenia: new ArrayField(
@@ -32,7 +33,8 @@ export class gatunekDataModel extends foundry.abstract.TypeDataModel {
               initial: "sila",
               choices: atrybuty,
               required: true,
-              label: "awanturnik20.item.gatunek.modyfikator_cech.cecha_zwiekszenie",
+              label:
+                "awanturnik20.item.gatunek.modyfikator_cech.cecha_zwiekszenie",
             }),
           ),
           wartosc: new NumberField({
@@ -74,20 +76,24 @@ export class gatunekDataModel extends foundry.abstract.TypeDataModel {
       lore_etrii: new HTMLField({
         label: "awanturnik20.item.gatunek.lore_Etrii",
       }),
-      kompetencje: new ArrayField(
-        new StringField({
-          initial: "dowolna",
-          choices: {
-            ...kompetencje,
-            dowolna: "awanturnik20.item.gatunek.kompetencje.dowolna",
-          },
-          required: true,
+      kompetencje_do_wyboru: new ArrayField(
+        new SchemaField({
+          kompetencje: new ArrayField(
+            new StringField({
+              initial: "dowolna",
+              choices: {
+                ...kompetencje,
+                dowolna: "awanturnik20.item.gatunek.kompetencje.dowolna",
+              },
+              required: true,
+            }),
+          ),
+          ilosc_kompetencji: new NumberField({
+            initial: 0,
+            label: "awanturnik20.item.gatunek.ilosc_kompetencji",
+          }),
         }),
       ),
-      ilosc_kompetencji: new NumberField({
-        initial: 0,
-        label: "awanturnik20.item.gatunek.ilosc_kompetencji",
-      }),
       os_wartosci: new SchemaField({
         cnoty: new NumberField({
           initial: 0,
@@ -111,5 +117,21 @@ export class gatunekDataModel extends foundry.abstract.TypeDataModel {
         label: "awanturnik20.item.gatunek.jezyk",
       }),
     };
+  }
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this.prepareIloscKompetencji();
+    this.praparePtNaLvl()
+  }
+
+  prepareIloscKompetencji() {
+    for (const group of this.kompetencje_do_wyboru ?? []) {
+      group.ilosc_kompetencji = group.kompetencje?.length ?? 0;
+    }
+  }
+  praparePtNaLvl(){
+    const ptNaLvl = this.pt;
+    const lvl1 = Number(ptNaLvl.rodzaj.split("d")[1])+ptNaLvl.modyfikator 
+    ptNaLvl.wartosc_na_lvl[0] = lvl1;
   }
 }

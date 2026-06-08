@@ -1,0 +1,33 @@
+  {{#each modyfikatory as |mod i|}}
+    <div class="mod-row">
+
+      <!-- decrease -->
+      <label>Obniż</label>
+      <select name="modyfikator_cech.{{i}}.cecha_do_obnizenia">
+        {{#each ../atrybuty as |label key|}}
+          <option value="{{key}}" {{#if (eq key (lookup mod.cecha_do_obnizenia 0))}}selected{{/if}}>
+            {{localize label}}
+          </option>
+        {{/each}}
+      </select>
+
+      <!-- increase -->
+      <label>Zwiększ</label>
+      <select name="modyfikator_cech.{{i}}.cecha_do_zwiekszenia">
+        {{#each ../atrybuty as |label key|}}
+          <option value="{{key}}" {{#if (eq key (lookup mod.cecha_do_zwiekszenia 0))}}selected{{/if}}>
+            {{localize label}}
+          </option>
+        {{/each}}
+      </select>
+
+      <!-- value -->
+      <label>Wartość</label>
+      <input
+        type="number"
+        name="modyfikator_cech.{{i}}.wartosc"
+        value="{{mod.wartosc}}"
+      />
+
+    </div>
+  {{/each}}

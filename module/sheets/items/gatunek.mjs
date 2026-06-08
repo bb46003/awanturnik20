@@ -9,22 +9,30 @@ export class gatunekSheet extends api.HandlebarsApplicationMixin(
     super(...args);
     this.item;
   }
+
   static DEFAULT_OPTIONS = {
     classes: ["gatunek-sheet"],
     position: { width: 500, height: 520 },
-    actions: {},
+
     form: {
       submitOnChange: true,
     },
+
     actions: {
-      remove_kompetencja: gatunekSheet.#removeKompetencja,
+      // kompetencje (NEW - nested)
+      add_kompetencje_group: gatunekSheet.#addKompetencjeGroup,
+      remove_kompetencje_group: gatunekSheet.#removeKompetencjeGroup,
       add_kompetencja: gatunekSheet.#addKompetencja,
+      remove_kompetencja: gatunekSheet.#removeKompetencja,
+
+      // modyfikator_cech
       remove_modyfikator: gatunekSheet.#removeModyfikator,
       add_modyfikator: gatunekSheet.#addModyfikator,
       dodaj_ceche: gatunekSheet.#dodajCeche,
       usun_ceche: gatunekSheet.#usunCeche,
     },
   };
+
   static PARTS = {
     header: {
       template: `systems/awanturnik20/module/templates/items/gatunek-header.hbs`,
@@ -39,19 +47,21 @@ export class gatunekSheet extends api.HandlebarsApplicationMixin(
       template: `systems/awanturnik20/module/templates/items/gatunek-opis.hbs`,
     },
   };
+
   static TABS = {
     main: {
       tabs: [
         { id: "dane", group: "main", label: "" },
         { id: "opis", group: "main", label: "" },
       ],
-
       initial: "opis",
     },
   };
+
   /** @override */
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
+
     Object.assign(context, {
       item: this.item,
       source: this.item.toObject(),
@@ -59,72 +69,152 @@ export class gatunekSheet extends api.HandlebarsApplicationMixin(
       fields: this.item.schema.fields,
       systemFields: this.item.system.schema.fields,
     });
+
     context.opis = {
       value: this.item.system.opis,
       enriched: await enrich(this.item.system.opis),
       field: this.item.system.schema.fields.opis,
     };
+
     context.archetyp_fabularny = {
       value: this.item.system.archetyp_fabularny,
       enriched: await enrich(this.item.system.archetyp_fabularny),
       field: this.item.system.schema.fields.archetyp_fabularny,
     };
+
     context.lore_etrii = {
       value: this.item.system.lore_etrii,
       enriched: await enrich(this.item.system.lore_etrii),
       field: this.item.system.schema.fields.lore_etrii,
     };
+
     return context;
   }
 
-  static async #removeKompetencja(event, context) {
-    const index = event.target.dataset.index;
-    const kompetencje = [...this.item.system.kompetencje];
-    kompetencje.splice(index, 1);
-    await this.item.update({
-      "system.kompetencje": kompetencje,
-    });
-  }
-  static async #addKompetencja(event, context) {
-    await this.item.update({
-      "system.kompetencje": [...this.item.system.kompetencje, "dowolna"],
-    });
-  }
-  static async #removeModyfikator(event, context) {
-    const index = event.target.dataset.index;
-    const modyfikatory = [...this.item.system.modyfikator_cech];
-    modyfikatory.splice(index, 1);
-    await this.item.update({
-      "system.modyfikator_cech": modyfikatory,
-    });
-  }
-  static async #addModyfikator(event, context) {
-      await this.item.update({
-      "system.modyfikator_cech":[...this.item.system.modyfikator_cech, {
-        "cecha_do_obnizenie": ["sila"],
-        "cecha_do_zwiekszenie": ["sila"],
-        "wartosc": 0,
-      }],
-    });
-  }
-  static async #dodajCeche(event, context) {
-    const index = event.target.dataset.index;
-    const type = event.target.dataset.type;
-    const modyfikatory = [...this.item.system.modyfikator_cech];
-    modyfikatory[index][type].push("sila");
-    await this.item.update({
-      "system.modyfikator_cech": modyfikatory,
-    });
-  }
-  static async #usunCeche(event, context) {
-    const index = event.target.dataset.index;
-    const index2 = event.target.dataset.index2;
-    const type = event.target.dataset.type;
-    const modyfikatory = [...this.item.system.modyfikator_cech];
-    modyfikatory[index][type].splice(index2, 1);
-    await this.item.update({
-      "system.modyfikator_cech": modyfikatory,
-    });
-  } 
-}
+  // =========================
+  // KOMPETENCJE (NESTED)
+  // =========================
 
+  static async #addKompetencjeGroup(event, context) {
+    const groups = foundry.utils.deepClone(
+      this.item.system.kompetencje_do_wyboru ?? [],
+    );
+
+    groups.push({
+      kompetencje: ["dowolna"],
+      ilosc_kompetencji: 1,
+    });
+
+    await this.item.update({
+      "system.kompetencje_do_wyboru": groups,
+    });
+  }
+
+  static async #removeKompetencjeGroup(event, context) {
+    const index = Number(event.target.dataset.index);
+
+    const groups = foundry.utils.deepClone(
+      this.item.system.kompetencje_do_wyboru,
+    );
+
+    groups.splice(index, 1);
+
+    await this.item.update({
+      "system.kompetencje_do_wyboru": groups,
+    });
+  }
+
+  static async #addKompetencja(event, context) {
+    const index = Number(event.target.dataset.index);
+
+    const groups = foundry.utils.deepClone(
+      this.item.system.kompetencje_do_wyboru,
+    );
+
+    groups[index].kompetencje.push("dowolna");
+
+    await this.item.update({
+      "system.kompetencje_do_wyboru": groups,
+    });
+  }
+
+  static async #removeKompetencja(event, context) {
+    const index = Number(event.target.dataset.index);
+    const index2 = Number(event.target.dataset.index2);
+
+    const groups = foundry.utils.deepClone(
+      this.item.system.kompetencje_do_wyboru,
+    );
+
+    groups[index].kompetencje.splice(index2, 1);
+
+    await this.item.update({
+      "system.kompetencje_do_wyboru": groups,
+    });
+  }
+
+  // =========================
+  // MODYFIKATOR CECH
+  // =========================
+
+  static async #removeModyfikator(event, context) {
+    const index = Number(event.target.dataset.index);
+
+    const modyfikatory = foundry.utils.deepClone(
+      this.item.system.modyfikator_cech,
+    );
+
+    modyfikatory.splice(index, 1);
+
+    await this.item.update({
+      "system.modyfikator_cech": modyfikatory,
+    });
+  }
+
+  static async #addModyfikator(event, context) {
+    const modyfikatory = foundry.utils.deepClone(
+      this.item.system.modyfikator_cech,
+    );
+
+    modyfikatory.push({
+      cecha_do_obnizenia: ["sila"],
+      cecha_do_zwiekszenia: ["sila"],
+      wartosc: 0,
+    });
+
+    await this.item.update({
+      "system.modyfikator_cech": modyfikatory,
+    });
+  }
+
+  static async #dodajCeche(event, context) {
+    const index = Number(event.target.dataset.index);
+    const type = event.target.dataset.type;
+
+    const modyfikatory = foundry.utils.deepClone(
+      this.item.system.modyfikator_cech,
+    );
+
+    modyfikatory[index][type].push("sila");
+
+    await this.item.update({
+      "system.modyfikator_cech": modyfikatory,
+    });
+  }
+
+  static async #usunCeche(event, context) {
+    const index = Number(event.target.dataset.index);
+    const index2 = Number(event.target.dataset.index2);
+    const type = event.target.dataset.type;
+
+    const modyfikatory = foundry.utils.deepClone(
+      this.item.system.modyfikator_cech,
+    );
+
+    modyfikatory[index][type].splice(index2, 1);
+
+    await this.item.update({
+      "system.modyfikator_cech": modyfikatory,
+    });
+  }
+}
