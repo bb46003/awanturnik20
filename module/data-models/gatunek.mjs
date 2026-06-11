@@ -120,18 +120,20 @@ export class gatunekDataModel extends foundry.abstract.TypeDataModel {
   }
   prepareDerivedData() {
     super.prepareDerivedData();
+    this.praparePtNaLvl();
     this.prepareIloscKompetencji();
-    this.praparePtNaLvl()
   }
 
   prepareIloscKompetencji() {
     for (const group of this.kompetencje_do_wyboru ?? []) {
-      group.ilosc_kompetencji = group.kompetencje?.length ?? 0;
+      if (group.ilosc_kompetencji > group.kompetencje?.length) {
+        group.ilosc_kompetencji = group.kompetencje?.length ?? 0;
+      }
     }
   }
-  praparePtNaLvl(){
+  praparePtNaLvl() {
     const ptNaLvl = this.pt;
-    const lvl1 = Number(ptNaLvl.rodzaj.split("d")[1])+ptNaLvl.modyfikator 
+    const lvl1 = Number(ptNaLvl.rodzaj.split("d")[1]) + ptNaLvl.modyfikator;
     ptNaLvl.wartosc_na_lvl[0] = lvl1;
   }
 }

@@ -1,9 +1,11 @@
   <section>
   {{#each modyfikatory as |mod i|}}
-    <div class="mod-row">
+    <div class="mod-row" data-max={{mod.wartosc}}>
       <div class="flexrow">
       <label>{{localize "awanturnik20.dialog.obniz"}}</label>
-      <select name="modyfikator_cech.{{i}}.cecha_do_obnizenia">
+      <div class="flexcol">
+      {{#each (range 1 mod.cecha_do_obnizenia)}}
+      <select name="cecha_do_obnizenia">
         {{#each mod.cecha_do_obnizenia as |label key|}}
           <option value="{{key}}">
             {{localize (concat "awanturnik20.actor.atrybuty." label)}}
@@ -15,10 +17,13 @@
           <option value={{this}}>{{this}}</option>
         {{/each}}
       </select>
+      {{/each}}
+      </div>
       </div>
       <div class="flexrow">
       <label>{{localize "awanturnik20.dialog.zwieksz"}}</label>
-      <select name="modyfikator_cech.{{i}}.cecha_do_zwiekszenia">
+      {{#each (range 1 mod.cecha_do_zwiekszenia)}}
+      <select name="cecha_do_zwiekszenia">
         {{#each mod.cecha_do_zwiekszenia as |label key|}}
           <option value="{{key}}">
             {{localize (concat "awanturnik20.actor.atrybuty." label)}}
@@ -31,11 +36,34 @@
         {{/each}}
       </select>
       </div>
+      {{/each}}
       <div class="flexrow">     
         <label>{{localize "awanturnik20.dialog.wartosc"}}</label>
         <p>{{mod.wartosc}}</p>
       </div>
     </div>
+  {{/each}}
+  
+  {{#each wybor_kompetencji as |komp i|}}
+  <div class="mod-row kompetencje">
+    <label>{{localize "awanturnik20.dialog.kompetencje_do_wyboru"}}</label>
+    <div class="flexcol kompetencje">
+    {{#each (range 1 komp.ilosc_kompetencji)}}
+     <select class="flexrow">
+      {{#each komp.kompetencje as |label key|}}
+     
+        <option class="kopetencja" value="{{key}}">
+        {{localize (concat "awanturnik20.actor.atrybuty.kompetencje." label)}}</option>
+     
+      {{/each}}
+       </select>
+      {{/each}}
+        <div class="flexrow">     
+        <label>{{localize "awanturnik20.dialog.ilosc_kompetencji_do_wyboru"}}</label>
+        <p>{{komp.ilosc_kompetencji}}</p>
+      </div>
+    </div>
+  </div>
   {{/each}}
   <footer>
     <button data-action="save">{{localize "awanturnik20.dialog.ok"}}</button>

@@ -1,3 +1,5 @@
+import { kompetencje } from "../config.mjs";
+
 export class awanturnik20DialogRasy extends foundry.applications.api.DialogV2 {
   constructor({ item, type } = {}) {
     super();
@@ -5,6 +7,9 @@ export class awanturnik20DialogRasy extends foundry.applications.api.DialogV2 {
     this.type = type;
   }
 
+  // =========================
+  // 🔧 DEFAULT OPTIONS
+  // =========================
   static DEFAULT_OPTIONS = {
     id: "awanturnik20-dialog",
     classes: ["awanturnik20", "dialog", "mod-rasy"],
@@ -16,91 +21,223 @@ export class awanturnik20DialogRasy extends foundry.applications.api.DialogV2 {
       height: "auto",
     },
     template: "systems/awanturnik20/module/templates/dialogs/rasa-item-mod.hbs",
-    buttons:[{action:"save", label: "awanturnik20.dialog.ok"}],
+    buttons: [{ action: "save", label: "awanturnik20.dialog.ok" }],
     form: {
       handler: "onSubmit",
       submitOnChange: true,
     },
   };
 
-
-
-  
-  /** Render main dialog HTML */
+  // =========================
+  // 🔧 RENDER
+  // =========================
   async _renderHTML() {
     const context = await this._prepareContext(this.options);
-    let content = await foundry.applications.handlebars.renderTemplate(this.options.template, context);
-     return content 
+
+    let content = await foundry.applications.handlebars.renderTemplate(
+      this.options.template,
+      context,
+    );
+
+    return content;
   }
-    async _replaceHTML(result, html) {
+
+  async _replaceHTML(result, html) {
     html.innerHTML = result;
   }
-  /* ----------------------------------
-   * CONTEXT (THIS IS KEY PART)
-   * ---------------------------------- */
+
+  // =========================
+  // 🔧 CONTEXT
+  // =========================
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
 
     const system = this.item.system;
 
     const modyfikatory = system.modyfikator_cech ?? [];
-    const kompetencje =  system.kompetencje_do_wyboru ?? [];
-    Object.assign(context,{modyfikatory})
-    Object.assign(context, {kompetencje})
-    return context
+    const wybor_kompetencji = await this.prepareKompetencje(
+      system.kompetencje_do_wyboru ?? [],
+    );
+
+    Object.assign(context, {
+      modyfikatory,
+      wybor_kompetencji,
+    });
+
+    return context;
   }
-_onRender() {
-  const rows = this.element.querySelectorAll(".mod-row");
 
-  rows.forEach(row => {
-    const zmniejszenie = row.querySelector("select[name='zmniejszenie']");
-    const zwiekszenie = row.querySelector("select[name='zwiekszenie']");
+  async prepareKompetencje(wybor_kompetencji) {
+    const data = [];
 
-    if (!zmniejszenie || !zwiekszenie) return;
+    wybor_kompetencji.forEach((komp) => {
+      const kompe = {
+        ilosc_kompetencji: komp.ilosc_kompetencji,
+        kompetencje: [],
+      };
 
-    const update = () => {
-      const decValue = Number(zmniejszenie.value);
-      const options = Array.from(zwiekszenie.options);
-
-      // max value from options
-      const max = Math.max(...options.map(o => Number(o.value)));
-
-      const allowedMax = decValue;
-
-      options.forEach(opt => {
-        const val = Number(opt.value);
-
-        if (val <= allowedMax) {
-          opt.disabled = false;
+      komp.kompetencje.forEach((label) => {
+        if (label === "dowolna") {
+          for (const key in kompetencje) {
+            const k = kompetencje[key];
+            kompe.kompetencje.push(k.umiejkaKey);
+          }
         } else {
-          opt.disabled = true;
+          kompe.kompetencje.push(label);
         }
       });
 
-      // fix selected value if invalid
-      const current = Number(zwiekszenie.value);
+      data.push(kompe);
+    });
 
-      if (current >= allowedMax) {
-        zwiekszenie.value = allowedMax;
-      }
+    return data;
+  }
+
+  // =========================
+  // 🔧 HELPERS
+  // =========================
+  sumValues(selects) {
+    return Array.from(selects).reduce((sum, el) => sum + Number(el.value), 0);
+  }
+
+  updateSelectOptions(select, isAllowedFn) {
+    const currentValue = Number(select.value);
+
+    Array.from(select.options).forEach((opt) => {
+      const val = Number(opt.value);
+      opt.disabled = !isAllowedFn(val, currentValue);
+    });
+  }
+
+  bindSelectUpdate(selects, callback) {
+    selects.forEach((el) => el.addEventListener("change", callback));
+  }
+
+  // =========================
+  // 🔧 UNIQUE GROUP HANDLER
+  // =========================
+  handleUniqueSelectGroup(selects) {
+    if (!selects.length) return;
+
+    const fixInitialDuplicates = () => {
+      const seen = new Set();
+      let i = 1;
+      selects.forEach((select) => {
+        const val = select.value;
+        if (!val) return;
+
+        if (seen.has(val)) {
+          select.value = String(Number(val) + 1);
+          i++;
+        } else {
+          seen.add(val);
+        }
+      });
     };
 
-    // bind event
-    zmniejszenie.addEventListener("change", update);
+    const update = () => {
+      const selected = Array.from(selects)
+        .map((s) => s.value)
+        .filter(Boolean);
 
-    // initial run (important)
+      selects.forEach((select) => {
+        const current = select.value;
+
+        Array.from(select.options).forEach((opt) => {
+          if (opt.value === "" || opt.value === current) {
+            opt.disabled = false;
+            return;
+          }
+
+          opt.disabled = selected.includes(opt.value);
+        });
+      });
+    };
+
+    fixInitialDuplicates();
+    this.bindSelectUpdate(selects, update);
     update();
-  });
-}
-  /* ----------------------------------
-   * SUBMIT
-   * ---------------------------------- */
+  }
+
+  // =========================
+  // 🔧 POOL LOGIC
+  // =========================
+  handleZmniejszenieZwiekzenieRow(row) {
+    const zmniejszenie = row.querySelectorAll("select[name='zmniejszenie']");
+    const zwiekszenie = row.querySelectorAll("select[name='zwiekszenie']");
+    const maxPool = Number(row.dataset.max);
+
+    if (!zmniejszenie.length || !zwiekszenie.length) return;
+
+    const update = () => {
+      let totalDecrease = this.sumValues(zmniejszenie);
+      let totalIncrease = this.sumValues(zwiekszenie);
+
+      // ZMNIEJSZENIE
+      zmniejszenie.forEach((select) => {
+        const currentValue = Number(select.value);
+
+        const remaining = maxPool - (totalDecrease - currentValue);
+
+        this.updateSelectOptions(select, (val) => val <= remaining);
+
+        if (currentValue >= remaining) {
+          select.value = Math.max(0, remaining);
+        }
+      });
+
+      totalDecrease = this.sumValues(zmniejszenie);
+
+      // ZWIEKSZENIE
+      zwiekszenie.forEach((select) => {
+        const currentValue = Number(select.value);
+
+        const remaining = totalDecrease - (totalIncrease - currentValue);
+
+        this.updateSelectOptions(select, (val) => val <= remaining);
+
+        if (currentValue >= remaining) {
+          select.value = Math.max(0, remaining);
+        }
+      });
+    };
+
+    this.bindSelectUpdate(zmniejszenie, update);
+    this.bindSelectUpdate(zwiekszenie, update);
+
+    update();
+  }
+
+  // =========================
+  // 🔥 RENDER HOOK
+  // =========================
+  _onRender() {
+    const rows = this.element.querySelectorAll(".mod-row");
+
+    rows.forEach((row) => {
+      this.handleZmniejszenieZwiekzenieRow(row);
+
+      this.handleUniqueSelectGroup(row.querySelectorAll(".kompetencje select"));
+
+      this.handleUniqueSelectGroup(
+        row.querySelectorAll("select[name='cecha_do_obnizenia']"),
+      );
+
+      this.handleUniqueSelectGroup(
+        row.querySelectorAll("select[name='cecha_do_zwiekszenia']"),
+      );
+    });
+  }
+
+  // =========================
+  // 🔧 SUBMIT
+  // =========================
   async onSubmit(event, form, formData) {
     const data = foundry.utils.expandObject(formData.object);
 
     const mods = data.modyfikator_cech ?? [];
 
-    const result = mods.map(m => ({
+    const result = mods.map((m) => ({
       cecha_do_obnizenia: m.cecha_do_obnizenia ?? "",
       cecha_do_zwiekszenia: m.cecha_do_zwiekszenia ?? "",
       wartosc: Number(m.wartosc) || 0,

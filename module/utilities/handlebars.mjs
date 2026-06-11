@@ -33,12 +33,21 @@ export function registerHandlebarsHelpers() {
   });
 
   Handlebars.registerHelper("range", function (start, end) {
-    start = Number(start);
-    end = Number(end);
+    let s = start;
+    let e = end;
+    if (Array.isArray(s)) {
+      s = s.length;
+    }
+
+    if (Array.isArray(e)) {
+      e = e.length;
+    }
+    s = Number(s);
+    e = Number(e);
 
     const result = [];
 
-    for (let i = start; i <= end; i++) {
+    for (let i = s; i <= e; i++) {
       result.push(i);
     }
 

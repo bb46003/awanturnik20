@@ -54,7 +54,7 @@
           "jezyki_tajemne": "Języki Tajemne",
           "mistycyzm": "Mistycyzm",
           "okultyzm": "Okultyzm",
-          "przelamanie_mo": "Przełamanie Magicznej Obrony",
+          "przelamanie_mocy": "Przełamanie Magicznej Obrony",
           "talent": "Talent",
           "trans": "Trans",
           "blef": "Blerf",
@@ -308,12 +308,14 @@
         "ma_gatunek": "Twoja Postać posiada już wybrany Gatunek, usuń go zanim dodasz nowy!"
       }
     },
-    "dialog":{
+    "dialog": {
       "bonus_z_rasy": "Bonusy z Rasy",
       "ok": "OK",
       "obniz": "Cechy do obniżenia",
       "zwieksz": "Cechy do zwiększenia",
-      "wartosc": "Maksymalna wartość do zmodyfikowania"
+      "wartosc": "Maksymalna wartość do zmodyfikowania",
+      "ilosc_kompetencji_do_wyboru": "Ilość Kompetencji do wyboru",
+      "kompetencje_do_wyboru": "Kompetencje do wyboru"
     }
   }
 }

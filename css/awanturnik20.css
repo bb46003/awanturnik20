@@ -326,7 +326,7 @@
           font-size: 22px;
           z-index: 1;
         }
-        .item{
+        .item {
           margin: auto;
         }
       }
@@ -817,24 +817,25 @@
     }
   }
 }
-.awanturnik20.dialog.mod-rasy{
-    .mod-row{
-      .flexrow{
-        margin-bottom: 10px;
-        gap:10px;
-        select{
+.awanturnik20.dialog.mod-rasy {
+  .mod-row {
+    .flexrow {
+      margin-bottom: 10px;
+      gap: 10px;
+      select {
         text-align: center;
-        }
-      }
-    }
-
-    p{max-width: 80px;}
-    footer{
-      margin-top: 10px;
-      width: 100%;
-      button{
-        width: 100%;
       }
     }
   }
 
+  p {
+    max-width: 80px;
+  }
+  footer {
+    margin-top: 10px;
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+}

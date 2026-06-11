@@ -339,12 +339,12 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
   }
   _preparePT() {
     const postura = this.atrybuty.postura;
-    const rasa = this.parent.items.filter(item => item.type === "gatunek")[0];
-  const ptNaLvl = rasa?.system?.pt?.wartosc_na_lvl ?? [];
+    const rasa = this.parent.items.filter((item) => item.type === "gatunek")[0];
+    const ptNaLvl = rasa?.system?.pt?.wartosc_na_lvl ?? [];
     let ptRasy = 0;
-    ptNaLvl.forEach(pt=>{
-      ptRasy = pt + postura.mod
-    })
+    ptNaLvl.forEach((pt) => {
+      ptRasy = pt + postura.mod;
+    });
     this.pt.max = ptRasy;
   }
   _preparePM() {

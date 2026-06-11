@@ -1,7 +1,7 @@
 import { enrich } from "../../utilities/utils.mjs";
 import { bronSheet } from "../items/bron.mjs";
 import { przedmiotDataModel } from "../../data-models/przedmiot.mjs";
-import {awanturnik20DialogRasy} from "../../dialogs/modyfikacjiRasy.mjs"
+import { awanturnik20DialogRasy } from "../../dialogs/modyfikacjiRasy.mjs";
 
 const { api, sheets } = foundry.applications;
 
@@ -324,7 +324,7 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     const usun = game.i18n.format(`awanturnik20.actor.usun`, {
       type: item.type,
     });
-        const edytuj = game.i18n.format(`awanturnik20.actor.edytuj`, {
+    const edytuj = game.i18n.format(`awanturnik20.actor.edytuj`, {
       type: item.type,
     });
 
@@ -332,9 +332,9 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     <div class="menu-option" data-action="open">${otworz}</div>
     <div class="menu-option" data-action="delete">${usun}</div>
   `;
-  if(item.type === "gatunek"){
-     menu.innerHTML += `<div class="menu-option" data-action="edit">${edytuj}</div>`
-  }
+    if (item.type === "gatunek") {
+      menu.innerHTML += `<div class="menu-option" data-action="edit">${edytuj}</div>`;
+    }
     menu.style.left = `${ev.pageX}px`;
     menu.style.top = `${ev.pageY}px`;
     document.body.appendChild(menu);
@@ -351,10 +351,10 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
         const item = await this.actor.items.get(itemId);
         await item?.delete();
       }
-            if (action === "edit") {
+      if (action === "edit") {
         const item = await this.actor.items.get(itemId);
-        const dialog= new awanturnik20DialogRasy({type:"rasa", item:item} )
-dialog.render({force:true})
+        const dialog = new awanturnik20DialogRasy({ type: "rasa", item: item });
+        dialog.render({ force: true });
       }
 
       menu.remove();
@@ -424,15 +424,21 @@ dialog.render({force:true})
 
     switch (itemData.type) {
       case "gatunek":
-        const maGatunek = this.actor.items.filter(item => item.type ==="gatunek");
-        if(maGatunek.length > 0){
-           ui.notifications.warn(game.i18n.localize("awanturnik20.ui.warn.ma_gatunek"))
-        }
-        else{
-const dialog= new awanturnik20DialogRasy({type:"rasa", item:itemDoc} )
-console.log(dialog)
-dialog.render({force:true})
-  await actor.createEmbeddedDocuments("Item", [itemData]);
+        const maGatunek = this.actor.items.filter(
+          (item) => item.type === "gatunek",
+        );
+        if (maGatunek.length > 0) {
+          ui.notifications.warn(
+            game.i18n.localize("awanturnik20.ui.warn.ma_gatunek"),
+          );
+        } else {
+          const dialog = new awanturnik20DialogRasy({
+            type: "rasa",
+            item: itemDoc,
+          });
+          console.log(dialog);
+          dialog.render({ force: true });
+          await actor.createEmbeddedDocuments("Item", [itemData]);
         }
         break;
       default:

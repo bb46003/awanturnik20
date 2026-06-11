@@ -129,7 +129,7 @@ export const kompetencje = /** @type {const} */ ({
     umiejkaKey: "okultyzm",
   },
   przelamanie_mocy: {
-    label: "awanturnik20.actor.atrybuty.kompetencje.przelamanie_mo",
+    label: "awanturnik20.actor.atrybuty.kompetencje.przelamanie_mocy",
     atrybKey: "moc",
     umiejkaKey: "przelamanie_mocy",
   },
