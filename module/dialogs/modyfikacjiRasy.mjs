@@ -1,6 +1,8 @@
 import { kompetencje } from "../config.mjs";
 
-export class awanturnik20DialogRasy extends foundry.applications.api.DialogV2 {
+export class awanturnik20DialogRasy
+  extends foundry.applications.api.ApplicationV2
+{
   constructor({ item, type } = {}) {
     super();
     this.item = item;
@@ -21,10 +23,8 @@ export class awanturnik20DialogRasy extends foundry.applications.api.DialogV2 {
       height: "auto",
     },
     template: "systems/awanturnik20/module/templates/dialogs/rasa-item-mod.hbs",
-    buttons: [{ action: "save", label: "awanturnik20.dialog.ok" }],
-    form: {
-      handler: "onSubmit",
-      submitOnChange: true,
+    actions: {
+      save: awanturnik20DialogRasy.#onSubmit,
     },
   };
 
@@ -58,10 +58,11 @@ export class awanturnik20DialogRasy extends foundry.applications.api.DialogV2 {
     const wybor_kompetencji = await this.prepareKompetencje(
       system.kompetencje_do_wyboru ?? [],
     );
-
+    const os_wartosci = system.os_wartosci;
     Object.assign(context, {
       modyfikatory,
       wybor_kompetencji,
+      os_wartosci,
     });
 
     return context;
@@ -127,7 +128,7 @@ export class awanturnik20DialogRasy extends foundry.applications.api.DialogV2 {
         if (!val) return;
 
         if (seen.has(val)) {
-          select.value = String(Number(val) + 1);
+          select.value = String(Number(val) + i);
           i++;
         } else {
           seen.add(val);
@@ -226,25 +227,150 @@ export class awanturnik20DialogRasy extends foundry.applications.api.DialogV2 {
       this.handleUniqueSelectGroup(
         row.querySelectorAll("select[name='cecha_do_zwiekszenia']"),
       );
+      this.handleUniqueSelectGroup(
+        row.querySelectorAll("select[name=charakter]"),
+      );
     });
   }
 
   // =========================
   // 🔧 SUBMIT
   // =========================
-  async onSubmit(event, form, formData) {
-    const data = foundry.utils.expandObject(formData.object);
+  static async #onSubmit(event) {
+    const app = this;
+    const button = event.target;
+    const root = button.closest("section");
 
-    const mods = data.modyfikator_cech ?? [];
+    if (!root) return;
 
-    const result = mods.map((m) => ({
-      cecha_do_obnizenia: m.cecha_do_obnizenia ?? "",
-      cecha_do_zwiekszenia: m.cecha_do_zwiekszenia ?? "",
-      wartosc: Number(m.wartosc) || 0,
-    }));
+    // =========================
+    // 📦 RESULT OBJECT
+    // =========================
+    const result = {
+      modyfikatory: [],
+      kompetencje: [],
+      charakter: {
+        cnoty: [],
+        zalety: [],
+        wady: [],
+        przywary: [],
+      },
+    };
 
-    await this.item.setFlag("awanturnik20", "rasa_modifiers", result);
+    // =========================
+    // 🧰 HELPERS
+    // =========================
+    const getSelectedDataset = (select, key) => {
+      const opt = select.selectedOptions?.[0];
+      return opt?.dataset?.[key] ?? null;
+    };
 
-    this.close();
+    const getSelectedValue = (select) => {
+      return Number(select.value) || 0;
+    };
+
+    // =========================
+    // 🧩 MODYFIKATORY
+    // =========================
+    const modRows = root.querySelectorAll(".mod-row");
+
+    modRows.forEach((row) => {
+      // skip other blocks
+      if (row.classList.contains("kompetencje")) return;
+      if (row.closest(".chakrakter")) return;
+
+      const obniz = Array.from(
+        row.querySelectorAll("select[name='cecha_do_obnizenia']"),
+      ).map((el) => getSelectedDataset(el, "cecha"));
+
+      const zmniejszenie = Array.from(
+        row.querySelectorAll("select[name='zmniejszenie']"),
+      ).map(getSelectedValue);
+
+      const zwieksz = Array.from(
+        row.querySelectorAll("select[name='cecha_do_zwiekszenia']"),
+      ).map((el) => getSelectedDataset(el, "cecha"));
+
+      const zwiekszenie = Array.from(
+        row.querySelectorAll("select[name='zwiekszenie']"),
+      ).map(getSelectedValue);
+
+      result.modyfikatory.push({
+        obniz,
+        zmniejszenie,
+        zwieksz,
+        zwiekszenie,
+      });
+    });
+
+    // =========================
+    // 🧩 KOMPETENCJE
+    // =========================
+    const kompRows = root.querySelectorAll(".mod-row.kompetencje");
+
+    kompRows.forEach((row) => {
+      const selects = row.querySelectorAll("select");
+
+      const values = Array.from(selects).map((el) =>
+        getSelectedDataset(el, "komp"),
+      );
+
+      // remove nulls (just in case)
+      result.kompetencje.push(values.filter(Boolean));
+    });
+
+    const osie_charakteru = [
+      "os_pobudek",
+      "os_porzadku",
+      "os_egoizmu",
+      "os_osadu",
+      "os_pasji",
+      "os_materii",
+      "os_ducha",
+    ];
+    const charakterSelects = root.querySelectorAll("select[name='charakter']");
+
+    charakterSelects.forEach((el) => {
+      const type = Number(el.dataset.type);
+      const value = Number(el.value);
+
+      if (isNaN(type)) return;
+
+      switch (type) {
+        case 0:
+          result.charakter.cnoty.push(osie_charakteru[value]);
+          break;
+        case 1:
+          result.charakter.zalety.push(osie_charakteru[value]);
+          break;
+        case 2:
+          result.charakter.wady.push(osie_charakteru[value]);
+          break;
+        case 3:
+          result.charakter.przywary.push(osie_charakteru[value]);
+          break;
+      }
+    });
+
+    // =========================
+    // 🧹 CLEAN EMPTY ENTRIES
+    // =========================
+    result.modyfikatory = result.modyfikatory.filter(
+      (m) =>
+        m.obniz.length ||
+        m.zmniejszenie.some((v) => v > 0) ||
+        m.zwieksz.length ||
+        m.zwiekszenie.some((v) => v > 0),
+    );
+
+    // =========================
+    // 💾 SAVE
+    // =========================
+    await app.item.setFlag("awanturnik20", "wybraneOpcje", result);
+
+  
+
+    app.close();
   }
+
 }

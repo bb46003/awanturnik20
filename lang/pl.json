@@ -315,7 +315,12 @@
       "zwieksz": "Cechy do zwiększenia",
       "wartosc": "Maksymalna wartość do zmodyfikowania",
       "ilosc_kompetencji_do_wyboru": "Ilość Kompetencji do wyboru",
-      "kompetencje_do_wyboru": "Kompetencje do wyboru"
+      "kompetencje_do_wyboru": "Kompetencje do wyboru",
+      "wybor_charakteru": "Wybierz cechy Charakteru ze wszystkich osi",
+      "cnoty": "Wybierz {ilosc} Cnoty",
+      "zalety": "Wybierz {ilosc} Zalety",
+      "wady": "Wybierz {ilosc} Wady",
+      "przywary": "Wybierz {ilosc} Przywary"
     }
   }
 }

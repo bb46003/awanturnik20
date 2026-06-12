@@ -148,45 +148,45 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
       }),
       charakter: new SchemaField({
         os_pobudek: new NumberField({
-          initial: 0,
+          initial: -1,
           label: "awanturnik20.actor.charakter.os_pobudek",
-          min: 0,
+          min: -1,
           max: 3,
         }),
         os_porzadku: new NumberField({
-          initial: 0,
+          initial: -1,
           label: "awanturnik20.actor.charakter.os_porzadku",
-          min: 0,
+          min: -1,
           max: 3,
         }),
         os_egoizmu: new NumberField({
-          initial: 0,
+          initial: -1,
           label: "awanturnik20.actor.charakter.os_egoizmu",
-          min: 0,
+          min: -1,
           max: 3,
         }),
         os_osadu: new NumberField({
-          initial: 0,
+          initial: -1,
           label: "awanturnik20.actor.charakter.os_osadu",
-          min: 0,
+          min: -1,
           max: 3,
         }),
         os_pasji: new NumberField({
-          initial: 0,
+          initial: -1,
           label: "awanturnik20.actor.charakter.os_pasji",
-          min: 0,
+          min: -1,
           max: 3,
         }),
         os_materii: new NumberField({
-          initial: 0,
+          initial: -1,
           label: "awanturnik20.actor.charakter.os_materii",
-          min: 0,
+          min: -1,
           max: 3,
         }),
         os_ducha: new NumberField({
-          initial: 0,
+          initial: -1,
           label: "awanturnik20.actor.charakter.os_ducha",
-          min: 0,
+          min: -1,
           max: 3,
         }),
       }),
@@ -250,6 +250,7 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
   /** @override */
   prepareDerivedData() {
     super.prepareDerivedData();
+    this._prapareBonusZGatunku();
     this._prepareMod();
     this._prepareKP();
     this._prepareKMO();
@@ -351,7 +352,53 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
     const moc = this.atrybuty.moc;
     this.pm.max = moc.mod;
   }
+  _prapareBonusZGatunku() {
+    const rasa = this.parent.items.filter((item) => item.type === "gatunek")[0];
+    if (rasa) {
+      const bonusy = rasa.flags?.awanturnik20?.wybraneOpcje;
+      if (Object.keys(bonusy).length > 0) {
+        const character = this.charakter;
+        const unSetCharacter = Object.values(character).every(
+          (value) => value === -1,
+        );
+        if (unSetCharacter) {
+          const poczatkowyCharakter = bonusy.charakter;
+          this.charakter = applyCharacter(poczatkowyCharakter, character);
+        }
+        if(bonusy.kompetencje.length > 0){
+        this.atrybuty = poczatkoweKompetencjeZRasy(this.atrybuty, bonusy.kompetencje)
+        }
+        if(bonusy.modyfikatory.length >0){
+          this.atrybuty = modyfikatoryCechZRasy(this.atrybuty, bonusy.modyfikatory)
+        }
+
+      }
+    }
+  }
 }
+
+function applyCharacter(poczatkowyCharakter, character) {
+  const result = {};
+
+  const mapGroup = (arr, value) => {
+    arr.forEach((key) => {
+      result[key] = value;
+    });
+  };
+
+  mapGroup(poczatkowyCharakter.cnoty ?? [], 0);
+  mapGroup(poczatkowyCharakter.zalety ?? [], 1);
+  mapGroup(poczatkowyCharakter.wady ?? [], 2);
+  mapGroup(poczatkowyCharakter.przywary ?? [], 3);
+
+  // apply to schema object
+  for (const [key, value] of Object.entries(result)) {
+    character[key] = value;
+  }
+
+  return character;
+}
+
 const KOMPETENCJA_FIELD = {
   initial: "niewyszkolony",
   choices: {
@@ -375,4 +422,51 @@ function buildKompetencjeSchema(atrybKey) {
   }
 
   return new SchemaField(fields);
+}
+function poczatkoweKompetencjeZRasy(atrybuty, kompetencje) {
+
+  const flat = kompetencje.flat();
+  for (const kompetencje of flat) {
+    for (const attr of Object.values(atrybuty)) {
+      if (!attr?.kompetencje) continue;
+      if (kompetencje in attr.kompetencje) {
+        if (attr.kompetencje[kompetencje] === "niewyszkolony") {
+          attr.kompetencje[kompetencje] = "adept";
+        }
+      }
+    }
+  }
+  return atrybuty;
+}
+
+function modyfikatoryCechZRasy(atrybuty, modyfikatory) {
+  const attrs = atrybuty
+
+  for (const modSet of modyfikatory) {
+
+
+    const { obniz = [], zmniejszenie = [] } = modSet;
+
+    for (let i = 0; i < obniz.length; i++) {
+      const attrName = obniz[i];
+      const amount = zmniejszenie[i] ?? 0;
+
+      if (!attrs[attrName]) continue;
+
+      attrs[attrName].value -= amount;
+    }
+
+    const { zwieksz = [], zwiekszenie = [] } = modSet;
+
+    for (let i = 0; i < zwieksz.length; i++) {
+      const attrName = zwieksz[i];
+      const amount = zwiekszenie[i] ?? 0;
+
+      if (!attrs[attrName]) continue;
+
+      attrs[attrName].value += amount;
+    }
+  }
+
+  return attrs;
 }

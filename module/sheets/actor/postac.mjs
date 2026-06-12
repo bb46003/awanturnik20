@@ -432,13 +432,17 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
             game.i18n.localize("awanturnik20.ui.warn.ma_gatunek"),
           );
         } else {
+          if(itemData.flags?.awanturnik20?.wybraneOpcje){
+            itemData.flags.awanturnik20.wybraneOpcje = {};
+          }
+          const item = await actor.createEmbeddedDocuments("Item", [itemData]);
           const dialog = new awanturnik20DialogRasy({
             type: "rasa",
-            item: itemDoc,
+            item: item[0],
           });
-          console.log(dialog);
+
           dialog.render({ force: true });
-          await actor.createEmbeddedDocuments("Item", [itemData]);
+          
         }
         break;
       default:

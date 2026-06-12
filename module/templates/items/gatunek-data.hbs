@@ -251,11 +251,12 @@
 
       {{#each systemFields.os_wartosci.fields as |field key|}}
         <div class="flexrow">
+          
           <label>{{localize field.label}}</label>
           {{formInput
             field
             name=(concat "system.os_wartosci." key)
-            value=(lookup system.os_wartosci key)
+            value=(lookup ../system.os_wartosci key)
           }}
         </div>
       {{/each}}

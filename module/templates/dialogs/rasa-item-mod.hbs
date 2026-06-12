@@ -7,7 +7,7 @@
       {{#each (range 1 mod.cecha_do_obnizenia)}}
       <select name="cecha_do_obnizenia">
         {{#each mod.cecha_do_obnizenia as |label key|}}
-          <option value="{{key}}">
+          <option value="{{key}}" data-cecha="{{label}}">
             {{localize (concat "awanturnik20.actor.atrybuty." label)}}
           </option>
         {{/each}}
@@ -25,7 +25,7 @@
       {{#each (range 1 mod.cecha_do_zwiekszenia)}}
       <select name="cecha_do_zwiekszenia">
         {{#each mod.cecha_do_zwiekszenia as |label key|}}
-          <option value="{{key}}">
+          <option value="{{key}}" data-cecha="{{label}}">
             {{localize (concat "awanturnik20.actor.atrybuty." label)}}
           </option>
         {{/each}}
@@ -43,16 +43,16 @@
       </div>
     </div>
   {{/each}}
-  
+    <div class="mod-row kompetencje">
   {{#each wybor_kompetencji as |komp i|}}
-  <div class="mod-row kompetencje">
+  <div class="kompetencje">
     <label>{{localize "awanturnik20.dialog.kompetencje_do_wyboru"}}</label>
     <div class="flexcol kompetencje">
     {{#each (range 1 komp.ilosc_kompetencji)}}
      <select class="flexrow">
       {{#each komp.kompetencje as |label key|}}
      
-        <option class="kopetencja" value="{{key}}">
+        <option class="kopetencja" value="{{key}}" data-komp="{{label}}">
         {{localize (concat "awanturnik20.actor.atrybuty.kompetencje." label)}}</option>
      
       {{/each}}
@@ -65,6 +65,77 @@
     </div>
   </div>
   {{/each}}
+    </div>
+  <div class="mod-row chakrakter">
+    {{#if (ne os_wartosci.cnoty 0)}}
+    <div class="cnoty">
+      <label>{{localize "awanturnik20.dialog.wybor_charakteru"}}</label>
+      {{format "awanturnik20.dialog.cnoty" ilosc=os_wartosci.cnoty}}
+      {{#each (range 1 os_wartosci.cnoty)}}
+      <select name="charakter" data-type="0">
+        <option value="0">{{localize "awanturnik20.actor.charakter.os_pobudek_0"}}</option>
+        <option value="1">{{localize  "awanturnik20.actor.charakter.os_porzadku_0"}}</option>
+        <option value="2">{{localize  "awanturnik20.actor.charakter.os_egoizmu_0"}}</option>
+        <option value="3">{{localize  "awanturnik20.actor.charakter.os_osadu_0"}}</option>
+        <option value="4">{{localize  "awanturnik20.actor.charakter.os_pasji_0"}}</option>
+        <option value="5">{{localize  "awanturnik20.actor.charakter.os_materii_0"}}</option>
+        <option value="6">{{localize  "awanturnik20.actor.charakter.os_ducha_0"}}</option>
+      </select>
+      {{/each}}
+    </div>
+    {{/if}}
+        {{#if (ne os_wartosci.zalety 0)}}
+    <div class="zalety">
+      <label>{{localize "awanturnik20.dialog.wybor_charakteru"}}</label>
+      {{format "awanturnik20.dialog.zalety" ilosc=os_wartosci.zalety}}
+      {{#each (range 1 os_wartosci.zalety)}}
+      <select name="charakter" data-type="1">
+        <option value="0">{{localize "awanturnik20.actor.charakter.os_pobudek_1"}}</option>
+        <option value="1">{{localize  "awanturnik20.actor.charakter.os_porzadku_1"}}</option>
+        <option value="2">{{localize  "awanturnik20.actor.charakter.os_egoizmu_1"}}</option>
+        <option value="3">{{localize  "awanturnik20.actor.charakter.os_osadu_1"}}</option>
+        <option value="4">{{localize  "awanturnik20.actor.charakter.os_pasji_1"}}</option>
+        <option value="5">{{localize  "awanturnik20.actor.charakter.os_materii_1"}}</option>
+        <option value="6">{{localize  "awanturnik20.actor.charakter.os_ducha_1"}}</option>
+      </select>
+      {{/each}}
+    </div>
+    {{/if}}
+        {{#if (ne os_wartosci.wady 0)}}
+    <div class="wady">
+      <label>{{localize "awanturnik20.dialog.wybor_charakteru"}}</label>
+      {{format "awanturnik20.dialog.wady" ilosc=os_wartosci.wady}}
+      {{#each (range 1 os_wartosci.wady)}}
+      <select name="charakter" data-type="2">
+        <option value="0">{{localize "awanturnik20.actor.charakter.os_pobudek_2"}}</option>
+        <option value="1">{{localize  "awanturnik20.actor.charakter.os_porzadku_2"}}</option>
+        <option value="2">{{localize  "awanturnik20.actor.charakter.os_egoizmu_2"}}</option>
+        <option value="3">{{localize  "awanturnik20.actor.charakter.os_osadu_2"}}</option>
+        <option value="4">{{localize  "awanturnik20.actor.charakter.os_pasji_2"}}</option>
+        <option value="5">{{localize  "awanturnik20.actor.charakter.os_materii_2"}}</option>
+        <option value="6">{{localize  "awanturnik20.actor.charakter.os_ducha_2"}}</option>
+      </select>
+      {{/each}}
+    </div>
+    {{/if}}
+        {{#if (ne os_wartosci.przywary 0)}}
+    <div class="przywary">
+      <label>{{localize "awanturnik20.dialog.wybor_charakteru"}}</label>
+      {{format "awanturnik20.dialog.przywary" ilosc=os_wartosci.przywary}}
+      {{#each (range 1 os_wartosci.przywary)}}
+      <select name="charakter" data-type="3">
+        <option value="0">{{localize "awanturnik20.actor.charakter.os_pobudek_3"}}</option>
+        <option value="1">{{localize  "awanturnik20.actor.charakter.os_porzadku_3"}}</option>
+        <option value="2">{{localize  "awanturnik20.actor.charakter.os_egoizmu_3"}}</option>
+        <option value="3">{{localize  "awanturnik20.actor.charakter.os_osadu_3"}}</option>
+        <option value="4">{{localize  "awanturnik20.actor.charakter.os_pasji_3"}}</option>
+        <option value="5">{{localize  "awanturnik20.actor.charakter.os_materii_3"}}</option>
+        <option value="6">{{localize  "awanturnik20.actor.charakter.os_ducha_3"}}</option>
+      </select>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
   <footer>
     <button data-action="save">{{localize "awanturnik20.dialog.ok"}}</button>
   </footer>
