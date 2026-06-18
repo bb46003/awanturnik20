@@ -406,6 +406,21 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       const newIlosc = Number(target.value);
       item.update({ "system.ilosc": newIlosc });
     }
+if (typeof target?.name === "string") {
+    if (!(target.name?.includes("system.atrybuty.") && target.name?.includes(".valu"))) {
+    for (const key of Object.keys(formData.object)) {
+    if (!(key.startsWith("system.atrybuty.") && key.endsWith(".valu"))) {
+      delete formData.object[key];
+    }}}else{
+        for (const key of Object.keys(formData.object)) {
+    if (key !== target?.name) {
+      delete formData.object[key];
+    }
+  }
+    }
+  }
+
+
 
     return super._processFormData(event, form, formData);
   }

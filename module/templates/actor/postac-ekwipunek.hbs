@@ -189,7 +189,7 @@
             </td>
 
             <td>
-              <select data-action="changeTrzymana" data-item="{{@key}}" name="system.trzymana">
+              <select data-action="changeTrzymana" data-item="{{@key}}">
                 <option value="brak" {{#if (eq bron.trzymana "brak")}}selected{{/if}}>
                   -
                 </option>
@@ -281,7 +281,6 @@
                 <div class="flexrow">
                   <input
                     type="number"
-                    name="system.ilosc"
                     data-action="zmianaIlosci"
                     value="{{przedmiot.ilosc}}"
                     data-item="{{@key}}"

@@ -368,9 +368,6 @@ export class awanturnik20DialogRasy
     // =========================
     await app.item.setFlag("awanturnik20", "wybraneOpcje", result);
 
-  
-
     app.close();
   }
-
 }

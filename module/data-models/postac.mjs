@@ -365,13 +365,18 @@ export class postacDataModel extends foundry.abstract.TypeDataModel {
           const poczatkowyCharakter = bonusy.charakter;
           this.charakter = applyCharacter(poczatkowyCharakter, character);
         }
-        if(bonusy.kompetencje.length > 0){
-        this.atrybuty = poczatkoweKompetencjeZRasy(this.atrybuty, bonusy.kompetencje)
+        if (bonusy.kompetencje.length > 0) {
+          this.atrybuty = poczatkoweKompetencjeZRasy(
+            this.atrybuty,
+            bonusy.kompetencje,
+          );
         }
-        if(bonusy.modyfikatory.length >0){
-          this.atrybuty = modyfikatoryCechZRasy(this.atrybuty, bonusy.modyfikatory)
+        if (bonusy.modyfikatory.length > 0) {
+          this.atrybuty = modyfikatoryCechZRasy(
+            this.atrybuty,
+            bonusy.modyfikatory,
+          );
         }
-
       }
     }
   }
@@ -424,7 +429,6 @@ function buildKompetencjeSchema(atrybKey) {
   return new SchemaField(fields);
 }
 function poczatkoweKompetencjeZRasy(atrybuty, kompetencje) {
-
   const flat = kompetencje.flat();
   for (const kompetencje of flat) {
     for (const attr of Object.values(atrybuty)) {
@@ -440,11 +444,9 @@ function poczatkoweKompetencjeZRasy(atrybuty, kompetencje) {
 }
 
 function modyfikatoryCechZRasy(atrybuty, modyfikatory) {
-  const attrs = atrybuty
+  const attrs = atrybuty;
 
   for (const modSet of modyfikatory) {
-
-
     const { obniz = [], zmniejszenie = [] } = modSet;
 
     for (let i = 0; i < obniz.length; i++) {
