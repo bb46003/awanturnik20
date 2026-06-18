@@ -147,7 +147,6 @@ export class bronDataModel extends foundry.abstract.TypeDataModel {
     };
   }
   zmienChwyt(value) {
-    console.log(value)
     this.parent.update({ "system.trzymana": value });
   }
 }

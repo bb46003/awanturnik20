@@ -35,16 +35,12 @@
 
             {{! SKILL VALUE }}
             <td>
-              {{formInput
-                skill
-                value=(lookup
+              <label class="poziom-kompetencji">{{localize (lookup
                   (lookup
                     (lookup @root.system.atrybuty atrybut.name) "kompetencje"
                   )
                   skill.name
-                )
-                localize=true
-              }}
+                )}}</label>
             </td>
 
             {{! EXTRA MOD }}

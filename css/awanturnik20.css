@@ -557,7 +557,13 @@
               width: 35px;
               height: 35px;
             }
-
+            span, a{
+        max-width: 150px;
+    text-wrap: auto;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+      }
             .threeDots {
               margin-left: auto;
               cursor: pointer;
@@ -629,6 +635,7 @@
       cursor: pointer;
       border-radius: 5px;
       border-style: double;
+      
     }
 
     .item-eq-wrapper img {

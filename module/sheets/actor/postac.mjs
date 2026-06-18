@@ -10,7 +10,7 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
 ) {
   constructor(...args) {
     super(...args);
-
+    this.y = 0;
     /** @type {CharacterActor} */
     this.actor;
   }
@@ -23,6 +23,7 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       obroc: postacSheet.#obroc,
       zaloz_pancerz: postacSheet.#zaloz_pancerz,
       changeIlosc: postacSheet.#changeIlosc,
+      dodajPrzedmiot: postacSheet.#dodajPrzedmiot
     },
     form: {
       submitOnChange: true,
@@ -379,7 +380,13 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
       });
     }
     await selectItem.update({ "system.noszona": !noszona });
-    this.render(true);
+   
+        const scrollEl = target.closest(".tab.active");
+    if (scrollEl) {
+      this._scrollTarget = scrollEl;
+      this.y = scrollEl.scrollTop;
+    }
+     this.render(true);
   }
   static async #changeIlosc(ev) {
     const target = ev.target.parentElement;
@@ -389,41 +396,64 @@ export class postacSheet extends api.HandlebarsApplicationMixin(
     const newIlosc =
       item.system.ilosc + change < 0 ? 0 : item.system.ilosc + change;
     await item.update({ "system.ilosc": newIlosc });
-  }
-
-  _processFormData(event, form, formData) {
-    let name = event?.target?.name;
-    if (typeof name === "string" && name.includes("charakter")) {
-      formData.object[name] = Number(formData.object[name]);
-    }
-    const target = event?.target;
-    if (target.dataset.action === "changeTrzymana") {
-      const item = this.actor.items.get(target.dataset.item);
-      item.system.zmienChwyt(target.value);
-    }
-    if (target.dataset.action === "zmianaIlosci") {
-      const item = this.actor.items.get(target.dataset.item);
-      const newIlosc = Number(target.value);
-      item.update({ "system.ilosc": newIlosc });
-    }
-if (typeof target?.name === "string") {
-    if (!(target.name?.includes("system.atrybuty.") && target.name?.includes(".valu"))) {
-    for (const key of Object.keys(formData.object)) {
-    if (!(key.startsWith("system.atrybuty.") && key.endsWith(".valu"))) {
-      delete formData.object[key];
-    }}}else{
-        for (const key of Object.keys(formData.object)) {
-    if (key !== target?.name) {
-      delete formData.object[key];
+        const scrollEl = target.closest(".tab.active");
+    if (scrollEl) {
+      this._scrollTarget = scrollEl;
+      this.y = scrollEl.scrollTop;
     }
   }
+static async #dodajPrzedmiot(ev){
+  const target = ev.target;
+  const element = target.closest(".dodaj-przedmiot");
+  const itemType = element.dataset.type;
+  const actor = this.actor;
+  const itemName = game.i18n.localize(`TYPES.Item.${itemType}`)
+  const itemData = {type: itemType, name: itemName}
+  const item = await actor.createEmbeddedDocuments("Item", [itemData]);
+  item[0].sheet.render({force: true})
+      const scrollEl = target.closest(".tab.active");
+    if (scrollEl) {
+      this._scrollTarget = scrollEl;
+      this.y = scrollEl.scrollTop;
+    }
+
+}
+_processFormData(event, form, formData) {
+  const target = event?.target;
+  const name = target?.name;
+
+  const data = { object: {} };
+
+  const action = target?.dataset?.action;
+
+  if (action === "changeTrzymana") {
+    const item = this.actor.items.get(target.dataset.item);
+    item?.system?.zmienChwyt?.(target.value);
+  }
+
+  if (action === "zmianaIlosci") {
+    const item = this.actor.items.get(target.dataset.item);
+    const newIlosc = Number(target.value);
+    item?.update?.({ "system.ilosc": newIlosc });
+  }
+
+  if (typeof name === "string" && name.includes("charakter")) {
+    if (formData?.object?.[name] !== undefined) {
+      data.object[name] = Number(formData.object[name]);
     }
   }
-
-
-
-    return super._processFormData(event, form, formData);
+  if (typeof name === "string") {
+    data.object[name] = target?.value;
   }
+    
+    const scrollEl = target.closest(".tab.active");
+    if (scrollEl) {
+      this._scrollTarget = scrollEl;
+      this.y = scrollEl.scrollTop;
+    }
+  
+  return super._processFormData(event, form, data);
+}
   async _onDrop(event) {
     event.preventDefault();
 
@@ -465,4 +495,11 @@ if (typeof target?.name === "string") {
         break;
     }
   }
+_onRender(context, options) {
+  const activeTab = this.element.querySelector(".tab.active");
+
+  if (!activeTab) return;
+
+  activeTab.scrollTop = this.y ?? 0;
+}
 }
