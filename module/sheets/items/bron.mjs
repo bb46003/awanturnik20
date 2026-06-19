@@ -7,7 +7,9 @@ export class bronSheet extends api.HandlebarsApplicationMixin(
 ) {
   constructor(...args) {
     super(...args);
+      this.y = 0;
     this.item;
+    this.y = 0;
   }
   static DEFAULT_OPTIONS = {
     classes: ["bron-sheet"],
@@ -58,4 +60,21 @@ export class bronSheet extends api.HandlebarsApplicationMixin(
     };
     return context;
   }
+  _processFormData(event, form, formData) {
+    const target = event.target;
+        const scrollEl = target.closest(".tab.active");
+    if (scrollEl) {
+      this._scrollTarget = scrollEl;
+      this.y = scrollEl.scrollTop;
+    }
+      return super._processFormData(event, form, formData);
+
+  }
+  _onRender(context, options) {
+  const activeTab = this.element.querySelector(".tab.active");
+
+  if (!activeTab) return;
+
+  activeTab.scrollTop = this.y ?? 0;
+}
 }

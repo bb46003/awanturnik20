@@ -451,8 +451,9 @@ _processFormData(event, form, formData) {
       this._scrollTarget = scrollEl;
       this.y = scrollEl.scrollTop;
     }
-  
-  return super._processFormData(event, form, data);
+  const process =  super._processFormData(event, form, data);
+    this.actor.sheet.render({force: true})
+  return process
 }
   async _onDrop(event) {
     event.preventDefault();

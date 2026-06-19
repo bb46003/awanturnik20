@@ -8,6 +8,7 @@ export class tarczaSheet extends api.HandlebarsApplicationMixin(
   constructor(...args) {
     super(...args);
     this.item;
+    this.y = 0;
   }
   static DEFAULT_OPTIONS = {
     classes: ["tarcza-sheet"],
@@ -57,5 +58,22 @@ export class tarczaSheet extends api.HandlebarsApplicationMixin(
       field: this.item.system.schema.fields.opis,
     };
     return context;
+  }
+    _onRender(context, options) {
+  const activeTab = this.element.querySelector(".tab.active");
+
+  if (!activeTab) return;
+
+  activeTab.scrollTop = this.y ?? 0;
+}
+  _processFormData(event, form, formData) {
+    const target = event.target;
+        const scrollEl = target.closest(".tab.active");
+    if (scrollEl) {
+      this._scrollTarget = scrollEl;
+      this.y = scrollEl.scrollTop;
+    }
+      return super._processFormData(event, form, formData);
+
   }
 }

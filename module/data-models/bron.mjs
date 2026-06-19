@@ -89,9 +89,10 @@ export class bronDataModel extends foundry.abstract.TypeDataModel {
       pt: new SchemaField({
         "1r": new SchemaField({
           ilosc: new NumberField({
-            initial: 0,
+            initial: 1,
             required: true,
             label: "awanturnik20.item.bron.ilosc_kosci_trafienia",
+            min: 1
           }),
           typ_kosci: new StringField({
             initial: "d4",
@@ -109,9 +110,10 @@ export class bronDataModel extends foundry.abstract.TypeDataModel {
         }),
         "2r": new SchemaField({
           ilosc: new NumberField({
-            initial: 0,
+            initial: 1,
             required: true,
             label: "awanturnik20.item.bron.ilosc_kosci_trafienia",
+             min: 1
           }),
           typ_kosci: new StringField({
             initial: "d4",
